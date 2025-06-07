@@ -35,55 +35,6 @@ Framer Motion: Uma biblioteca para animações de interface de usuário no React
 
 Além dessas, o projeto utiliza várias outras bibliotecas e ferramentas para desenvolvimento, linting e construção, conforme detalhado no arquivo package.json.
 
-Estrutura do Projeto
-
-A estrutura de diretórios do projeto é organizada da seguinte forma:
-
-Plain Text
-
-
-Portfolio/
-├── public/
-│   ├── locales/
-│   │   ├── en/
-│   │   │   └── translation.json
-│   │   └── pt/
-│   │       └── translation.json
-│   └── pdfs/
-│       ├── benchmark.pdf
-│       ├── juritask.pdf
-│       ├── me-ensina.pdf
-│       └── tracksales.pdf
-├── src/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── aurora-background.tsx
-│   │   │   ├── behance-icon.tsx
-│   │   │   ├── language-switcher.tsx
-│   │   │   ├── moving-border.tsx
-│   │   │   ├── pdf-viewer.tsx
-│   │   │   ├── simple-pdf-viewer.tsx
-│   │   │   └── text-shimmer.tsx
-│   │   │   └── whatsapp-icon.tsx
-│   ├── lib/
-│   │   └── utils.ts
-│   ├── App.tsx
-│   ├── i18n.ts
-│   ├── index.css
-│   ├── main.tsx
-│   └── vite-env.d.ts
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md
-├── tailwind.config.js
-├── tsconfig.json
-├── tsconfig.node.json
-├── vite.config.ts
-└── ... (outros arquivos de configuração)
-
-
 •
 public/: Contém arquivos estáticos, como arquivos de localização (locales/) para internacionalização e documentos PDF (pdfs/) que são exibidos no portfólio.
 
