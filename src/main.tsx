@@ -1,10 +1,13 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import React, { Suspense } from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 import './index.css';
+import './i18n'; // Importa a configuração do i18next
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <Suspense fallback="...loading">
+      <App />
+    </Suspense>
+  </React.StrictMode>
 );

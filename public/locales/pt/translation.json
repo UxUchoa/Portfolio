@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "name": "Lucas Uchôa",
+    "home": "Início",
+    "about": "Sobre",
+    "portfolio": "Portfólio",
+    "experience": "Experiência",
+    "contact": "Contato"
+  },
+  "hero": {
+    "greeting": "👋 Olá!",
+    "iam": "Eu sou",
+    "name": "Lucas Uchôa",
+    "description": "Um UX/UI Designer com <1>6 anos de experiência</1> criando experiências digitais que encantam usuários e geram resultados de negócios.",
+    "viewProjects": "Ver Projetos",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "intro": "Sou um profissional de UX/UI apaixonado por resolver problemas complexos com design centrado no usuário. Tenho um olhar atento aos detalhes e um compromisso em criar produtos intuitivos e bonitos que atendam tanto às necessidades dos usuários quanto aos objetivos de negócios.",
+    "subheading": "Uma mistura de criatividade, empatia e conhecimento técnico para transformar ideias em realidade.",
+    "journeyTitle": "Minha Jornada",
+    "journeyParagraph1": "Baseado no Brasil, especializo-me em criar interfaces digitais centradas no usuário que combinam estética com funcionalidade.",
+    "journeyParagraph2": "Tive o privilégio de trabalhar com empresas líderes como <1>Banco do Brasil</1>, <2>ImoBanco</2> e <3>AevoTech</3>, onde consistentemente entreguei soluções de design impactantes.",
+    "journeyParagraph3": "Minha abordagem combina pesquisa de usuário, insights baseados em dados e resolução criativa de problemas para criar experiências digitais que não apenas parecem ótimas, mas também resolvem problemas reais de usuários e direcionam objetivos de negócios.",
+    "quickFactsTitle": "Fatos Rápidos",
+    "quickFacts": {
+      "location": "Brasil",
+      "experience": "6+ Anos de Experiência",
+      "projects": "50+ Projetos Concluídos",
+      "learning": "Aprendizado Contínuo"
+    },
+    "skillsTitle": "Habilidades Principais",
+    "toolsTitle": "Ferramentas que Domino",
+    "skills": {
+      "uxResearch": "Pesquisa UX",
+      "uiDesign": "Design de UI",
+      "prototyping": "Prototipagem",
+      "userTesting": "Teste de Usuário",
+      "infoArchitecture": "Arquitetura da Informação",
+      "designSystems": "Design Systems"
+    }
+  },
+  "portfolio": {
+    "title": "Portfólio",
+    "subtitle": "Cada projeto mostra resolução de problemas através de design thinking, pesquisa de usuário e soluções baseadas em dados.",
+    "viewPDF": "Visualizar PDF",
+    "visitBehance": "Visitar Behance",
+    "viewBehance": "Behance",
+    "viewFullPortfolio": "Ver Portfólio Completo no Behance",
+    "projects": {
+      "juritask": {
+        "title": "Juritask - Gestão Jurídica",
+        "category": "Desafio de Caso",
+        "description": "Plataforma de gestão jurídica focada em otimizar processos legais e melhorar a eficiência do fluxo de trabalho para profissionais do direito."
+      },
+      "tracksales": {
+        "title": "Tracksales - Plataforma de Gestão",
+        "category": "UI de App Móvel",
+        "description": "Plataforma de gestão de vendas projetada para otimizar o desempenho da equipe e acompanhar métricas de vendas com uma interface móvel intuitiva."
+      },
+      "meEnsina": {
+        "title": "Me-ensina Smart Learning",
+        "category": "Estudo de Caso",
+        "description": "Plataforma educacional que revoluciona a experiência de aprendizado através de tecnologia inteligente e abordagem de design centrada no usuário."
+      },
+      "flowchartTools": {
+        "title": "Benchmarking de Ferramentas de Fluxograma",
+        "category": "Pesquisa UX",
+        "description": "Pesquisa e análise abrangente de ferramentas de fluxograma para identificar melhores práticas e oportunidades de otimização."
+      }
+    }
+  },
+  "experience": {
+    "title": "Experiência Profissional",
+    "subtitle": "Uma jornada de crescimento e soluções de design impactantes.",
+    "jobs": {
+      "bancoBrasil": {
+        "period": "Mar 2024 - Presente",
+        "role": "Pesquisador UX",
+        "company": "Banco do Brasil",
+        "description": "Liderando iniciativas de pesquisa de usuários para produtos bancários digitais, conduzindo estudos de usabilidade e validação de design para o maior banco público do Brasil."
+      },
+      "imoBanco": {
+        "period": "Abr 2022 - Mar 2024",
+        "role": "Designer UX/UI Sênior",
+        "company": "ImoBanco",
+        "description": "Projetei experiências de usuário de ponta a ponta para a plataforma fintech imobiliária, criando interfaces intuitivas que melhoraram as taxas de conversão de usuários e otimizaram os processos de investimento imobiliário."
+      },
+      "aevoTech": {
+        "period": "Jul 2019 - Abr 2022",
+        "role": "Designer UX/UI",
+        "company": "AevoTech",
+        "description": "Criei designs centrados no usuário para soluções de software empresarial, colaborei com equipes multifuncionais para entregar produtos digitais impactantes para clientes empresariais."
+      },
+      "indra": {
+        "period": "Out 2020 - Out 2021",
+        "role": "Desenvolvedor Full Stack",
+        "company": "Indra",
+        "description": "Desenvolvi soluções full-stack abrangentes usando tecnologias web modernas, trabalhando em projetos de nível empresarial e contribuindo para iniciativas de transformação digital."
+      }
+    }
+  },
+  "contact": {
+    "title": "Vamos Conversar",
+    "subtitle": "Pronto para colaborar no seu próximo projeto? Adoraria ouvir sobre seus desafios de design e como podemos resolvê-los juntos.",
+    "form": {
+      "title": "Mensagem Rápida",
+      "name": "Nome",
+      "email": "Email",
+      "message": "Mensagem",
+      "sendMessage": "Enviar Mensagem",
+      "namePlaceholder": "Seu nome",
+      "emailPlaceholder": "seu@email.com",
+      "messagePlaceholder": "Conte-me sobre seu projeto..."
+    },
+    "info": "Entre em Contato"
+  },
+  "footer": {
+    "madeWith": "Feito com",
+    "by": "por Lucas Uchôa"
+  }
+} 

@@ -1,84 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, ExternalLink, Github, Linkedin, Download, Menu, X, Eye, Calendar, MapPin, Award, BookOpen, Briefcase } from 'lucide-react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
+import { Mail, Phone, ExternalLink, Github, Linkedin, Download, Menu, X, Eye, Calendar, MapPin, Award, BookOpen, Briefcase, Moon, Sun, MessageCircle } from 'lucide-react';
+import { Button as MovingBorderButton } from "./components/ui/moving-border";
+import { TextShimmer } from "./components/ui/text-shimmer";
+import { SimplePDFViewer } from "./components/ui/simple-pdf-viewer";
+import { LanguageSwitcher } from './components/ui/language-switcher';
+import { WhatsAppIcon } from './components/ui/whatsapp-icon';
+import { BehanceIcon } from './components/ui/behance-icon';
 
 function App() {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isDark, setIsDark] = useState(false);
+  const [pdfViewer, setPdfViewer] = useState({ isOpen: false, pdfUrl: '', title: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Mock project data representing Behance portfolio
+  useEffect(() => {
+    // Check for saved dark mode preference or default to light mode
+    const saved = localStorage.getItem('dark-mode');
+    const initialDark = saved === 'true';
+    setIsDark(initialDark);
+    document.documentElement.classList.toggle('dark', initialDark);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    localStorage.setItem('dark-mode', newDark.toString());
+    document.documentElement.classList.toggle('dark', newDark);
+  };
+
   const projects = [
-    {
-      id: 1,
-      title: "Banking App Redesign",
-      category: "Mobile UX/UI",
-      description: "Complete redesign of a mobile banking application focusing on user experience and accessibility.",
-      image: "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["UX Research", "Mobile Design", "Prototyping"],
-      year: "2024"
-    },
-    {
-      id: 2,
-      title: "E-commerce Platform",
-      category: "Web Design",
-      description: "Modern e-commerce platform design with focus on conversion optimization and user journey.",
-      image: "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["E-commerce", "Conversion", "Web Design"],
-      year: "2023"
-    },
-    {
-      id: 3,
-      title: "Financial Dashboard",
-      category: "Dashboard Design",
-      description: "Comprehensive financial dashboard for real estate investment management platform.",
-      image: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["Data Visualization", "Dashboard", "Analytics"],
-      year: "2023"
-    },
-    {
-      id: 4,
-      title: "Healthcare Mobile App",
-      category: "Mobile UX/UI",
-      description: "Patient-centered healthcare app design focusing on appointment management and health tracking.",
-      image: "https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800",
-      tags: ["Healthcare", "Mobile", "User Research"],
-      year: "2022"
-    }
-  ];
+    { id: 1, key: 'juritask' },
+    { id: 2, key: 'tracksales' },
+    { id: 3, key: 'meEnsina' },
+    { id: 4, key: 'flowchartTools' }
+  ].map(p => ({
+    ...p,
+    title: t(`portfolio.projects.${p.key}.title`),
+    category: t(`portfolio.projects.${p.key}.category`),
+    description: t(`portfolio.projects.${p.key}.description`),
+    image: p.id === 1 ? "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/303e7b227022677.683864d03e96b.png" :
+           p.id === 2 ? "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/9f2250225905089.682522cfea537.png" :
+           p.id === 3 ? "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a9cc7a207985795.66e74c80f1c3d.png" :
+           "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a1bd4c210727753.671691f195fd5.png",
+    tags: ["UI/UX", "Web Design", "Figma"],
+    year: p.id <= 2 ? "2025" : "2024",
+    link: p.id === 1 ? "https://www.behance.net/gallery/227022677/Juritask-Legal-Management-(Case-Challenge)" :
+          p.id === 2 ? "https://www.behance.net/gallery/225905089/Tracksales-Management-Platform-UI" :
+          p.id === 3 ? "https://www.behance.net/gallery/207985795/Me-ensina-Smart-learning-Case-Study" :
+          "https://www.behance.net/gallery/210727753/Benchmarking-Flowchart-Tools",
+    pdfUrl: p.id === 1 ? "/pdfs/juritask.pdf" :
+            p.id === 2 ? "/pdfs/tracksales.pdf" :
+            p.id === 3 ? "/pdfs/me-ensina.pdf" :
+            "/pdfs/benchmark.pdf"
+  }));
 
   const skills = [
-    { name: "UX Research", level: 95 },
-    { name: "UI Design", level: 98 },
-    { name: "Prototyping", level: 92 },
-    { name: "User Testing", level: 88 },
-    { name: "Information Architecture", level: 90 },
-    { name: "Design Systems", level: 94 }
+    { name: t('about.skills.uxResearch'), level: 95 },
+    { name: t('about.skills.uiDesign'), level: 98 },
+    { name: t('about.skills.prototyping'), level: 92 },
+    { name: t('about.skills.userTesting'), level: 88 },
+    { name: t('about.skills.infoArchitecture'), level: 90 },
+    { name: t('about.skills.designSystems'), level: 94 }
   ];
 
   const tools = [
-    "Figma", "Adobe XD", "Sketch", "Adobe Photoshop", "Adobe Illustrator", 
+    "Figma", "Adobe XD", "Sketch", "Adobe Photoshop", "Adobe Illustrator",
     "Miro", "InVision", "Principle", "After Effects", "Zeplin"
   ];
 
-  const experience = [
-    {
-      period: "2023 - Present",
-      role: "UX Researcher",
-      company: "Banco do Brasil",
-      description: "Leading user research initiatives for digital banking products, conducting usability studies and design validation."
-    },
-    {
-      period: "2021 - 2023",
-      role: "Senior UX/UI Designer",
-      company: "ImoBanco",
-      description: "Designed end-to-end user experiences for real estate fintech platform, increasing user engagement by 40%."
-    },
-    {
-      period: "2019 - 2021",
-      role: "UX/UI Designer",
-      company: "AevoTech",
-      description: "Created user-centered designs for enterprise software solutions, collaborated with cross-functional teams."
-    }
-  ];
+  const experience = ['bancoBrasil', 'imoBanco', 'aevoTech', 'indra'].map(key => ({
+    period: t(`experience.jobs.${key}.period`),
+    role: t(`experience.jobs.${key}.role`),
+    company: t(`experience.jobs.${key}.company`),
+    description: t(`experience.jobs.${key}.description`),
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,50 +107,110 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  const openPDFViewer = (pdfUrl: string, title: string) => {
+    console.log('Attempting to open PDF:', pdfUrl, 'Title:', title);
+    setPdfViewer({ isOpen: true, pdfUrl, title });
+  };
+
+  const closePDFViewer = () => {
+    setPdfViewer({ isOpen: false, pdfUrl: '', title: '' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Criar o link mailto com os dados do formulário
+    const subject = encodeURIComponent(`Contato do Portfolio - ${formData.name}`);
+    const body = encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`);
+    const mailtoLink = `mailto:lucasismael03@gmail.com?subject=${subject}&body=${body}`;
+
+    // Abrir o cliente de email
+    window.location.href = mailtoLink;
+
+    // Resetar o formulário após um pequeno delay
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
+  const sendViaWhatsApp = () => {
+    const message = encodeURIComponent(`Olá! Meu nome é ${formData.name}.\n\nEmail: ${formData.email}\n\nMensagem: ${formData.message}`);
+    const whatsappLink = `https://wa.me/5583996698962?text=${message}`;
+    window.open(whatsappLink, '_blank');
+  };
+
+
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-gray-900">Lucas Uchôa</div>
+            <div className="text-xl font-bold text-gray-900 dark:text-white">{t('nav.name')}</div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Portfolio', 'Experience', 'Contact'].map((item) => (
+            <div className="hidden md:flex items-center space-x-8">
+              {['home', 'about', 'portfolio', 'experience', 'contact'].map((item) => (
                 <button
                   key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
+                  onClick={() => scrollToSection(item)}
                   className={`text-sm font-medium transition-colors duration-200 ${
-                    activeSection === item.toLowerCase()
+                    activeSection === item
                       ? 'text-blue-600'
-                      : 'text-gray-600 hover:text-blue-600'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-blue-600'
                   }`}
                 >
-                  {item}
+                  {t(`nav.${item}`)}
                 </button>
               ))}
+              
+              <LanguageSwitcher />
+
+              {/* Dark Mode Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              >
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
             </div>
 
             {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-            >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
+            <div className="md:hidden flex items-center space-x-2">
+              <LanguageSwitcher />
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-100">
-              {['Home', 'About', 'Portfolio', 'Experience', 'Contact'].map((item) => (
+            <div className="md:hidden py-4 border-t border-gray-100 dark:border-gray-800">
+              {['home', 'about', 'portfolio', 'experience', 'contact'].map((item) => (
                 <button
                   key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+                  onClick={() => scrollToSection(item)}
+                  className="block w-full text-left px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 hover:bg-gray-50 dark:hover:bg-gray-800"
                 >
-                  {item}
+                  {t(`nav.${item}`)}
                 </button>
               ))}
             </div>
@@ -160,56 +219,74 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section id="home" className="pt-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <p className="text-blue-600 font-medium text-lg">👋 Hi there!</p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  I'm <span className="text-blue-600">Lucas Uchôa</span>
+                <p className="text-blue-600 font-medium text-lg">{t('hero.greeting')}</p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                  {t('hero.iam')}{" "}
+                  <TextShimmer duration={3} className="font-bold">
+                    {t('hero.name')}
+                  </TextShimmer>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  A UX/UI Designer with <span className="font-semibold text-blue-600">6 years of experience</span> crafting digital experiences that delight users and drive business results.
+                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <Trans i18nKey="hero.description">
+                    A UX/UI Designer with <span className="font-semibold text-blue-600">6 years of experience</span> crafting digital experiences that delight users and drive business results.
+                  </Trans>
                 </p>
               </div>
               
               <div className="flex flex-wrap gap-4">
-                <button 
+                <MovingBorderButton
                   onClick={() => scrollToSection('portfolio')}
-                  className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
+                  duration={3000}
+                  borderRadius="1.25rem"
+                  className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800"
+                  borderClassName="bg-[radial-gradient(circle,#3b82f6_30%,transparent_70%)]"
                 >
-                  <Eye size={20} />
-                  <span>View My Work</span>
-                </button>
-                <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2">
-                  <Download size={20} />
-                  <span>Download CV</span>
-                </button>
+                  <div className="flex items-center space-x-2 px-4">
+                    <Eye size={20} />
+                    <span>{t('hero.viewProjects')}</span>
+                  </div>
+                </MovingBorderButton>
+                <a href="/lucas-uchoa-cv.pdf" download>
+                  <MovingBorderButton
+                    duration={3000}
+                    borderRadius="1.25rem"
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white border border-gray-300 dark:border-transparent"
+                    borderClassName="bg-[radial-gradient(circle,#6b7280_25%,transparent_75%)]"
+                  >
+                    <div className="flex items-center space-x-2 px-4">
+                      <Download size={20} />
+                      <span>{t('hero.downloadCV')}</span>
+                    </div>
+                  </MovingBorderButton>
+                </a>
               </div>
 
               <div className="flex items-center space-x-6 pt-4">
-                <a href="mailto:lucasismael03@gmail.com" className="text-gray-600 hover:text-blue-600 transition-colors">
+                <a href="mailto:lucasismael03@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Email">
                   <Mail size={24} />
                 </a>
-                <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <ExternalLink size={24} />
+                <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Behance Portfolio">
+                  <BehanceIcon size={24} />
                 </a>
-                <a href="https://wa.me/5583996698962" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                  <Phone size={24} />
+                <a href="https://wa.me/5583996698962" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors" title="WhatsApp">
+                  <WhatsAppIcon size={24} />
                 </a>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-8 shadow-2xl">
-                <div className="w-full h-full bg-white rounded-xl flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-gray-600">LU</span>
-                    </div>
-                    <p className="text-gray-600 text-sm">Professional Photo</p>
-                  </div>
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-xl overflow-hidden">
+                  <img 
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQF15ncVW99TlQ/profile-displayphoto-shrink_800_800/B4DZXnugIoHkAc-/0/1743349482542?e=1754524800&v=beta&t=6AkOte0FiqZjpOjsYv-bhaH5AOnVH7aXHZRfH-RADTI"
+                    alt="Lucas Uchôa - UX/UI Designer"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -218,57 +295,76 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Based in Brazil, I specialize in creating user-centered digital interfaces that combine aesthetics with functionality.
-            </p>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('about.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('about.intro')}</p>
+            <p className="mt-4 text-md text-gray-500 dark:text-gray-400 italic max-w-2xl mx-auto">{t('about.subheading')}</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-gray-600 leading-relaxed text-lg">
-                I've had the privilege of working with leading companies like <span className="font-semibold text-blue-600">Banco do Brasil</span>, <span className="font-semibold text-blue-600">ImoBanco</span>, and <span className="font-semibold text-blue-600">AevoTech</span>, where I've consistently delivered impactful design solutions.
-              </p>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                My approach combines user research, data-driven insights, and creative problem-solving to create digital experiences that not only look great but also solve real user problems and drive business objectives.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-6 pt-6">
-                <div className="flex items-center space-x-3">
-                  <MapPin className="text-blue-600" size={20} />
-                  <span className="text-gray-700">Brazil</span>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Coluna Esquerda - About + Journey + Quick Facts */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.journeyTitle')}</h3>
+                <div className="space-y-4">
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {t('about.journeyParagraph1')}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    <Trans 
+                      i18nKey="about.journeyParagraph2"
+                      components={[
+                        <span className="font-semibold text-blue-600" />,
+                        <span className="font-semibold text-blue-600" />,
+                        <span className="font-semibold text-blue-600" />
+                      ]}
+                    />
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    {t('about.journeyParagraph3')}
+                  </p>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <Briefcase className="text-blue-600" size={20} />
-                  <span className="text-gray-700">6+ Years Experience</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Award className="text-blue-600" size={20} />
-                  <span className="text-gray-700">50+ Projects Completed</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <BookOpen className="text-blue-600" size={20} />
-                  <span className="text-gray-700">Continuous Learning</span>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.quickFactsTitle')}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.location')}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Briefcase className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.experience')}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Award className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.projects')}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <BookOpen className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.learning')}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
+            {/* Coluna Direita - Skills + Tools */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Skills</h3>
-                <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.skillsTitle')}</h3>
+                <div className="space-y-6">
                   {skills.map((skill, index) => (
                     <div key={index}>
                       <div className="flex justify-between mb-2">
-                        <span className="text-gray-700 font-medium">{skill.name}</span>
+                        <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
                         <span className="text-blue-600 font-medium">{skill.level}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
                         <div 
-                          className="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                          className="bg-blue-600 h-3 rounded-full transition-all duration-1000 ease-out"
                           style={{ width: `${skill.level}%` }}
                         ></div>
                       </div>
@@ -278,12 +374,12 @@ function App() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Tools I Master</h3>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.toolsTitle')}</h3>
                 <div className="flex flex-wrap gap-3">
                   {tools.map((tool, index) => (
                     <span 
                       key={index}
-                      className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium border border-blue-200"
+                      className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-lg text-sm font-medium border border-blue-200 dark:border-blue-800"
                     >
                       {tool}
                     </span>
@@ -296,55 +392,70 @@ function App() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 bg-gray-50">
+      <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Portfolio Highlights</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Each project showcases problem-solving through design thinking, user research, and data-driven solutions.
-            </p>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('portfolio.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">{t('portfolio.subtitle')}</p>
+          </div>
+          
+          <div className="text-center mb-12">
             <a 
               href="https://www.behance.net/Lucas_-vieira" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
             >
-              <span>View Full Portfolio on Behance</span>
-              <ExternalLink size={20} />
+              <BehanceIcon size={20} />
+              <span>{t('portfolio.viewFullPortfolio')}</span>
             </a>
           </div>
-
+          
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project) => (
-              <div key={project.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-video bg-gray-200 overflow-hidden">
+              <div key={project.id} className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div className="aspect-video bg-gray-200 dark:bg-gray-600 overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-blue-600 text-sm font-medium">{project.category}</span>
-                    <span className="text-gray-500 text-sm">{project.year}</span>
+                    <span className="text-gray-500 dark:text-gray-400 text-sm">{project.year}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed flex-grow">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, index) => (
                       <span 
                         key={index}
-                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium"
+                        className="bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <button className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center space-x-2">
-                    <span>View Case Study</span>
-                    <ExternalLink size={16} />
-                  </button>
+                  <div className="flex items-center justify-between mt-auto">
+                    <button
+                      onClick={() => openPDFViewer(project.pdfUrl, project.title)}
+                      className="text-blue-600 font-medium hover:text-blue-700 transition-colors flex items-center space-x-2"
+                    >
+                      <Eye size={16} />
+                      <span>{t('portfolio.viewPDF')}</span>
+                    </button>
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors flex items-center space-x-2"
+                    >
+                      <BehanceIcon size={16} />
+                      <span>{t('portfolio.viewBehance')}</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -353,16 +464,16 @@ function App() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 bg-white">
+      <section id="experience" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Professional Experience</h2>
-            <p className="text-xl text-gray-600">A journey of growth and impactful design solutions</p>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('experience.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">{t('experience.subtitle')}</p>
           </div>
 
           <div className="space-y-8">
             {experience.map((job, index) => (
-              <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-colors duration-200">
+              <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                 <div className="md:w-1/4 mb-4 md:mb-0">
                   <div className="flex items-center space-x-2 text-blue-600 font-medium mb-2">
                     <Calendar size={16} />
@@ -370,37 +481,40 @@ function App() {
                   </div>
                 </div>
                 <div className="md:w-3/4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{job.role}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{job.role}</h3>
                   <h4 className="text-lg text-blue-600 font-medium mb-3">{job.company}</h4>
-                  <p className="text-gray-600 leading-relaxed">{job.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{job.description}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-16 bg-blue-50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Education & Certifications</h3>
+          <div className="mt-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Education & Certifications</h3>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="text-white" size={24} />
                 </div>
-                <h4 className="font-bold text-gray-900 mb-2">Design Technology</h4>
-                <p className="text-gray-600 text-sm">Unipê</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Ciência da Computação</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Universidade Cruzeiro do Sul</p>
+                <p className="text-blue-600 text-xs font-medium">Mai 2025 - Dez 2026 • Em andamento</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Award className="text-white" size={24} />
                 </div>
-                <h4 className="font-bold text-gray-900 mb-2">Google UX Design Certificate</h4>
-                <p className="text-gray-600 text-sm">In Progress</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">UX Design and Beyond</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">PUCRS</p>
+                <p className="text-blue-600 text-xs font-medium">Fev 2025 - Mar 2026 • Em andamento</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="text-white" size={24} />
                 </div>
-                <h4 className="font-bold text-gray-900 mb-2">UX Design Intensive</h4>
-                <p className="text-gray-600 text-sm">Awari</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Design Gráfico</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">UNIPÊ</p>
+                <p className="text-blue-600 text-xs font-medium">Out 2021 - Jan 2024</p>
               </div>
             </div>
           </div>
@@ -408,39 +522,39 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-900 text-white">
+      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Let's Connect!</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Ready to collaborate on your next project? I'd love to hear about your design challenges and how we can solve them together.
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('contact.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              {t('contact.subtitle')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
+                <h3 className="text-2xl font-bold mb-6">{t('contact.info')}</h3>
                 <div className="space-y-4">
                   <a 
                     href="mailto:lucasismael03@gmail.com"
-                    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-700"
                   >
-                    <Mail className="text-blue-400" size={24} />
+                    <Mail className="text-blue-600" size={24} />
                     <div>
-                      <p className="font-medium">Email</p>
-                      <p className="text-gray-300">lucasismael03@gmail.com</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Email</p>
+                      <p className="text-gray-600 dark:text-gray-300">lucasismael03@gmail.com</p>
                     </div>
                   </a>
                   
                   <a 
                     href="tel:+5583996698962"
-                    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-700"
                   >
-                    <Phone className="text-blue-400" size={24} />
+                    <Phone className="text-blue-600" size={24} />
                     <div>
-                      <p className="font-medium">Phone</p>
-                      <p className="text-gray-300">+55 83 996698962</p>
+                      <p className="font-medium text-gray-900 dark:text-white">Phone</p>
+                      <p className="text-gray-600 dark:text-gray-300">+55 83 996698962</p>
                     </div>
                   </a>
 
@@ -448,54 +562,84 @@ function App() {
                     href="https://wa.me/5583996698962"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-4 p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-200"
+                    className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-700"
                   >
-                    <Phone className="text-green-400" size={24} />
+                    <WhatsAppIcon className="text-green-500" size={24} />
                     <div>
-                      <p className="font-medium">WhatsApp</p>
-                      <p className="text-gray-300">+55 83 996698962</p>
+                      <p className="font-medium text-gray-900 dark:text-white">WhatsApp</p>
+                      <p className="text-gray-600 dark:text-gray-300">+55 83 996698962</p>
                     </div>
                   </a>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-800 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Quick Message</h3>
-              <form className="space-y-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">{t('contact.form.title')}</h3>
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.name')}</label>
                   <input 
                     type="text" 
                     id="name"
-                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
-                    placeholder="Your name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                    placeholder={t('contact.form.namePlaceholder')}
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.email')}</label>
                   <input 
                     type="email" 
                     id="email"
-                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
-                    placeholder="your@email.com"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                    placeholder={t('contact.form.emailPlaceholder')}
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.message')}</label>
                   <textarea 
                     id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
                     rows={4}
-                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
-                    placeholder="Tell me about your project..."
+                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white"
+                    placeholder={t('contact.form.messagePlaceholder')}
                   ></textarea>
                 </div>
-                <button 
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
-                >
-                  Send Message
-                </button>
+                <div className="flex flex-col space-y-3">
+                  <MovingBorderButton
+                    type="submit"
+                    duration={3000}
+                    borderRadius="1rem"
+                    disabled={isSubmitting}
+                    className={`w-full ${isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'} text-white py-3 px-6 rounded-lg font-medium transition-colors duration-200`}
+                  >
+                    <div className="flex items-center justify-center space-x-2">
+                      <Mail size={20} />
+                      <span>{isSubmitting ? 'Enviando...' : t('contact.form.sendMessage')}</span>
+                    </div>
+                  </MovingBorderButton>
+                  
+                  <button
+                    type="button"
+                    onClick={sendViaWhatsApp}
+                    disabled={!formData.name || !formData.message}
+                    className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center space-x-2"
+                  >
+                    <WhatsAppIcon size={20} />
+                    <span>Enviar via WhatsApp</span>
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -503,13 +647,21 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-8">
+      <footer className="bg-gray-900 dark:bg-black py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-gray-400">
-            <p>&copy; 2024 Lucas Uchôa. All rights reserved. Crafted with passion for great design.</p>
+            <p>&copy; {new Date().getFullYear()} {t('footer.by')}. {t('footer.madeWith')} ❤️</p>
           </div>
         </div>
       </footer>
+
+      {/* PDF Viewer Modal */}
+      <SimplePDFViewer
+        isOpen={pdfViewer.isOpen}
+        onClose={closePDFViewer}
+        pdfUrl={pdfViewer.pdfUrl}
+        title={pdfViewer.title}
+      />
     </div>
   );
 }

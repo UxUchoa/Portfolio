@@ -1,0 +1,123 @@
+{
+  "nav": {
+    "name": "Lucas Uchôa",
+    "home": "Home",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "👋 Hi there!",
+    "iam": "I'm",
+    "name": "Lucas Uchôa",
+    "description": "A UX/UI Designer with <1>6 years of experience</1> crafting digital experiences that delight users and drive business results.",
+    "viewProjects": "View Projects",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "I'm a passionate UX/UI professional dedicated to solving complex problems with user-centered design. I have a keen eye for detail and a commitment to creating intuitive, beautiful products that meet both user needs and business goals.",
+    "subheading": "A mix of creativity, empathy, and technical knowledge to turn ideas into reality.",
+    "journeyTitle": "My Journey",
+    "journeyParagraph1": "Based in Brazil, I specialize in creating user-centered digital interfaces that combine aesthetics with functionality.",
+    "journeyParagraph2": "I've had the privilege of working with leading companies like <1>Banco do Brasil</1>, <2>ImoBanco</2>, and <3>AevoTech</3>, where I've consistently delivered impactful design solutions.",
+    "journeyParagraph3": "My approach combines user research, data-driven insights, and creative problem-solving to create digital experiences that not only look great but also solve real user problems and drive business objectives.",
+    "quickFactsTitle": "Quick Facts",
+    "quickFacts": {
+      "location": "Brazil",
+      "experience": "6+ Years Experience",
+      "projects": "50+ Projects Completed",
+      "learning": "Continuous Learning"
+    },
+    "skillsTitle": "Core Skills",
+    "toolsTitle": "Tools I Master",
+    "skills": {
+      "uxResearch": "UX Research",
+      "uiDesign": "UI Design",
+      "prototyping": "Prototyping",
+      "userTesting": "User Testing",
+      "infoArchitecture": "Information Architecture",
+      "designSystems": "Design Systems"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Each project showcases problem-solving through design thinking, user research, and data-driven solutions.",
+    "viewPDF": "View PDF",
+    "visitBehance": "Visit Behance",
+    "viewBehance": "Behance",
+    "viewFullPortfolio": "View Full Portfolio on Behance",
+    "projects": {
+      "juritask": {
+        "title": "Juritask - Legal Management",
+        "category": "Case Challenge",
+        "description": "Legal management platform focused on streamlining legal processes and improving workflow efficiency for law professionals."
+      },
+      "tracksales": {
+        "title": "Tracksales - Management Platform",
+        "category": "Mobile App UI",
+        "description": "Sales management platform designed to optimize team performance and track sales metrics with an intuitive mobile interface."
+      },
+      "meEnsina": {
+        "title": "Me-ensina Smart Learning",
+        "category": "Case Study",
+        "description": "Educational platform that revolutionizes the learning experience through smart technology and a user-centered design approach."
+      },
+      "flowchartTools": {
+        "title": "Benchmarking Flowchart Tools",
+        "category": "UX Research",
+        "description": "Comprehensive research and analysis of flowchart tools to identify best practices and optimization opportunities."
+      }
+    }
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "subtitle": "A journey of growth and impactful design solutions.",
+    "jobs": {
+      "bancoBrasil": {
+        "period": "Mar 2024 - Present",
+        "role": "UX Researcher",
+        "company": "Banco do Brasil",
+        "description": "Leading user research initiatives for digital banking products, conducting usability studies and design validation for Brazil's largest public bank."
+      },
+      "imoBanco": {
+        "period": "Apr 2022 - Mar 2024",
+        "role": "Senior UX/UI Designer",
+        "company": "ImoBanco",
+        "description": "Designed end-to-end user experiences for a real estate fintech platform, creating intuitive interfaces that improved user conversion rates and streamlined property investment processes."
+      },
+      "aevoTech": {
+        "period": "Jul 2019 - Apr 2022",
+        "role": "UX/UI Designer",
+        "company": "AevoTech",
+        "description": "Created user-centered designs for enterprise software solutions, collaborated with cross-functional teams to deliver impactful digital products for business clients."
+      },
+      "indra": {
+        "period": "Oct 2020 - Oct 2021",
+        "role": "Full Stack Developer",
+        "company": "Indra",
+        "description": "Developed comprehensive full-stack solutions using modern web technologies, working on enterprise-level projects and contributing to digital transformation initiatives."
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's Connect!",
+    "subtitle": "Ready to collaborate on your next project? I'd love to hear about your design challenges and how we can solve them together.",
+    "form": {
+      "title": "Quick Message",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "sendMessage": "Send Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your@email.com",
+      "messagePlaceholder": "Tell me about your project..."
+    },
+    "info": "Get in Touch"
+  },
+  "footer": {
+    "madeWith": "Made with",
+    "by": "by Lucas Uchôa"
+  }
+} 
