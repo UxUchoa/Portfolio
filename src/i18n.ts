@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next) // Passa a instância do i18n para o react-i18next
   .init({
     supportedLngs: ['pt', 'en'],
-    fallbackLng: 'pt',
+    fallbackLng: 'en',
     debug: false, // Mude para true para ver logs no console
     detection: {
       order: ['queryString', 'cookie', 'localStorage', 'navigator', 'htmlTag'],
