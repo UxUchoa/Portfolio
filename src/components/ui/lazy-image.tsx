@@ -1,90 +1,76 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Skeleton } from './skeleton';
+import React, { useState, useEffect, useRef } from 'react';
+import { ShimmerSkeleton } from './shimmer-skeleton';
 
-interface LazyImageProps {
+interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   className?: string;
-  skeletonClassName?: string;
-  onLoad?: () => void;
-  onError?: () => void;
 }
 
-export const LazyImage: React.FC<LazyImageProps> = ({
-  src,
-  alt,
-  className = "",
-  skeletonClassName = "",
-  onLoad,
-  onError
-}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+export const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, ...props }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver>();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+              setIsLoading(false);
+              setHasError(false);
+              if (imgRef.current) {
+                imgRef.current.src = src;
+              }
+            };
+            img.onerror = () => {
+              setIsLoading(false);
+              setHasError(true);
+            };
+            observerRef.current?.unobserve(entry.target);
+          }
+        });
       },
       {
         threshold: 0.1,
-        rootMargin: '50px'
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (imgRef.current) {
+      observerRef.current.observe(imgRef.current);
     }
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, [src]);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
-  };
-
-  const handleError = () => {
-    setIsError(true);
-    onError?.();
-  };
+  const placeholder = <ShimmerSkeleton className={`w-full h-full ${className}`} />;
+  
+  const errorFallback = (
+    <div className={`w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 ${className}`}>
+      <span className="text-red-500 text-xs text-center p-2">Failed to load image</span>
+    </div>
+  );
 
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
-      {/* Skeleton loading */}
-      {!isLoaded && !isError && (
-        <Skeleton 
-          className={`absolute inset-0 ${skeletonClassName}`}
-        />
-      )}
-      
-      {/* Imagem real */}
-      {isInView && (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt}
-          className={`${className} transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading="lazy"
-        />
-      )}
-      
-      {/* Fallback em caso de erro */}
-      {isError && (
-        <div className={`${className} bg-gray-200 dark:bg-gray-700 flex items-center justify-center`}>
-          <span className="text-gray-400 text-sm">Erro ao carregar imagem</span>
-        </div>
-      )}
+    <div className={`relative w-full h-full ${className}`}>
+      {isLoading && <div className="absolute inset-0">{placeholder}</div>}
+      {hasError && <div className="absolute inset-0">{errorFallback}</div>}
+      <img
+        ref={imgRef}
+        alt={alt}
+        className={`transition-opacity duration-500 ${isLoading || hasError ? 'opacity-0' : 'opacity-100'} ${className}`}
+        {...props}
+      />
     </div>
   );
 }; 
