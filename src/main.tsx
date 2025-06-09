@@ -6,7 +6,7 @@ import './i18n'; // Importa a configuração do i18next
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Suspense fallback="...loading">
+    <Suspense fallback={null}>
       <App />
     </Suspense>
   </React.StrictMode>
