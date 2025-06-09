@@ -7,11 +7,6 @@ import { SimplePDFViewer } from "./components/ui/simple-pdf-viewer";
 import { LanguageSwitcher } from './components/ui/language-switcher';
 import { WhatsAppIcon } from './components/ui/whatsapp-icon';
 import { BehanceIcon } from './components/ui/behance-icon';
-import { LazyImage } from './components/ui/lazy-image';
-import { AboutSectionSkeleton, HeroSectionSkeleton } from './components/ui/skeleton';
-import { VideoCardSkeleton, ExperienceListSkeleton, ShimmerSkeleton } from './components/ui/shimmer-skeleton';
-import { FadeIn, FadeInList } from './components/ui/fade-in';
-import { useSectionLoading } from './hooks/useLoading';
 
 function App() {
   const { t } = useTranslation();
@@ -21,11 +16,6 @@ function App() {
   const [pdfViewer, setPdfViewer] = useState({ isOpen: false, pdfUrl: '', title: '' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const isHeroLoading = useSectionLoading(800);
-  const isAboutLoading = useSectionLoading(1200);
-  const isPortfolioLoading = useSectionLoading(1500);
-  const isExperienceLoading = useSectionLoading(1800);
 
   useEffect(() => {
     const saved = localStorage.getItem('dark-mode');
@@ -209,354 +199,282 @@ function App() {
       </nav>
 
       <section id="home" className="pt-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-        {isHeroLoading ? (
-          <HeroSectionSkeleton />
-        ) : (
-          <FadeIn duration={800} direction="up">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="space-y-8">
-                  <div className="space-y-4">
-                    <p className="text-blue-600 font-medium text-lg">{t('hero.greeting')}</p>
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                      {t('hero.iam')}{" "}
-                      <TextShimmer duration={3} className="font-bold">
-                        {t('hero.name')}
-                      </TextShimmer>
-                    </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                      <Trans i18nKey="hero.description">
-                        A UX/UI Designer with <span className="font-semibold text-blue-600">6 years of experience</span> crafting digital experiences that delight users and drive business results.
-                      </Trans>
-                    </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <p className="text-blue-600 font-medium text-lg">{t('hero.greeting')}</p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                  {t('hero.iam')}{" "}
+                  <TextShimmer duration={3} className="font-bold">
+                    {t('hero.name')}
+                  </TextShimmer>
+                </h1>
+                <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <Trans i18nKey="hero.description">
+                    A UX/UI Designer with <span className="font-semibold text-blue-600">6 years of experience</span> crafting digital experiences that delight users and drive business results.
+                  </Trans>
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <MovingBorderButton
+                  onClick={() => scrollToSection('portfolio')}
+                  duration={3000}
+                  borderRadius="1.25rem"
+                  className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800"
+                  borderClassName="bg-[radial-gradient(circle,#3b82f6_30%,transparent_70%)]"
+                >
+                  <div className="flex items-center space-x-2 px-4">
+                    <Eye size={20} />
+                    <span>{t('hero.viewProjects')}</span>
                   </div>
-                  <div className="flex flex-wrap gap-4">
-                    <MovingBorderButton
-                      onClick={() => scrollToSection('portfolio')}
-                      duration={3000}
-                      borderRadius="1.25rem"
-                      className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700 dark:hover:bg-blue-800"
-                      borderClassName="bg-[radial-gradient(circle,#3b82f6_30%,transparent_70%)]"
-                    >
-                      <div className="flex items-center space-x-2 px-4">
-                        <Eye size={20} />
-                        <span>{t('hero.viewProjects')}</span>
-                      </div>
-                    </MovingBorderButton>
-                    <a href="/lucas-uchoa-cv.pdf" download>
-                      <MovingBorderButton
-                        duration={3000}
-                        borderRadius="1.25rem"
-                        className="bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white border border-gray-300 dark:border-transparent"
-                        borderClassName="bg-[radial-gradient(circle,#6b7280_25%,transparent_75%)]"
-                      >
-                        <div className="flex items-center space-x-2 px-4">
-                          <Download size={20} />
-                          <span>{t('hero.downloadCV')}</span>
-                        </div>
-                      </MovingBorderButton>
-                    </a>
-                  </div>
-                  <div className="flex items-center space-x-6 pt-4">
-                    <a href="mailto:lucasismael03@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Email">
-                      <Mail size={24} />
-                    </a>
-                    <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Behance Portfolio">
-                      <BehanceIcon size={24} />
-                    </a>
-                    <a href="https://wa.me/5583996698962" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors" title="WhatsApp">
-                      <WhatsAppIcon size={24} />
-                    </a>
-                  </div>
-                </div>
-                <div className="relative flex justify-center lg:justify-end">
-                  <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-1 shadow-2xl">
-                    <div className="w-full h-full rounded-xl overflow-hidden">
-                      <LazyImage 
-                        src="https://media.licdn.com/dms/image/v2/D4D03AQF15ncVW99TlQ/profile-displayphoto-shrink_800_800/B4DZXnugIoHkAc-/0/1743349482542?e=1754524800&v=beta&t=6AkOte0FiqZjpOjsYv-bhaH5AOnVH7aXHZRfH-RADTI"
-                        alt="Lucas Uchôa - UX/UI Designer"
-                        className="w-full h-full object-cover"
-                      />
+                </MovingBorderButton>
+                <a href="/lucas-uchoa-cv.pdf" download>
+                  <MovingBorderButton
+                    duration={3000}
+                    borderRadius="1.25rem"
+                    className="bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white border border-gray-300 dark:border-transparent"
+                    borderClassName="bg-[radial-gradient(circle,#6b7280_25%,transparent_75%)]"
+                  >
+                    <div className="flex items-center space-x-2 px-4">
+                      <Download size={20} />
+                      <span>{t('hero.downloadCV')}</span>
                     </div>
-                  </div>
+                  </MovingBorderButton>
+                </a>
+              </div>
+              <div className="flex items-center space-x-6 pt-4">
+                <a href="mailto:lucasismael03@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Email">
+                  <Mail size={24} />
+                </a>
+                <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Behance Portfolio">
+                  <BehanceIcon size={24} />
+                </a>
+                <a href="https://wa.me/5583996698962" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-green-500 transition-colors" title="WhatsApp">
+                  <WhatsAppIcon size={24} />
+                </a>
+              </div>
+            </div>
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-1 shadow-2xl">
+                <div className="w-full h-full rounded-xl overflow-hidden">
+                  <img
+                    src="https://media.licdn.com/dms/image/v2/D4D03AQF15ncVW99TlQ/profile-displayphoto-shrink_800_800/B4DZXnugIoHkAc-/0/1743349482542?e=1754524800&v=beta&t=6AkOte0FiqZjpOjsYv-bhaH5AOnVH7aXHZRfH-RADTI"
+                    alt="Lucas Uchôa - UX/UI Designer"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
-          </FadeIn>
-        )}
+          </div>
+        </div>
       </section>
 
       <section id="about" className="py-20 bg-white dark:bg-gray-900">
-        {isAboutLoading ? (
-          <AboutSectionSkeleton />
-        ) : (
-          <FadeIn duration={800} direction="up">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('about.title')}</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('about.intro')}</p>
-                <p className="mt-4 text-md text-gray-500 dark:text-gray-400 italic max-w-2xl mx-auto">{t('about.subheading')}</p>
-              </div>
-              <div className="grid lg:grid-cols-2 gap-12 items-start">
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.journeyTitle')}</h3>
-                    <div className="space-y-4">
-                      <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                        {t('about.journeyParagraph1')}
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                        <Trans 
-                          i18nKey="about.journeyParagraph2"
-                          components={[
-                            <span className="font-semibold text-blue-600" />,
-                            <span className="font-semibold text-blue-600" />,
-                            <span className="font-semibold text-blue-600" />
-                          ]}
-                        />
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                        {t('about.journeyParagraph3')}
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.quickFactsTitle')}</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-3">
-                        <MapPin className="text-blue-600" size={20} />
-                        <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.location')}</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Briefcase className="text-blue-600" size={20} />
-                        <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.experience')}</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Award className="text-blue-600" size={20} />
-                        <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.projects')}</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <BookOpen className="text-blue-600" size={20} />
-                        <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.learning')}</span>
-                      </div>
-                    </div>
-                  </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('about.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">{t('about.intro')}</p>
+            <p className="mt-4 text-md text-gray-500 dark:text-gray-400 italic max-w-2xl mx-auto">{t('about.subheading')}</p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.journeyTitle')}</h3>
+                <div className="space-y-4">
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {t('about.journeyParagraph1')}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    <Trans
+                      i18nKey="about.journeyParagraph2"
+                      components={[
+                        <span className="font-semibold text-blue-600" />,
+                        <span className="font-semibold text-blue-600" />,
+                        <span className="font-semibold text-blue-600" />
+                      ]}
+                    />
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+                    {t('about.journeyParagraph3')}
+                  </p>
                 </div>
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.skillsTitle')}</h3>
-                    <div className="space-y-6">
-                      {skills.map((skill, index) => (
-                        <div key={index}>
-                          <div className="flex justify-between mb-2">
-                            <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
-                            <span className="text-blue-600 font-medium">{skill.level}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                            <div 
-                              className="bg-blue-600 h-3 rounded-full transition-all duration-1000 ease-out"
-                              style={{ width: `${skill.level}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.quickFactsTitle')}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.location')}</span>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.toolsTitle')}</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {tools.map((tool, index) => (
-                        <span 
-                          key={index}
-                          className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-lg text-sm font-medium border border-blue-200 dark:border-blue-800"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex items-center space-x-3">
+                    <Briefcase className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.experience')}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <Award className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.projects')}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <BookOpen className="text-blue-600" size={20} />
+                    <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.learning')}</span>
                   </div>
                 </div>
               </div>
             </div>
-          </FadeIn>
-        )}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.skillsTitle')}</h3>
+                <div className="space-y-6">
+                  {skills.map((skill, index) => (
+                    <div key={index}>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
+                        <span className="text-blue-600 font-medium">{skill.level}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                        <div
+                          className="bg-blue-600 h-3 rounded-full transition-all duration-1000 ease-out"
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.toolsTitle')}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {tools.map((tool, index) => (
+                    <span
+                      key={index}
+                      className="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-lg text-sm font-medium border border-blue-200 dark:border-blue-800"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-800">
-        {isPortfolioLoading ? (
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <ShimmerSkeleton width="280px" height="32px" className="mx-auto mb-4" />
-              <ShimmerSkeleton width="320px" height="24px" className="mx-auto" />
-            </div>
-            <div className="text-center mb-12">
-              <ShimmerSkeleton width="200px" height="20px" className="mx-auto" />
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[...Array(4)].map((_, index) => (
-                <VideoCardSkeleton key={index} />
-              ))}
-            </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('portfolio.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">{t('portfolio.subtitle')}</p>
           </div>
-        ) : (
-          <FadeIn duration={800} direction="up">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <FadeIn delay={200} duration={600} direction="up">
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('portfolio.title')}</h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300">{t('portfolio.subtitle')}</p>
+          <div className="text-center mb-12">
+            <a
+              href="https://www.behance.net/Lucas_-vieira"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <MovingBorderButton borderRadius="1.75rem" className="bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 border-neutral-200 dark:border-slate-800">
+                <div className="flex items-center space-x-3 px-4 py-1">
+                  <BehanceIcon className="text-blue-600 dark:text-blue-400" size={20} />
+                  <span className="font-medium">{t('portfolio.viewFullPortfolio')}</span>
                 </div>
-              </FadeIn>
-              <FadeIn delay={400} duration={600} direction="up">
-                <div className="text-center mb-12">
-                  <a 
-                    href="https://www.behance.net/Lucas_-vieira"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block"
-                  >
-                    <MovingBorderButton borderRadius="1.75rem" className="bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 border-neutral-200 dark:border-slate-800">
-                      <div className="flex items-center space-x-3 px-4 py-1">
-                        <BehanceIcon className="text-blue-600 dark:text-blue-400" size={20} />
-                        <span className="font-medium">{t('portfolio.viewFullPortfolio')}</span>
-                      </div>
-                    </MovingBorderButton>
-                  </a>
+              </MovingBorderButton>
+            </a>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project) => (
+              <div key={project.id} className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                <div className="aspect-video bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-              </FadeIn>
-              <FadeInList 
-                className="grid md:grid-cols-2 gap-8"
-                itemDelay={150}
-                direction="up"
-              >
-                {projects.map((project) => (
-                  <div key={project.id} className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
-                    <div className="aspect-video bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                      <LazyImage 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex justify-between items-start mb-3">
-                        <span className="text-sm text-blue-600 dark:text-blue-400 font-semibold">{project.category}</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{project.year}</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map(tag => (
-                          <span key={tag} className="bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="mt-auto flex justify-between items-center pt-4 border-t border-gray-100 dark:border-gray-600">
-                        <button onClick={() => openPDFViewer(project.pdfUrl, project.title)} className="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center space-x-2">
-                          <Eye size={18} />
-                          <span>{t('portfolio.viewPDF')}</span>
-                        </button>
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 flex items-center space-x-2">
-                          <span>{t('portfolio.viewBehance')}</span>
-                          <ExternalLink size={18} />
-                        </a>
-                      </div>
-                    </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="text-sm text-blue-600 dark:text-blue-400 font-semibold">{project.category}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{project.year}</span>
                   </div>
-                ))}
-              </FadeInList>
-            </div>
-          </FadeIn>
-        )}
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="bg-gray-100 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-auto flex justify-between items-center pt-4 border-t border-gray-100 dark:border-gray-600">
+                    <button onClick={() => openPDFViewer(project.pdfUrl, project.title)} className="text-blue-600 dark:text-blue-400 hover:underline font-medium flex items-center space-x-2">
+                      <Eye size={18} />
+                      <span>{t('portfolio.viewPDF')}</span>
+                    </button>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 flex items-center space-x-2">
+                      <span>{t('portfolio.viewBehance')}</span>
+                      <ExternalLink size={18} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section id="experience" className="py-20 bg-white dark:bg-gray-900">
-        {isExperienceLoading ? (
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <ShimmerSkeleton width="250px" height="32px" className="mx-auto mb-4" />
-              <ShimmerSkeleton width="350px" height="24px" className="mx-auto" />
-            </div>
-            <ExperienceListSkeleton />
-            <div className="mt-16">
-              <ShimmerSkeleton width="300px" height="32px" className="mx-auto mb-6" />
-              <div className="grid md:grid-cols-3 gap-6">
-                {[...Array(3)].map((_, index) => (
-                  <div key={index} className="text-center">
-                    <ShimmerSkeleton width="64px" height="64px" rounded="full" className="mx-auto mb-4" />
-                    <ShimmerSkeleton width="150px" height="24px" className="mx-auto mb-2" />
-                    <ShimmerSkeleton width="120px" height="16px" className="mx-auto mb-1" />
-                    <ShimmerSkeleton width="180px" height="12px" className="mx-auto" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('experience.title')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">{t('experience.subtitle')}</p>
+          </div>
+          <div className="space-y-8">
+            {experience.map((job, index) => (
+              <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                <div className="md:w-1/4 mb-4 md:mb-0">
+                  <div className="flex items-center space-x-2 text-blue-600 font-medium mb-2">
+                    <Calendar size={16} />
+                    <span className="text-sm">{job.period}</span>
                   </div>
-                ))}
+                </div>
+                <div className="md:w-3/4">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{job.role}</h3>
+                  <h4 className="text-lg text-blue-600 font-medium mb-3">{job.company}</h4>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{job.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Education & Certifications</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="text-white" size={24} />
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Ciência da Computação</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Universidade Cruzeiro do Sul</p>
+                <p className="text-blue-600 text-xs font-medium">Mai 2025 - Dez 2026 • Em andamento</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="text-white" size={24} />
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">UX Design and Beyond</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">PUCRS</p>
+                <p className="text-blue-600 text-xs font-medium">Fev 2025 - Mar 2026 • Em andamento</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="text-white" size={24} />
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Design Gráfico</h4>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">UNIPÊ</p>
+                <p className="text-blue-600 text-xs font-medium">Out 2021 - Jan 2024</p>
               </div>
             </div>
           </div>
-        ) : (
-          <FadeIn duration={800} direction="up">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <FadeIn delay={200} duration={600} direction="up">
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{t('experience.title')}</h2>
-                  <p className="text-lg text-gray-600 dark:text-gray-300">{t('experience.subtitle')}</p>
-                </div>
-              </FadeIn>
-              <FadeInList 
-                className="space-y-8"
-                itemDelay={200}
-                direction="up"
-              >
-                {experience.map((job, index) => (
-                  <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
-                    <div className="md:w-1/4 mb-4 md:mb-0">
-                      <div className="flex items-center space-x-2 text-blue-600 font-medium mb-2">
-                        <Calendar size={16} />
-                        <span className="text-sm">{job.period}</span>
-                      </div>
-                    </div>
-                    <div className="md:w-3/4">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{job.role}</h3>
-                      <h4 className="text-lg text-blue-600 font-medium mb-3">{job.company}</h4>
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{job.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </FadeInList>
-              <FadeIn delay={600} duration={600} direction="up">
-                <div className="mt-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Education & Certifications</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <BookOpen className="text-white" size={24} />
-                      </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Ciência da Computação</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Universidade Cruzeiro do Sul</p>
-                      <p className="text-blue-600 text-xs font-medium">Mai 2025 - Dez 2026 • Em andamento</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Award className="text-white" size={24} />
-                      </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">UX Design and Beyond</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">PUCRS</p>
-                      <p className="text-blue-600 text-xs font-medium">Fev 2025 - Mar 2026 • Em andamento</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <BookOpen className="text-white" size={24} />
-                      </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Design Gráfico</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">UNIPÊ</p>
-                      <p className="text-blue-600 text-xs font-medium">Out 2021 - Jan 2024</p>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
-          </FadeIn>
-        )}
+        </div>
       </section>
 
       <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
@@ -572,7 +490,7 @@ function App() {
               <div>
                 <h3 className="text-2xl font-bold mb-6">{t('contact.info')}</h3>
                 <div className="space-y-4">
-                  <a 
+                  <a
                     href="mailto:lucasismael03@gmail.com"
                     className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-700"
                   >
@@ -582,7 +500,7 @@ function App() {
                       <p className="text-gray-600 dark:text-gray-300">lucasismael03@gmail.com</p>
                     </div>
                   </a>
-                  <a 
+                  <a
                     href="tel:+5583996698962"
                     className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 border border-gray-200 dark:border-gray-700"
                   >
@@ -592,7 +510,7 @@ function App() {
                       <p className="text-gray-600 dark:text-gray-300">+55 83 996698962</p>
                     </div>
                   </a>
-                  <a 
+                  <a
                     href="https://wa.me/5583996698962"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -612,8 +530,8 @@ function App() {
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.name')}</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="name"
                     name="name"
                     value={formData.name}
@@ -625,8 +543,8 @@ function App() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.email')}</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     id="email"
                     name="email"
                     value={formData.email}
@@ -638,7 +556,7 @@ function App() {
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('contact.form.message')}</label>
-                  <textarea 
+                  <textarea
                     id="message"
                     name="message"
                     value={formData.message}
