@@ -219,7 +219,7 @@ function App() {
           <FadeIn duration={800} direction="up">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="space-y-8">
+                <div className="space-y-8 text-center lg:text-left">
                   <div className="space-y-4">
                     <p className="text-blue-600 font-medium text-lg">{t('hero.greeting')}</p>
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -234,7 +234,7 @@ function App() {
                       </Trans>
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                     <MovingBorderButton
                       onClick={() => scrollToSection('portfolio')}
                       duration={3000}
@@ -261,7 +261,7 @@ function App() {
                       </MovingBorderButton>
                     </a>
                   </div>
-                  <div className="flex items-center space-x-6 pt-4">
+                  <div className="flex items-center space-x-6 pt-4 justify-center lg:justify-start">
                     <a href="mailto:lucasismael03@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors" title="Email">
                       <Mail size={24} />
                     </a>
@@ -302,7 +302,7 @@ function App() {
                 <p className="mt-4 text-md text-gray-500 dark:text-gray-400 italic max-w-2xl mx-auto">{t('about.subheading')}</p>
               </div>
               <div className="grid lg:grid-cols-2 gap-12 items-start">
-                <div className="space-y-8">
+                <div className="space-y-8 text-center lg:text-left">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.journeyTitle')}</h3>
                     <div className="space-y-4">
@@ -326,27 +326,27 @@ function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.quickFactsTitle')}</h3>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto lg:max-w-none">
+                      <div className="flex items-center space-x-3 justify-center lg:justify-start">
                         <MapPin className="text-blue-600" size={20} />
                         <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.location')}</span>
                       </div>
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-3 justify-center lg:justify-start">
                         <Briefcase className="text-blue-600" size={20} />
                         <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.experience')}</span>
                       </div>
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-3 justify-center lg:justify-start">
                         <Award className="text-blue-600" size={20} />
                         <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.projects')}</span>
                       </div>
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-3 justify-center lg:justify-start">
                         <BookOpen className="text-blue-600" size={20} />
                         <span className="text-gray-700 dark:text-gray-300">{t('about.quickFacts.learning')}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="space-y-8">
+                <div className="space-y-8 text-center lg:text-left">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.skillsTitle')}</h3>
                     <div className="space-y-6">
@@ -368,7 +368,7 @@ function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">{t('about.toolsTitle')}</h3>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
                       {tools.map((tool, index) => (
                         <span 
                           key={index}
@@ -512,9 +512,9 @@ function App() {
                 direction="up"
               >
                 {experience.map((job, index) => (
-                  <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <div key={index} className="flex flex-col md:flex-row md:items-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 text-center md:text-left">
                     <div className="md:w-1/4 mb-4 md:mb-0">
-                      <div className="flex items-center space-x-2 text-blue-600 font-medium mb-2">
+                      <div className="flex items-center space-x-2 text-blue-600 font-medium mb-2 justify-center md:justify-start">
                         <Calendar size={16} />
                         <span className="text-sm">{job.period}</span>
                       </div>
@@ -530,7 +530,7 @@ function App() {
               <FadeIn delay={600} duration={600} direction="up">
                 <div className="mt-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">{t('about.educationTitle')}</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <BookOpen className="text-white" size={24} />
@@ -575,7 +575,7 @@ function App() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
+            <div className="space-y-8 text-center md:text-left">
               <div>
                 <h3 className="text-2xl font-bold mb-6">{t('contact.info')}</h3>
                 <div className="space-y-4">

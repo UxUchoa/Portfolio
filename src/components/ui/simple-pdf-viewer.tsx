@@ -13,6 +13,7 @@ interface SimplePDFViewerProps {
 export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFViewerProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Detectar se é um dispositivo móvel
@@ -30,6 +31,14 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
     // Reset fallback quando o modal abrir
     if (isOpen) {
       setShowFallback(false);
+      setIsLoading(true);
+      
+      // Timeout de segurança - se não carregar em 10 segundos, esconde o loading
+      const timeout = setTimeout(() => {
+        setIsLoading(false);
+      }, 10000);
+      
+      return () => clearTimeout(timeout);
     }
   }, [isOpen]);
 
@@ -152,26 +161,35 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
               src={pdfUrl}
               className="w-full h-full border-0"
               title={title}
-              onLoad={() => console.log('PDF iframe loaded successfully')}
+              onLoad={() => {
+                console.log('PDF iframe loaded successfully');
+                setIsLoading(false);
+              }}
               onError={() => {
                 console.error('Error loading PDF in iframe');
+                setIsLoading(false);
                 setShowFallback(true);
               }}
             />
             
-            {/* Fallback timeout - se não carregar em 3 segundos, mostrar alternativa */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-              <div className="text-center">
-                <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-                <p className="text-gray-600 dark:text-gray-400">Carregando PDF...</p>
-                <button
-                  onClick={() => setShowFallback(true)}
-                  className="mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm underline"
-                >
-                  Problemas para carregar? Clique aqui
-                </button>
+            {/* Loading overlay - só mostra enquanto está carregando */}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+                <div className="text-center">
+                  <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+                  <p className="text-gray-600 dark:text-gray-400">Carregando PDF...</p>
+                  <button
+                    onClick={() => {
+                      setIsLoading(false);
+                      setShowFallback(true);
+                    }}
+                    className="mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm underline"
+                  >
+                    Problemas para carregar? Clique aqui
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>
