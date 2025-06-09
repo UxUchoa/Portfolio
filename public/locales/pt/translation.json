@@ -30,6 +30,30 @@
       "projects": "25+ Projetos Concluídos",
       "learning": "Aprendizado Contínuo"
     },
+    "educationTitle": "Formação Acadêmica",
+    "education": {
+      "computerScience": {
+        "degree": "Ciência da Computação",
+        "type": "Bacharelado",
+        "institution": "Universidade Cruzeiro do Sul",
+        "period": "Mai 2025 - Dez 2026",
+        "status": "Em andamento"
+      },
+      "uxBeyond": {
+        "degree": "UX Design and Beyond",
+        "type": "Pós-graduação Lato Sensu",
+        "institution": "PUCRS",
+        "period": "Fev 2025 - Mar 2026",
+        "status": "Em andamento"
+      },
+      "graphicDesign": {
+        "degree": "Design Gráfico",
+        "type": "Tecnólogo",
+        "institution": "UNIPÊ",
+        "period": "Out 2021 - Jan 2024",
+        "status": "Concluído"
+      }
+    },
     "skillsTitle": "Habilidades Principais",
     "toolsTitle": "Ferramentas que Domino",
     "skills": {

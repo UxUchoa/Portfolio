@@ -529,31 +529,34 @@ function App() {
               </FadeInList>
               <FadeIn delay={600} duration={600} direction="up">
                 <div className="mt-16 bg-blue-50 dark:bg-blue-900/30 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Education & Certifications</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">{t('about.educationTitle')}</h3>
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <BookOpen className="text-white" size={24} />
                       </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Ciência da Computação</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Universidade Cruzeiro do Sul</p>
-                      <p className="text-blue-600 text-xs font-medium">Mai 2025 - Dez 2026 • Em andamento</p>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-1">{t('about.education.computerScience.degree')}</h4>
+                      <p className="text-blue-600 text-sm font-medium mb-2">{t('about.education.computerScience.type')}</p>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">{t('about.education.computerScience.institution')}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs">{t('about.education.computerScience.period')} • {t('about.education.computerScience.status')}</p>
                     </div>
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Award className="text-white" size={24} />
                       </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">UX Design and Beyond</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">PUCRS</p>
-                      <p className="text-blue-600 text-xs font-medium">Fev 2025 - Mar 2026 • Em andamento</p>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-1">{t('about.education.uxBeyond.degree')}</h4>
+                      <p className="text-blue-600 text-sm font-medium mb-2">{t('about.education.uxBeyond.type')}</p>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">{t('about.education.uxBeyond.institution')}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs">{t('about.education.uxBeyond.period')} • {t('about.education.uxBeyond.status')}</p>
                     </div>
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <BookOpen className="text-white" size={24} />
                       </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">Design Gráfico</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">UNIPÊ</p>
-                      <p className="text-blue-600 text-xs font-medium">Out 2021 - Jan 2024</p>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-1">{t('about.education.graphicDesign.degree')}</h4>
+                      <p className="text-blue-600 text-sm font-medium mb-2">{t('about.education.graphicDesign.type')}</p>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">{t('about.education.graphicDesign.institution')}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs">{t('about.education.graphicDesign.period')} • {t('about.education.graphicDesign.status')}</p>
                     </div>
                   </div>
                 </div>

@@ -30,6 +30,30 @@
       "projects": "25+ Projects Completed",
       "learning": "Continuous Learning"
     },
+    "educationTitle": "Education & Certifications",
+    "education": {
+      "computerScience": {
+        "degree": "Computer Science",
+        "type": "Bachelor's Degree",
+        "institution": "Universidade Cruzeiro do Sul",
+        "period": "May 2025 - Dec 2026",
+        "status": "In Progress"
+      },
+      "uxBeyond": {
+        "degree": "UX Design and Beyond",
+        "type": "Postgraduate Specialization",
+        "institution": "PUCRS",
+        "period": "Feb 2025 - Mar 2026",
+        "status": "In Progress"
+      },
+      "graphicDesign": {
+        "degree": "Graphic Design",
+        "type": "Associate Degree",
+        "institution": "UNIPÊ",
+        "period": "Oct 2021 - Jan 2024",
+        "status": "Completed"
+      }
+    },
     "skillsTitle": "Core Skills",
     "toolsTitle": "Tools I Master",
     "skills": {
