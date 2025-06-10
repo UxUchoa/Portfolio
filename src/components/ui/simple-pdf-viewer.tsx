@@ -157,10 +157,10 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
           <MobileFallbackView />
         ) : (
           <div className="relative flex-grow bg-gray-100 dark:bg-gray-900">
-            <iframe
+          <iframe
               src={pdfUrl}
-              className="w-full h-full border-0"
-              title={title}
+            className="w-full h-full border-0"
+            title={title}
               onLoad={() => {
                 console.log('PDF iframe loaded successfully');
                 setIsLoading(false);
@@ -170,7 +170,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
                 setIsLoading(false);
                 setShowFallback(true);
               }}
-            />
+          />
             
             {/* Loading overlay - só mostra enquanto está carregando */}
             {isLoading && (
@@ -190,7 +190,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
                 </div>
               </div>
             )}
-          </div>
+        </div>
         )}
       </div>
     </div>
