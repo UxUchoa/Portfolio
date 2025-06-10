@@ -27,9 +27,9 @@ function App() {
   const isPortfolioLoading = useSectionLoading(1500);
   const isExperienceLoading = useSectionLoading(1800);
 
-  const cvFile = i18n.language === 'pt' 
-    ? { path: '/pdfs/CV___PT_BR_Lucas_Uchoa.pdf', name: 'CV_PT-BR_Lucas_Uchoa.pdf' }
-    : { path: '/pdfs/cv_en_us_lucas_uchoa_at.pdf', name: 'CV_EN-US_Lucas_Uchoa.pdf' };
+    const cvFile = i18n.language === 'pt'
+    ? { path: '/pdfs/CV_PT-BR_Lucas_Uchoa.pdf', name: 'CV_PT-BR_Lucas_Uchoa.pdf' }
+    : { path: '/pdfs/CV_EN-US_Lucas_Uchoa.pdf', name: 'CV_EN-US_Lucas_Uchoa.pdf' };
 
   useEffect(() => {
     const saved = localStorage.getItem('dark-mode');
