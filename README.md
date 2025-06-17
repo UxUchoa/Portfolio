@@ -8,7 +8,91 @@ Este documento fornece uma visão geral abrangente do projeto de portfólio, det
 
 O projeto de portfólio é uma aplicação web moderna desenvolvida para exibir os trabalhos e habilidades de um desenvolvedor. Ele apresenta uma interface de usuário interativa e responsiva, com suporte a múltiplos idiomas e a capacidade de visualizar documentos PDF diretamente no navegador. O portfólio é projetado para ser facilmente personalizável e extensível.
 
+## Funcionalidades Principais
 
+### Sistema de Skeleton Loading
+O portfólio implementa um sistema avançado de skeleton loading similar ao YouTube, proporcionando uma experiência de carregamento suave com efeitos shimmer durante o carregamento das seções.
+
+### Visualizador de PDF Integrado
+O portfólio inclui um visualizador de PDF robusto que permite visualizar case studies diretamente no site, com funcionalidades como:
+- Visualização em modal fullscreen
+- Detecção automática de dispositivos móveis
+- Fallback para dispositivos que não suportam visualização inline
+- Botões de download e abertura em nova aba
+- Interface responsiva com tema claro/escuro
+
+### Sistema de Internacionalização (i18n)
+Suporte completo para múltiplos idiomas (Português e Inglês) com:
+- Detecção automática do idioma do navegador
+- Switcher de idioma na interface
+- Traduções completas de todos os textos
+
+### 🆕 Seção "Novo Projeto" - Live Well Membership
+Uma seção especial dedicada ao case study mais recente, localizada entre "Sobre" e "Portfólio":
+
+#### Características da Seção:
+- **Layout diferenciado**: Seção full-width com grid de 2 colunas
+- **Background gradiente**: Azul claro para escuro com tema adaptável
+- **Badge animado**: "Novo Projeto" com ponto pulsante
+- **Imagem destacada**: Lado esquerdo com overlay e badge "Redesign Case"
+- **Informações detalhadas**: Grade com 4 campos informativos
+- **Botões de ação**: CTA principal para visualizar + botão de download
+- **Animações**: FadeIn sequencial para entrada suave
+
+#### Conteúdo Traduzido:
+- **Português**: Foco em "experiência premium na costa da Flórida"
+- **Inglês**: "Premium experience on Florida's coast"
+- **Descrição completa**: Plataforma de membership exclusiva para a região costeira 30A da Flórida
+- **Detalhes técnicos**: Foco em UX/UI, setor turismo & hospitalidade, tipo membership platform
+
+#### Funcionalidades Especiais:
+- **Visualizador PDF integrado**: Botão principal abre o case study
+- **Download direto**: Botão secundário para download do PDF
+- **Responsivo**: Adaptado para desktop, tablet e mobile
+- **Tema escuro**: Totalmente compatível com modo escuro
+
+### Portfólio de Projetos
+#### Case Studies Disponíveis:
+1. **🆕 Live Well Membership - UI Case** (2025) - **SEÇÃO ESPECIAL**
+   - Categoria: Design de Interface 
+   - Case study completo de redesign de plataforma de membership exclusiva para experiências na costa da Flórida (30A)
+   - **Setor**: Turismo & Hospitalidade
+   - **Foco**: Acesso privilegiado e benefícios únicos para membros
+   - **Localização**: Seção dedicada entre "Sobre" e "Portfólio"
+   - **Destaque**: Layout especial com animações e informações detalhadas
+
+2. **Juritask - Gestão Jurídica** (2025)
+   - Categoria: Desafio de Caso
+   - Plataforma de gestão jurídica focada em processos legais
+
+3. **Tracksales - Plataforma de Gestão** (2025)
+   - Categoria: UI de App Móvel
+   - Plataforma de gestão de vendas com interface móvel
+
+4. **Me-ensina Smart Learning** (2024)
+   - Categoria: Estudo de Caso
+   - Plataforma educacional com tecnologia inteligente
+
+5. **Benchmarking de Ferramentas de Fluxograma** (2024)
+   - Categoria: Pesquisa UX
+   - Análise comparativa de ferramentas de fluxograma
+
+### Características Especiais do Live Well Membership
+- **Badge "NOVO"**: Destaque visual para identificar o projeto mais recente
+- **Imagem temática**: Imagem personalizada relacionada a saúde e bem-estar
+- **Sem link externo**: Foco total no PDF case study completo
+- **Visualizador otimizado**: Experiência de leitura aprimorada para o case study
+
+### Animações e Transições
+- Loading states com skeleton components
+- Fade-in animations para seções
+- Hover effects nos cards de projetos
+- Transições suaves entre temas claro/escuro
+
+### Responsividade
+- Design adaptado para desktop, tablet e mobile
+- Componentes otimizados para diferentes tamanhos de tela
+- Touch-friendly interfaces para dispositivos móveis
 
 ## Tecnologias Utilizadas
 
@@ -23,9 +107,6 @@ O projeto de portfólio é construído com as seguintes tecnologias principais:
 *   **Framer Motion**: Uma biblioteca para animações de interface de usuário no React.
 
 Além dessas, o projeto utiliza várias outras bibliotecas e ferramentas para desenvolvimento, linting e construção, conforme detalhado no arquivo `package.json`.
-
-
-
 
 ## Estrutura do Projeto
 
@@ -76,74 +157,4 @@ Portfolio/
 
 *   **`public/`**: Contém arquivos estáticos, como arquivos de localização (`locales/`) para internacionalização e documentos PDF (`pdfs/`) que são exibidos no portfólio.
 *   **`src/`**: Contém o código-fonte principal da aplicação React.
-    *   **`components/`**: Componentes React reutilizáveis, incluindo componentes de UI genéricos (`ui/`).
-    *   **`lib/`**: Utilitários e funções auxiliares.
-    *   **`App.tsx`**: O componente raiz da aplicação.
-    *   **`i18n.ts`**: Configuração para internacionalização (i18n).
-    *   **`index.css`**: Estilos globais da aplicação.
-    *   **`main.tsx`**: Ponto de entrada da aplicação React.
-*   **`package.json`**: Define as dependências do projeto e os scripts de construção.
-*   **`README.md`**: O arquivo README original do projeto.
-*   **`tailwind.config.js`**: Configuração do Tailwind CSS.
-*   **`vite.config.ts`**: Configuração do Vite.
-
-
-
-
-## Configuração e Execução
-
-Para configurar e executar o projeto localmente, siga os passos abaixo:
-
-### Pré-requisitos
-
-Certifique-se de ter o Node.js (versão 18 ou superior) e o npm (ou yarn) instalados em sua máquina.
-
-### Instalação
-
-1.  **Clone o repositório:**
-
-    ```bash
-    git clone https://github.com/UxUchoa/Portfolio.git
-    cd Portfolio
-    ```
-
-2.  **Instale as dependências:**
-
-    ```bash
-    npm install
-    # ou
-    yarn install
-    ```
-
-### Execução
-
-Para iniciar o servidor de desenvolvimento:
-
-```bash
-npm run dev
-# ou
-yarn dev
-```
-
-O aplicativo estará disponível em `http://localhost:5173` (ou outra porta disponível).
-
-### Construção para Produção
-
-Para construir o projeto para produção:
-
-```bash
-npm run build
-# ou
-yarn build
-```
-
-Os arquivos de produção serão gerados na pasta `dist/`.
-
-
-
-
-## Conclusão
-
-Este documento detalhou a estrutura, tecnologias e procedimentos para a configuração e execução do projeto de portfólio. Com estas informações, os desenvolvedores podem facilmente entender e trabalhar com o código-fonte, personalizando-o para suas próprias necessidades ou contribuindo para o seu desenvolvimento.
-
-
+    *   **`components/`**: Componentes React reutilizáveis, incluindo componentes de UI genéricos (`ui/`

@@ -65,6 +65,24 @@
       "designSystems": "Design Systems"
     }
   },
+  "newProject": {
+    "badge": "Novo Projeto",
+    "title": "Live Well Membership",
+    "subtitle": "Redesign completo da plataforma de membership exclusiva para experiências de férias na costa da Flórida (30A), focando em acesso privilegiado e benefícios únicos para os membros.",
+    "cardTitle": "Experiência Premium na Costa da Flórida",
+    "description": "Este case study apresenta o redesign da plataforma Live Well Membership, que oferece acesso exclusivo e benefícios especiais para elevar a experiência de férias na região costeira de 30A na Flórida. O projeto focou em criar uma interface elegante que reflita o charme relaxante da costa e facilite o acesso aos privilégios da membership.",
+    "details": {
+      "focus": "Foco Principal",
+      "focusValue": "UX/UI Design",
+      "sector": "Setor",
+      "sectorValue": "Turismo & Hospitalidade",
+      "type": "Tipo",
+      "typeValue": "Membership Platform",
+      "status": "Status",
+      "statusValue": "Concluído"
+    },
+    "viewCaseStudy": "Ver Case Study Completo"
+  },
   "portfolio": {
     "title": "Portfólio",
     "subtitle": "Cada projeto mostra resolução de problemas através de design thinking, pesquisa de usuário e soluções baseadas em dados.",
@@ -92,6 +110,11 @@
         "title": "Benchmarking de Ferramentas de Fluxograma",
         "category": "Pesquisa UX",
         "description": "Pesquisa e análise abrangente de ferramentas de fluxograma para identificar melhores práticas e oportunidades de otimização."
+      },
+      "liveWellMembership": {
+        "title": "Live Well Membership - UI Case",
+        "category": "Design de Interface",
+        "description": "Case study completo de redesign de plataforma de membership exclusiva para experiências de férias na costa da Flórida (30A), focando em acesso privilegiado e benefícios únicos."
       }
     }
   },

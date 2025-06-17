@@ -386,6 +386,107 @@ function App() {
         )}
       </section>
 
+      {/* Nova Seção: Novo Projeto - Live Well Membership */}
+      <section className="py-12 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900">
+        <FadeIn duration={800} direction="up">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeIn delay={200} duration={600} direction="up">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide mb-4">
+                  <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                  {t('newProject.badge')}
+                </div>
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                  {t('newProject.title')}
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  {t('newProject.subtitle')}
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={400} duration={800} direction="up">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden max-w-5xl mx-auto min-h-[300px] lg:min-h-[320px]">
+                <div className="grid lg:grid-cols-2 gap-0 h-full">
+                  {/* Lado esquerdo - Imagem */}
+                  <div className="relative h-60 lg:h-full bg-gradient-to-br from-teal-400 to-blue-600">
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    <LazyImage 
+                      src="/images/live-well-thumbnail.png" 
+                      alt="Live Well Membership - Florida Coast 30A Redesign Case Study"
+                      className="w-full h-full object-cover object-center"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1 shadow-lg">
+                        <span className="text-white text-sm font-medium">Redesign Case</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Lado direito - Conteúdo */}
+                  <div className="p-4 lg:p-6 flex flex-col justify-center">
+                                        <div className="mb-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
+                          {t('newProject.details.focusValue')}
+                        </span>
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">2025</span>
+                      </div>
+                      
+                      <h3 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-2">
+                        {t('newProject.cardTitle')}
+                      </h3>
+                      
+                      <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-base">
+                        {t('newProject.description')}
+                      </p>
+                      
+                                              <div className="grid grid-cols-2 gap-2 mb-4">
+                         <div>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.focus')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.focusValue')}</p>
+                         </div>
+                         <div>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.sector')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.sectorValue')}</p>
+                         </div>
+                         <div>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.type')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.typeValue')}</p>
+                         </div>
+                         <div>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.status')}</h4>
+                           <p className="text-green-600 dark:text-green-400 text-sm font-medium">{t('newProject.details.statusValue')}</p>
+                         </div>
+                       </div>
+                    </div>
+                                        
+                    <div className="flex items-center space-x-3">
+                      <button 
+                        onClick={() => openPDFViewer("/pdfs/Live Well Membership - UI Case.pdf", "Live Well Membership - UI Case")}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2.5 px-5 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm lg:text-base"
+                      >
+                        <Eye size={18} />
+                        <span>{t('newProject.viewCaseStudy')}</span>
+                      </button>
+                      
+                      <a 
+                        href="/pdfs/Live Well Membership - UI Case.pdf" 
+                        download
+                        className="p-2.5 border-2 border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200 group"
+                        title="Download PDF"
+                      >
+                        <Download size={18} className="text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </FadeIn>
+      </section>
+
       <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-800">
         {isPortfolioLoading ? (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

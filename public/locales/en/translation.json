@@ -65,6 +65,24 @@
       "designSystems": "Design Systems"
     }
   },
+  "newProject": {
+    "badge": "New Project",
+    "title": "Live Well Membership",
+    "subtitle": "Complete redesign of an exclusive membership platform for vacation experiences on Florida's Gulf Coast (30A), focusing on privileged access and unique member benefits.",
+    "cardTitle": "Premium Experience on Florida's Coast",
+    "description": "This case study presents the redesign of the Live Well Membership platform, which offers exclusive access and special perks to elevate vacation experiences in the 30A coastal region of Florida. The project focused on creating an elegant interface that reflects the relaxed coastal charm while facilitating access to membership privileges.",
+    "details": {
+      "focus": "Main Focus",
+      "focusValue": "UX/UI Design",
+      "sector": "Sector",
+      "sectorValue": "Tourism & Hospitality",
+      "type": "Type",
+      "typeValue": "Membership Platform",
+      "status": "Status",
+      "statusValue": "Completed"
+    },
+    "viewCaseStudy": "View Complete Case Study"
+  },
   "portfolio": {
     "title": "Portfolio",
     "subtitle": "Each project showcases problem-solving through design thinking, user research, and data-driven solutions.",
@@ -92,6 +110,11 @@
         "title": "Benchmarking Flowchart Tools",
         "category": "UX Research",
         "description": "Comprehensive research and analysis of flowchart tools to identify best practices and optimization opportunities."
+      },
+      "liveWellMembership": {
+        "title": "Live Well Membership - UI Case",
+        "category": "Interface Design",
+        "description": "Complete case study of an exclusive membership platform redesign for vacation experiences on Florida's Gulf Coast (30A), focusing on privileged access and unique benefits."
       }
     }
   },
