@@ -108,7 +108,147 @@ O projeto de portfólio é construído com as seguintes tecnologias principais:
 
 Além dessas, o projeto utiliza várias outras bibliotecas e ferramentas para desenvolvimento, linting e construção, conforme detalhado no arquivo `package.json`.
 
-## Estrutura do Projeto
+## Como Rodar o Projeto
+
+### Pré-requisitos
+
+Antes de começar, certifique-se de ter os seguintes itens instalados em sua máquina:
+
+- **Node.js** (versão 18 ou superior)
+  - Baixe em: https://nodejs.org/
+  - Verifique a instalação: `node --version`
+- **npm** (geralmente vem com o Node.js)
+  - Verifique a instalação: `npm --version`
+
+### Instalação
+
+1. **Clone o repositório** (se ainda não fez):
+   ```bash
+   git clone <url-do-repositorio>
+   cd Portfolio
+   ```
+
+2. **Instale as dependências**:
+   ```bash
+   npm install
+   ```
+
+### Executando o Projeto
+
+#### Modo de Desenvolvimento
+Para rodar o projeto em modo de desenvolvimento com hot-reload:
+
+```bash
+npm run dev
+```
+
+O servidor de desenvolvimento será iniciado e você verá uma mensagem similar a:
+```
+  VITE v5.4.2  ready in 500 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+```
+
+Acesse `http://localhost:5173/` no seu navegador para ver o projeto.
+
+#### Outros Comandos Disponíveis
+
+- **Build para produção**:
+  ```bash
+  npm run build
+  ```
+
+- **Preview da build de produção**:
+  ```bash
+  npm run preview
+  ```
+
+- **Linting do código**:
+  ```bash
+  npm run lint
+  ```
+
+### Solução de Problemas Comuns
+
+#### Erro de Porta em Uso
+Se a porta 5173 estiver ocupada, o Vite tentará automaticamente a próxima porta disponível. Você verá a nova porta na mensagem de inicialização.
+
+#### Problemas com Dependências
+Se encontrar problemas com dependências:
+
+```bash
+# Limpar cache do npm
+npm cache clean --force
+
+# Remover node_modules e reinstalar
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### Problemas com TypeScript
+Se houver erros de TypeScript:
+
+```bash
+# Verificar tipos
+npx tsc --noEmit
+
+# Reinstalar tipos se necessário
+npm install @types/react @types/react-dom
+```
+
+### Configuração Adicional
+
+#### Variáveis de Ambiente
+O projeto pode ser configurado com variáveis de ambiente criando um arquivo `.env` na raiz:
+
+```env
+VITE_APP_TITLE=Meu Portfólio
+VITE_APP_DESCRIPTION=Portfólio pessoal de desenvolvimento
+```
+
+#### Configuração do Vite
+O arquivo `vite.config.ts` contém as configurações do bundler. Principais configurações:
+
+- **Porta**: Configurada para 5173 por padrão
+- **Host**: Configurado para aceitar conexões externas
+- **Plugins**: React e outras otimizações
+
+### Desenvolvimento e Contribuição
+
+#### Workflow de Desenvolvimento
+1. **Crie uma branch** para suas mudanças:
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
+
+2. **Faça suas alterações** e teste localmente:
+   ```bash
+   npm run dev
+   npm run lint
+   ```
+
+3. **Commit suas mudanças**:
+   ```bash
+   git add .
+   git commit -m "feat: adiciona nova funcionalidade"
+   ```
+
+4. **Push e crie um Pull Request**
+
+#### Padrões de Código
+- Use **TypeScript** para todos os novos arquivos
+- Siga as **convenções do ESLint** configuradas
+- Use **Tailwind CSS** para estilização
+- Mantenha componentes **reutilizáveis** e **modulares**
+
+#### Estrutura de Componentes
+- Componentes UI genéricos em `src/components/ui/`
+- Componentes específicos da aplicação em `src/components/`
+- Hooks customizados em `src/hooks/`
+- Utilitários em `src/lib/`
+
+### Estrutura do Projeto
 
 A estrutura de diretórios do projeto é organizada da seguinte forma:
 

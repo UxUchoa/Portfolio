@@ -437,26 +437,26 @@ function App() {
                         {t('newProject.cardTitle')}
                       </h3>
                       
-                      <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-base">
+                      <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-sm">
                         {t('newProject.description')}
                       </p>
                       
                                               <div className="grid grid-cols-2 gap-2 mb-4">
                          <div>
-                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.focus')}</h4>
-                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.focusValue')}</p>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-xs mb-0.5">{t('newProject.details.focus')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-xs">{t('newProject.details.focusValue')}</p>
                          </div>
                          <div>
-                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.sector')}</h4>
-                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.sectorValue')}</p>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-xs mb-0.5">{t('newProject.details.sector')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-xs">{t('newProject.details.sectorValue')}</p>
                          </div>
                          <div>
-                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.type')}</h4>
-                           <p className="text-gray-600 dark:text-gray-300 text-sm">{t('newProject.details.typeValue')}</p>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-xs mb-0.5">{t('newProject.details.type')}</h4>
+                           <p className="text-gray-600 dark:text-gray-300 text-xs">{t('newProject.details.typeValue')}</p>
                          </div>
                          <div>
-                           <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-0.5">{t('newProject.details.status')}</h4>
-                           <p className="text-green-600 dark:text-green-400 text-sm font-medium">{t('newProject.details.statusValue')}</p>
+                           <h4 className="font-semibold text-gray-900 dark:text-white text-xs mb-0.5">{t('newProject.details.status')}</h4>
+                           <p className="text-green-600 dark:text-green-400 text-xs font-medium">{t('newProject.details.statusValue')}</p>
                          </div>
                        </div>
                     </div>
