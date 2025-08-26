@@ -164,8 +164,8 @@ function App() {
                   key={item}
                   onClick={() => scrollToSection(item)}
                   className={`text-sm font-medium transition-colors duration-200 ${activeSection === item
-                      ? 'text-blue-600'
-                      : 'text-gray-600 dark:text-gray-300 hover:text-blue-600'
+                    ? 'text-blue-600'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-blue-600'
                     }`}
                 >
                   {t(`nav.${item}`)}
@@ -276,7 +276,7 @@ function App() {
                   <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-1 shadow-2xl">
                     <div className="w-full h-full rounded-xl overflow-hidden">
                       <LazyImage
-                        src="/images/IMG_5704 (1).jpg"
+                        src="/images/IMG_5704%20(1).jpg"
                         alt="Lucas Uchôa - UX/UI Designer"
                         className="w-full h-full object-cover"
                       />
