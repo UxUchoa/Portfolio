@@ -39,7 +39,7 @@ export function PDFViewer({ isOpen, onClose, pdfUrl, title }: PDFViewerProps) {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
+  }, [isOpen, pdfUrl]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     console.log('PDF loaded successfully with', numPages, 'pages');

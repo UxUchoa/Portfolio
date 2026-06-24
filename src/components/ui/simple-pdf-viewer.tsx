@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { X, Download, ExternalLink, FileText, Smartphone } from 'lucide-react';
-import { cn } from '../../lib/utils';
 
 interface SimplePDFViewerProps {
   isOpen: boolean;

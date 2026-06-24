@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, PropsWithChildren } from 'react';
-import { cn } from '../../lib/utils';
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
@@ -38,13 +37,15 @@ export const FadeIn: React.FC<FadeInProps> = ({
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [delay]);
@@ -118,13 +119,15 @@ export const FadeInList: React.FC<FadeInListProps> = ({
             { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        const currentRef = ref.current;
+
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
+            if (currentRef) {
+                observer.unobserve(currentRef);
             }
         };
     }, []);
