@@ -26,7 +26,7 @@ import {
 import { BehanceIcon } from './ui/behance-icon';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 import { LazyImage } from './ui/lazy-image';
-import { FallingPattern } from '@/components/ui/falling-pattern';
+import { DitheringShader } from '@/components/ui/dithering-shader';
 import { githubUser, languageColors, profilePhoto, projectStackProfiles, type PortfolioCopy } from '../data/portfolio';
 import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, SectionId } from '../types/github';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
@@ -96,17 +96,18 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
         <img src={profilePhoto} alt="" className="h-full w-full object-cover object-center opacity-10 saturate-0 dark:opacity-20" />
         <div className="absolute inset-0 bg-white/90 dark:bg-[#080b0d]/90" />
         <div className="code-grid absolute inset-0 opacity-65 dark:opacity-70" />
-        <div className="pointer-events-none absolute inset-0 z-0">
-          <FallingPattern
-            className="h-full w-full opacity-35 [mask-image:radial-gradient(ellipse_at_70%_35%,black,transparent_76%)]"
-            color="rgba(110, 231, 183, 0.38)"
-            backgroundColor="transparent"
-            duration={155}
-            blurIntensity="0.75em"
-            density={1.15}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/25 dark:from-[#080b0d] dark:via-[#080b0d]/70 dark:to-[#080b0d]/20" />
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-60 mix-blend-multiply dark:opacity-45 dark:mix-blend-screen">
+          <DitheringShader
+            className="h-full w-full [mask-image:radial-gradient(ellipse_at_74%_38%,black,transparent_80%)]"
+            shape="wave"
+            type="8x8"
+            colorBack="transparent"
+            colorFront="#6ee7b7"
+            pxSize={3}
+            speed={1.05}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/25 dark:from-[#080b0d] dark:via-[#080b0d]/70 dark:to-[#080b0d]/20" />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[84svh] max-w-7xl flex-col justify-center px-4 py-12">
@@ -138,7 +139,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
             <button
               type="button"
               onClick={() => onNavigate('work')}
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/75 px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-white dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95"
             >
               <Eye size={18} />
               {content.hero.secondaryAction}
@@ -146,7 +147,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
             <a
               href={cvFile.path}
               download={cvFile.name}
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/55 px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition-colors hover:bg-white dark:border-white/20 dark:bg-transparent dark:text-white dark:hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95"
             >
               <Download size={18} />
               {content.hero.cvAction}
