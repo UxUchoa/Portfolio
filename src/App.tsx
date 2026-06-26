@@ -93,12 +93,12 @@ function App() {
             type="button"
             onClick={() => scrollToSection('home')}
             className="flex items-center gap-3 text-left"
-            aria-label="Lucas Uchôa"
+            aria-label="Dev Uchôa"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-md border border-zinc-300 bg-white font-mono text-sm font-bold text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-emerald-300">
-              LU
+            <span className="grid h-9 min-w-9 place-items-center rounded-md border border-zinc-300 bg-white px-2 font-mono text-xs font-bold text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-emerald-300">
+              DEV
             </span>
-            <span className="hidden text-sm font-semibold text-zinc-800 dark:text-zinc-100 sm:block">Lucas Uchôa</span>
+            <span className="hidden text-sm font-semibold text-zinc-800 dark:text-zinc-100 sm:block">Dev Uchôa</span>
           </button>
 
           <div className="hidden items-center gap-1 md:flex">

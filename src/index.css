@@ -75,10 +75,16 @@
 @layer utilities {
   .code-grid {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      linear-gradient(rgba(9, 9, 11, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(9, 9, 11, 0.06) 1px, transparent 1px);
     background-size: 36px 36px;
     mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+  }
+
+  .dark .code-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
   }
 
   .timeline-line {
