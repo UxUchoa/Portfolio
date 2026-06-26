@@ -293,7 +293,7 @@ export const copy = {
         {
           period: 'Jan 2026 - Presente',
           role: 'Pesquisador UX',
-          company: 'Avanade',
+          company: 'Accenture',
           description:
             'Pesquisa de mercado e usuários, refinamento de interfaces com dados qualitativos e integração de descobertas com design e desenvolvimento.',
         },
@@ -510,7 +510,7 @@ export const copy = {
         {
           period: 'Jan 2026 - Present',
           role: 'UX Researcher',
-          company: 'Avanade',
+          company: 'Accenture',
           description:
             'Market and user research, interface refinement with qualitative data and integration of findings with design and development.',
         },
