@@ -11,18 +11,18 @@
     "greeting": "👋 Hi there!",
     "iam": "I'm",
     "name": "Lucas Uchôa",
-    "description": "A UX/UI Designer with <1>6 years of experience</1> crafting digital experiences that delight users and drive business results.",
-    "viewProjects": "View Projects",
+    "description": "A Product Designer with a fullstack background and <1>6 years of experience</1> connecting product, technology, research and UX/UI.",
+    "viewProjects": "See Dev Projects",
     "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
-    "intro": "I'm a passionate UX/UI professional dedicated to solving complex problems with user-centered design. I have a keen eye for detail and a commitment to creating intuitive, beautiful products that meet both user needs and business goals.",
-    "subheading": "A mix of creativity, empathy, and technical knowledge to turn ideas into reality.",
+    "intro": "I'm a Product Designer with a fullstack background and experience creating digital products end to end. My work starts with product, gains depth through technology and becomes UX/UI.",
+    "subheading": "Product, technology and design working together to turn complex problems into viable and usable solutions.",
     "journeyTitle": "My Journey",
-    "journeyParagraph1": "Based in Brazil, I specialize in creating user-centered digital interfaces that combine aesthetics with functionality.",
+    "journeyParagraph1": "Based in Brazil, I design strategic digital solutions by combining product vision, fullstack development, APIs, data and user experience.",
     "journeyParagraph2": "I've had the privilege of working with leading companies like <1>Banco do Brasil</1>, <2>ImoBanco</2>, and <3>AevoTech</3>, where I've consistently delivered impactful design solutions.",
-    "journeyParagraph3": "My approach combines user research, data-driven insights, and creative problem-solving to create digital experiences that not only look great but also solve real user problems and drive business objectives.",
+    "journeyParagraph3": "My approach combines product, user research, data reading, design systems, prototyping and technical collaboration to create clear, useful and scalable solutions.",
     "quickFactsTitle": "Quick Facts",
     "quickFacts": {
       "location": "Brazil",
@@ -57,8 +57,8 @@
     "skillsTitle": "Core Skills",
     "toolsTitle": "Tools I Master",
     "skills": {
-      "uxResearch": "UX Research",
-      "uiDesign": "UI Design",
+      "uxResearch": "User Research",
+      "uiDesign": "Product Design",
       "prototyping": "Prototyping",
       "userTesting": "User Testing",
       "infoArchitecture": "Information Architecture",
@@ -85,7 +85,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitle": "Each project showcases problem-solving through design thinking, user research, and data-driven solutions.",
+    "subtitle": "Each project shows product reasoning, applied technology, user research and decisions based on real context.",
     "viewPDF": "View PDF",
     "visitBehance": "Visit Behance",
     "viewBehance": "Behance",
@@ -94,17 +94,17 @@
       "juritask": {
         "title": "Juritask - Legal Management",
         "category": "Case Challenge",
-        "description": "Legal management platform focused on streamlining legal processes and improving workflow efficiency for law professionals."
+        "description": "Legal management platform focused on mapping complex tasks, organizing legal flows and improving operational readability for law professionals."
       },
       "tracksales": {
         "title": "Tracksales - Management Platform",
         "category": "Mobile App UI",
-        "description": "Sales management platform designed to optimize team performance and track sales metrics with an intuitive mobile interface."
+        "description": "Management platform designed to support performance tracking, metric reading and more scannable decisions in a mobile interface."
       },
       "meEnsina": {
         "title": "Me-ensina Smart Learning",
         "category": "Case Study",
-        "description": "Educational platform that revolutionizes the learning experience through smart technology and a user-centered design approach."
+        "description": "Educational platform centered on the student journey, connecting motivation, content clarity and learning hypotheses."
       },
       "flowchartTools": {
         "title": "Benchmarking Flowchart Tools",
@@ -114,13 +114,13 @@
       "liveWellMembership": {
         "title": "Live Well Membership - UI Case",
         "category": "Interface Design",
-        "description": "Complete case study of an exclusive membership platform redesign for vacation experiences on Florida's Gulf Coast (30A), focusing on privileged access and unique benefits."
+        "description": "Membership platform redesign case study focused on offer clarity, value perception and the decision journey."
       }
     }
   },
   "experience": {
     "title": "Professional Experience",
-    "subtitle": "A journey of growth and impactful design solutions.",
+    "subtitle": "A path that combines product, fullstack development, UX/UI, research and collaboration with technical teams.",
     "jobs": {
       "bancoBrasil": {
         "period": "Mar 2024 - Present",
@@ -150,7 +150,7 @@
   },
   "contact": {
     "title": "Let's Connect!",
-    "subtitle": "Ready to collaborate on your next project? I'd love to hear about your design challenges and how we can solve them together.",
+    "subtitle": "Let's talk about product, technology, fullstack, UX/UI and how technical vision can improve delivery.",
     "form": {
       "title": "Quick Message",
       "name": "Name",
@@ -159,7 +159,7 @@
       "sendMessage": "Send Message",
       "namePlaceholder": "Your name",
       "emailPlaceholder": "your@email.com",
-      "messagePlaceholder": "Tell me about your project..."
+      "messagePlaceholder": "Tell me about your product or technical challenge..."
     },
     "info": "Get in Touch"
   },

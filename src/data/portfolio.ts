@@ -2,7 +2,7 @@ import type { GithubProfile, GithubRepo, Locale, ProjectStackProfile, SectionId 
 
 export const githubUser = 'UxUchoa';
 export const profilePhoto = '/images/IMG_5704%20(1).jpg';
-export const navItems: SectionId[] = ['home', 'work', 'github', 'experience', 'contact'];
+export const navItems: SectionId[] = ['home', 'github', 'work', 'experience', 'contact'];
 
 export const languageColors: Record<string, string> = {
   TypeScript: '#38bdf8',
@@ -15,24 +15,24 @@ export const languageColors: Record<string, string> = {
 };
 
 export const pinnedRepoNames = [
-  'UX-Analysis-pipeline',
-  'Api_Gerenciamento_De_Produtos',
-  'Portfolio',
-  'Projeto_GLojas',
-  'Skyrim_Copilot',
   'UCtorrent',
+  'Skyrim_Copilot',
+  'UX-Analysis-pipeline',
+  'Projeto_GLojas',
+  'Portfolio',
+  'Api_Gerenciamento_De_Produtos',
 ];
 
 export const projectStackProfiles: Record<string, ProjectStackProfile> = {
   'UX-Analysis-pipeline': {
-    summary: 'Pipeline UX com front-end analítico, API Python e IA local para leitura de entrevistas.',
+    summary: 'Pipeline de pesquisa UX com interface analítica, API Python e IA local para leitura de entrevistas.',
     technologies: ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
     layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Ollama local - qwen3:4b'],
   },
   Skyrim_Copilot: {
-    summary: 'Copilot de gameplay com front-end React/Vite, API FastAPI e integração local com IA.',
+    summary: 'Copilot de gameplay com interface React/Vite, API FastAPI e integração local com IA.',
     technologies: ['React', 'Vite', 'FastAPI', 'Dify', 'Docker', 'Ollama'],
-    layers: ['React/Vite front-end', 'FastAPI backend/API', 'Dify infra/docker', 'Ollama no Windows host'],
+    layers: ['React/Vite interface', 'FastAPI backend/API', 'Dify infra/docker', 'Ollama no Windows host'],
   },
   Projeto_GLojas: {
     summary: 'Backend escalável com NestJS, TypeScript, PostgreSQL e documentação automática de API.',
@@ -68,48 +68,15 @@ export const fallbackProfile: GithubProfile = {
 
 export const fallbackRepos: GithubRepo[] = [
   {
-    name: 'UX-Analysis-pipeline',
+    name: 'UCtorrent',
     description: null,
-    html_url: 'https://github.com/UxUchoa/UX-Analysis-pipeline',
+    html_url: 'https://github.com/UxUchoa/UCtorrent',
     homepage: null,
     language: 'Python',
     stargazers_count: 0,
     forks_count: 0,
-    updated_at: '2026-05-14T23:20:48Z',
-    size: 415,
-  },
-  {
-    name: 'Api_Gerenciamento_De_Produtos',
-    description: 'Crud simples para gerenciamento de produtos',
-    html_url: 'https://github.com/UxUchoa/Api_Gerenciamento_De_Produtos',
-    homepage: null,
-    language: 'TypeScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-07-29T13:25:08Z',
-    size: 141,
-  },
-  {
-    name: 'Portfolio',
-    description: 'Template de portfolio',
-    html_url: 'https://github.com/UxUchoa/Portfolio',
-    homepage: 'https://portfolio-uchoatis-projects.vercel.app',
-    language: 'TypeScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-08-26T14:53:37Z',
-    size: 133665,
-  },
-  {
-    name: 'Projeto_GLojas',
-    description: null,
-    html_url: 'https://github.com/UxUchoa/Projeto_GLojas',
-    homepage: null,
-    language: 'Python',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-10-01T19:37:12Z',
-    size: 125403,
+    updated_at: '2026-06-21T17:08:42Z',
+    size: 180,
   },
   {
     name: 'Skyrim_Copilot',
@@ -123,15 +90,48 @@ export const fallbackRepos: GithubRepo[] = [
     size: 46381,
   },
   {
-    name: 'UCtorrent',
+    name: 'UX-Analysis-pipeline',
     description: null,
-    html_url: 'https://github.com/UxUchoa/UCtorrent',
+    html_url: 'https://github.com/UxUchoa/UX-Analysis-pipeline',
     homepage: null,
     language: 'Python',
     stargazers_count: 0,
     forks_count: 0,
-    updated_at: '2026-06-21T17:08:42Z',
-    size: 180,
+    updated_at: '2026-05-14T23:20:48Z',
+    size: 415,
+  },
+  {
+    name: 'Projeto_GLojas',
+    description: null,
+    html_url: 'https://github.com/UxUchoa/Projeto_GLojas',
+    homepage: null,
+    language: 'Python',
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: '2025-10-01T19:37:12Z',
+    size: 125403,
+  },
+  {
+    name: 'Portfolio',
+    description: 'Template de portfolio',
+    html_url: 'https://github.com/UxUchoa/Portfolio',
+    homepage: 'https://portfolio-uchoatis-projects.vercel.app',
+    language: 'TypeScript',
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: '2025-08-26T14:53:37Z',
+    size: 133665,
+  },
+  {
+    name: 'Api_Gerenciamento_De_Produtos',
+    description: 'Crud simples para gerenciamento de produtos',
+    html_url: 'https://github.com/UxUchoa/Api_Gerenciamento_De_Produtos',
+    homepage: null,
+    language: 'TypeScript',
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: '2025-07-29T13:25:08Z',
+    size: 141,
   },
 ];
 
@@ -139,31 +139,32 @@ export const copy = {
   pt: {
     nav: {
       home: 'Início',
-      work: 'Cases',
-      github: 'GitHub',
+      github: 'Projetos Dev',
+      work: 'Produto/UI',
       experience: 'Trajetória',
       contact: 'Contato',
     },
     hero: {
-      eyebrow: 'UX Researcher que sabe codar',
+      eyebrow: 'Product Designer com background fullstack',
       title: 'Lucas Uchôa',
       subtitle:
-        'Eu conecto pesquisa, interface e código para transformar sinais de usuário em produto. UX continua sendo meu território; codar é o diferencial que me deixa mais perto da entrega.',
-      status: 'Aberto a oportunidades em UX, Produto e Front-end',
+        'Eu crio soluções digitais conectando produto, desenvolvimento fullstack e UX/UI. Meu diferencial é entender negócio e experiência sem perder a profundidade técnica de APIs, interfaces, dados e implementação.',
+      status: 'Produto, fullstack, UX/UI e pesquisa',
       location: 'Brasil',
-      primaryAction: 'Ver GitHub',
-      secondaryAction: 'Ver cases UX',
+      primaryAction: 'Ver projetos fullstack',
+      secondaryAction: 'Conhecer cases de produto',
       cvAction: 'Baixar CV',
-      codeLabel: 'hybrid-profile.ts',
+      codeLabel: 'product-fullstack-profile.ts',
       code: [
         'const lucas = {',
-        "  role: 'UX Researcher',",
-        "  stack: ['React', 'TypeScript', 'Python'],",
-        "  edge: 'pesquisa que conversa com código',",
-        "  goal: 'produto claro, útil e implementável'",
+        "  role: 'Product Designer + Fullstack background',",
+        "  priority: ['product', 'technology', 'ux-ui'],",
+        "  stack: ['React', 'TypeScript', 'Python', 'APIs'],",
+        "  edge: 'produto com profundidade técnica',",
+        "  goal: 'soluções úteis, viáveis e escaláveis'",
         '};',
       ],
-      mobileCode: "UX Research + UI | React + TS + Python",
+      mobileCode: "Produto + Fullstack + UX/UI | React + TS + Python",
       metrics: [
         { value: '6+', label: 'anos em UX/UI' },
         { value: '2020', label: 'base full stack' },
@@ -171,48 +172,52 @@ export const copy = {
       ],
     },
     bridge: {
-      title: 'Um perfil de UX com repertório técnico de produto.',
+      title: 'Produto primeiro, tecnologia forte e UX/UI para dar forma à entrega.',
       text:
-        'A força está na combinação: investigar bem, desenhar com intenção e entender o suficiente de implementação para colaborar melhor, prototipar melhor e defender decisões com mais precisão.',
+        'Sou Lucas Uchôa, Product Designer com background fullstack e experiência na criação de produtos digitais de ponta a ponta. Minha atuação começa no problema de produto, ganha profundidade na tecnologia e se materializa em experiências claras, usáveis e viáveis para desenvolvimento.',
       cards: [
         {
-          title: 'Pesquisa que orienta produto',
-          text: 'Entrevistas, testes, análise qualitativa e leitura de dados para transformar sinais em decisões.',
+          title: 'Produto e decisão',
+          text: 'Discovery, jornada, priorização, métricas e leitura de contexto para transformar problemas em decisões de produto.',
         },
         {
-          title: 'Interface pronta para implementação',
-          text: 'Arquitetura da informação, design systems, protótipos e handoff com atenção ao detalhe técnico.',
+          title: 'Tecnologia e fullstack',
+          text: 'React, TypeScript, Python, APIs, bancos de dados e automações para aproximar estratégia, protótipo e implementação real.',
         },
         {
-          title: 'Código como diferencial de UX',
-          text: 'React, TypeScript, Python, APIs e automações como repertório para dialogar com engenharia e materializar soluções.',
+          title: 'UX/UI e design system',
+          text: 'Pesquisa com usuário, arquitetura da informação, acessibilidade, componentes e handoff para dar forma clara à solução.',
         },
       ],
     },
     stack: {
-      title: 'Stack híbrida',
-      subtitle: 'UX segue como base; o código entra como evidência de autonomia, colaboração técnica e pensamento de produto.',
+      title: 'Produto, tecnologia e design',
+      subtitle: 'A ordem aqui é intencional: pensar produto, sustentar com tecnologia e transformar em interface clara. UX/UI continua forte, mas a área de TI ganha mais protagonismo.',
       clusters: [
         {
-          title: 'Produto e UX',
-          items: ['UX Research', 'UI Design', 'Testes de usabilidade', 'Design Systems', 'Arquitetura da informação'],
+          title: 'Produto & Estratégia',
+          items: ['Discovery', 'Product Thinking', 'Jornada do Usuário', 'Priorização', 'Métricas', 'NPS', 'CES'],
         },
         {
-          title: 'Frontend',
-          items: ['React', 'TypeScript', 'Tailwind', 'Design responsivo', 'Acessibilidade'],
+          title: 'Tecnologia & Fullstack',
+          items: ['React', 'JavaScript', 'TypeScript', 'Python', 'APIs REST', 'FastAPI', 'NestJS', 'SQL', 'Docker'],
         },
         {
-          title: 'Dados e backend',
-          items: ['Python', 'APIs', 'CRUD', 'Análise de dados', 'Automação'],
+          title: 'Pesquisa & Validação',
+          items: ['Entrevistas', 'Testes de Usabilidade', 'Avaliação Heurística', 'Benchmarking', 'Análise de Dados'],
+        },
+        {
+          title: 'UI & Design System',
+          items: ['Figma', 'Prototipação', 'Design System', 'Acessibilidade', 'WCAG', 'Componentização', 'Tailwind'],
         },
       ],
     },
     work: {
-      title: 'Cases UX que explicam meu jeito de pensar produto',
+      title: 'Cases de produto, UX e UI',
       subtitle:
-        'Pesquisa, fluxo, interface e decisão continuam no centro. O GitHub complementa essa leitura mostrando como esse olhar também chega perto da implementação.',
+        'Esta seção fica como prova de processo e design: problema, jornada, hipótese e interface. A frente técnica ganhou prioridade no GitHub, mas estes cases mostram como as decisões chegam na experiência.',
       behanceAction: 'Behance completo',
-      viewCase: 'Abrir PDF',
+      viewCase: 'Conhecer case',
       openExternal: 'Ver online',
       cases: [
         {
@@ -220,7 +225,7 @@ export const copy = {
           category: 'UI Case / Membership',
           year: '2025',
           description:
-            'Redesign de uma plataforma de membership para experiências de férias, com foco em clareza, benefícios e decisão rápida.',
+            'Redesign de uma experiência de membership, trabalhando clareza de oferta, percepção de valor e tomada de decisão em uma jornada de férias.',
           image: '/images/live-well-thumbnail.png',
           pdfUrl: '/pdfs/Live Well Membership - UI Case.pdf',
           link: '/pdfs/Live Well Membership - UI Case.pdf',
@@ -231,7 +236,7 @@ export const copy = {
           category: 'Legal management',
           year: '2025',
           description:
-            'Plataforma jurídica para organizar fluxos, reduzir atrito operacional e melhorar a leitura de tarefas complexas.',
+            'Case de plataforma jurídica com foco em mapear tarefas complexas, organizar fluxos operacionais e tornar a rotina de gestão mais legível.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/303e7b227022677.683864d03e96b.png',
           pdfUrl: '/pdfs/juritask.pdf',
           link: 'https://www.behance.net/gallery/227022677/Juritask-Legal-Management-(Case-Challenge)',
@@ -242,7 +247,7 @@ export const copy = {
           category: 'Management platform',
           year: '2025',
           description:
-            'Interface de gestão com foco em métricas, acompanhamento de performance e tomada de decisão mais escaneável.',
+            'Interface de gestão orientada por leitura de métricas, acompanhamento de performance e organização visual para decisões mais escaneáveis.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/9f2250225905089.682522cfea537.png',
           pdfUrl: '/pdfs/tracksales.pdf',
           link: 'https://www.behance.net/gallery/225905089/Tracksales-Management-Platform-UI',
@@ -253,7 +258,7 @@ export const copy = {
           category: 'Smart learning',
           year: '2024',
           description:
-            'Experiência educacional centrada no aluno, explorando jornada, motivação e clareza no acesso ao conteúdo.',
+            'Experiência educacional centrada no aluno, conectando jornada, motivação, clareza de conteúdo e validação de hipóteses de aprendizado.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a9cc7a207985795.66e74c80f1c3d.png',
           pdfUrl: '/pdfs/me-ensina.pdf',
           link: 'https://www.behance.net/gallery/207985795/Me-ensina-Smart-learning-Case-Study',
@@ -262,16 +267,16 @@ export const copy = {
       ],
     },
     github: {
-      title: 'GitHub ao vivo, sem maquiagem',
+      title: 'Projetos fullstack e tecnologia aplicada',
       subtitle:
-        'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. A intenção é mostrar repertório técnico sem apagar a base de UX.',
+        'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. Aqui o foco é TI: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas aplicadas a produto.',
       loading: 'Sincronizando com GitHub',
       live: 'Dados ao vivo',
       fallback: 'Dados locais',
       error: 'GitHub limitou a API',
       updated: 'Atualizado',
-      languageMix: 'Stack dos pinados',
-      featuredRepos: 'Projetos pinados no GitHub',
+      languageMix: 'Stack fullstack dos pinados',
+      featuredRepos: 'Projetos dev pinados',
       openRepo: 'Abrir repo',
       openDemo: 'Demo',
       emptyDescription: 'Sem descrição pública no GitHub.',
@@ -283,7 +288,7 @@ export const copy = {
     },
     experience: {
       title: 'Trajetória profissional',
-      subtitle: 'A experiência em UX continua sendo o eixo: pesquisa, colaboração, leitura de usuário e proximidade com desenvolvimento.',
+      subtitle: 'Minha trajetória combina produto, desenvolvimento fullstack, UX/UI, pesquisa e colaboração com stakeholders técnicos e de negócio.',
       jobs: [
         {
           period: 'Jan 2026 - Presente',
@@ -334,7 +339,7 @@ export const copy = {
     },
     contact: {
       title: 'Vamos conversar',
-      subtitle: 'Busco oportunidades em UX, Produto ou Front-end nas quais pesquisa, interface e código possam trabalhar juntos.',
+      subtitle: 'Busco oportunidades em Produto, Tecnologia/Fullstack ou UX/UI nas quais visão técnica, pesquisa e design possam melhorar decisões e entregas.',
       formTitle: 'Mensagem rápida',
       name: 'Nome',
       email: 'Email',
@@ -344,41 +349,42 @@ export const copy = {
       placeholders: {
         name: 'Seu nome',
         email: 'seu@email.com',
-        message: 'Conte sobre a vaga, produto ou desafio.',
+        message: 'Conte sobre a vaga, produto ou desafio técnico.',
       },
       whatsappTemplate: 'Olá! Meu nome é {{name}}.\n\nEmail: {{email}}\n\nMensagem:\n{{message}}',
       emailSubject: 'Contato do Portfolio - {{name}}',
     },
-    footer: 'Lucas Uchôa - UX Research, UI e código aplicado a produto.',
+    footer: 'Lucas Uchôa - Produto, tecnologia fullstack e UX/UI aplicado a soluções digitais.',
   },
   en: {
     nav: {
       home: 'Home',
-      work: 'Cases',
-      github: 'GitHub',
+      github: 'Dev Projects',
+      work: 'Product/UI',
       experience: 'Path',
       contact: 'Contact',
     },
     hero: {
-      eyebrow: 'UX Researcher who can code',
+      eyebrow: 'Product Designer with fullstack background',
       title: 'Lucas Uchôa',
       subtitle:
-        'I connect research, interface craft and code to turn user signals into product. UX remains my home base; coding is the edge that brings me closer to delivery.',
-      status: 'Open to UX, Product and Front-end opportunities',
+        'I create digital solutions by connecting product, fullstack development and UX/UI. My edge is understanding business and experience without losing technical depth in APIs, interfaces, data and implementation.',
+      status: 'Product, fullstack, UX/UI and research',
       location: 'Brazil',
-      primaryAction: 'See GitHub',
-      secondaryAction: 'See UX cases',
+      primaryAction: 'See fullstack projects',
+      secondaryAction: 'Explore product cases',
       cvAction: 'Download CV',
-      codeLabel: 'hybrid-profile.ts',
+      codeLabel: 'product-fullstack-profile.ts',
       code: [
         'const lucas = {',
-        "  role: 'UX Researcher',",
-        "  stack: ['React', 'TypeScript', 'Python'],",
-        "  edge: 'research that speaks code',",
-        "  goal: 'clear, useful, buildable product'",
+        "  role: 'Product Designer + Fullstack background',",
+        "  priority: ['product', 'technology', 'ux-ui'],",
+        "  stack: ['React', 'TypeScript', 'Python', 'APIs'],",
+        "  edge: 'product with technical depth',",
+        "  goal: 'useful, viable and scalable solutions'",
         '};',
       ],
-      mobileCode: "UX Research + UI | React + TS + Python",
+      mobileCode: "Product + Fullstack + UX/UI | React + TS + Python",
       metrics: [
         { value: '6+', label: 'years in UX/UI' },
         { value: '2020', label: 'full stack base' },
@@ -386,55 +392,59 @@ export const copy = {
       ],
     },
     bridge: {
-      title: 'A UX profile with technical product range.',
+      title: 'Product first, strong technology and UX/UI to shape delivery.',
       text:
-        'The strength is the combination: investigate well, design with intent and understand implementation enough to collaborate better, prototype better and defend decisions with more precision.',
+        'I am Lucas Uchôa, a Product Designer with a fullstack background and experience creating digital products end to end. My work starts with the product problem, gains depth through technology and becomes clear, usable and buildable experiences.',
       cards: [
         {
-          title: 'Research that guides product',
-          text: 'Interviews, tests, qualitative analysis and data reading to turn signals into decisions.',
+          title: 'Product and decision',
+          text: 'Discovery, journeys, prioritization, metrics and context reading to turn problems into product decisions.',
         },
         {
-          title: 'Interface ready for implementation',
-          text: 'Information architecture, design systems, prototypes and handoff with attention to technical detail.',
+          title: 'Technology and fullstack',
+          text: 'React, TypeScript, Python, APIs, databases and automation to connect strategy, prototype and real implementation.',
         },
         {
-          title: 'Code as a UX advantage',
-          text: 'React, TypeScript, Python, APIs and automation as a way to speak with engineering and make solutions tangible.',
+          title: 'UX/UI and design system',
+          text: 'User research, information architecture, accessibility, components and handoff to shape the solution clearly.',
         },
       ],
     },
     stack: {
-      title: 'Hybrid stack',
-      subtitle: 'UX remains the base; code adds autonomy, technical collaboration and product thinking.',
+      title: 'Product, technology and design',
+      subtitle: 'The order is intentional: think product, support it with technology and turn it into a clear interface. UX/UI remains strong, but IT gets more prominence.',
       clusters: [
         {
-          title: 'Product and UX',
-          items: ['UX Research', 'UI Design', 'Usability testing', 'Design Systems', 'Information architecture'],
+          title: 'Product & Strategy',
+          items: ['Discovery', 'Product Thinking', 'User Journey', 'Prioritization', 'Metrics', 'NPS', 'CES'],
         },
         {
-          title: 'Frontend',
-          items: ['React', 'TypeScript', 'Tailwind', 'Responsive design', 'Accessibility'],
+          title: 'Technology & Fullstack',
+          items: ['React', 'JavaScript', 'TypeScript', 'Python', 'REST APIs', 'FastAPI', 'NestJS', 'SQL', 'Docker'],
         },
         {
-          title: 'Data and backend',
-          items: ['Python', 'APIs', 'CRUD', 'Data analysis', 'Automation'],
+          title: 'Research & Validation',
+          items: ['Interviews', 'Usability Testing', 'Heuristic Evaluation', 'Benchmarking', 'Data Analysis'],
+        },
+        {
+          title: 'UI & Design System',
+          items: ['Figma', 'Prototyping', 'Design System', 'Accessibility', 'WCAG', 'Componentization', 'Tailwind'],
         },
       ],
     },
     work: {
-      title: 'UX cases that explain how I think about product',
+      title: 'Product, UX and UI cases',
       subtitle:
-        'Research, flows, interface and decisions stay at the center. GitHub complements that story by showing how the same thinking gets closer to implementation.',
+        'This section works as proof of process and design: problem, journey, hypothesis and interface. The technical side is now prioritized in GitHub, while these cases show how decisions reach the experience.',
       behanceAction: 'Full Behance',
-      viewCase: 'Open PDF',
+      viewCase: 'Explore case',
       openExternal: 'View online',
       cases: [
         {
           title: 'Live Well Membership',
           category: 'UI Case / Membership',
           year: '2025',
-          description: 'Membership platform redesign focused on clarity, benefits and faster decision-making.',
+          description: 'Membership experience redesign focused on offer clarity, value perception and decision-making in a vacation journey.',
           image: '/images/live-well-thumbnail.png',
           pdfUrl: '/pdfs/Live Well Membership - UI Case.pdf',
           link: '/pdfs/Live Well Membership - UI Case.pdf',
@@ -445,7 +455,7 @@ export const copy = {
           category: 'Legal management',
           year: '2025',
           description:
-            'Legal platform for organizing workflows, reducing operational friction and improving readability in complex tasks.',
+            'Legal platform case focused on mapping complex tasks, organizing operational flows and making management routines easier to read.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/303e7b227022677.683864d03e96b.png',
           pdfUrl: '/pdfs/juritask.pdf',
           link: 'https://www.behance.net/gallery/227022677/Juritask-Legal-Management-(Case-Challenge)',
@@ -455,7 +465,7 @@ export const copy = {
           title: 'Tracksales',
           category: 'Management platform',
           year: '2025',
-          description: 'Management interface focused on metrics, performance tracking and scannable decision-making.',
+          description: 'Management interface guided by metric reading, performance tracking and visual organization for more scannable decisions.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/9f2250225905089.682522cfea537.png',
           pdfUrl: '/pdfs/tracksales.pdf',
           link: 'https://www.behance.net/gallery/225905089/Tracksales-Management-Platform-UI',
@@ -465,7 +475,7 @@ export const copy = {
           title: 'Me-ensina',
           category: 'Smart learning',
           year: '2024',
-          description: 'Education experience centered on student journeys, motivation and clear content access.',
+          description: 'Education experience centered on students, connecting journey, motivation, content clarity and learning hypothesis validation.',
           image: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a9cc7a207985795.66e74c80f1c3d.png',
           pdfUrl: '/pdfs/me-ensina.pdf',
           link: 'https://www.behance.net/gallery/207985795/Me-ensina-Smart-learning-Case-Study',
@@ -474,16 +484,16 @@ export const copy = {
       ],
     },
     github: {
-      title: 'Live GitHub, no makeup',
+      title: 'Fullstack projects and applied technology',
       subtitle:
-        'Pinned projects loaded from public GitHub data and explained through their real architecture. The goal is technical evidence without erasing the UX foundation.',
+        'Pinned projects loaded from public GitHub data and explained through their real architecture. The focus here is IT: front-end, back-end, APIs, data, automation, local AI and technical decisions applied to product.',
       loading: 'Syncing with GitHub',
       live: 'Live data',
       fallback: 'Local data',
       error: 'GitHub API limited',
       updated: 'Updated',
-      languageMix: 'Pinned stack',
-      featuredRepos: 'Pinned GitHub projects',
+      languageMix: 'Pinned fullstack stack',
+      featuredRepos: 'Pinned dev projects',
       openRepo: 'Open repo',
       openDemo: 'Demo',
       emptyDescription: 'No public description on GitHub.',
@@ -495,7 +505,7 @@ export const copy = {
     },
     experience: {
       title: 'Professional path',
-      subtitle: 'UX remains the axis: research, collaboration, user awareness and proximity to development.',
+      subtitle: 'My path combines product, fullstack development, UX/UI, research and collaboration with technical and business stakeholders.',
       jobs: [
         {
           period: 'Jan 2026 - Present',
@@ -544,7 +554,7 @@ export const copy = {
     },
     contact: {
       title: 'Let us talk',
-      subtitle: 'I am looking for UX, Product or Front-end roles where research, interface and code can work together.',
+      subtitle: 'I am looking for Product, Technology/Fullstack or UX/UI roles where technical vision, research and design can improve decisions and delivery.',
       formTitle: 'Quick message',
       name: 'Name',
       email: 'Email',
@@ -554,12 +564,12 @@ export const copy = {
       placeholders: {
         name: 'Your name',
         email: 'you@email.com',
-        message: 'Tell me about the role, product or challenge.',
+        message: 'Tell me about the role, product or technical challenge.',
       },
       whatsappTemplate: 'Hi! My name is {{name}}.\n\nEmail: {{email}}\n\nMessage:\n{{message}}',
       emailSubject: 'Portfolio contact - {{name}}',
     },
-    footer: 'Lucas Uchôa - UX Research, UI and code applied to product.',
+    footer: 'Lucas Uchôa - Product, fullstack technology and UX/UI applied to digital solutions.',
   },
 } as const satisfies Record<Locale, Record<string, unknown>>;
 

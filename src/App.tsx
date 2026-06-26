@@ -164,8 +164,8 @@ function App() {
         <HeroSection content={content} cvFile={cvFile} onNavigate={scrollToSection} />
         <ProfileBridgeSection content={content} />
         <StackSection content={content} />
-        <WorkSection content={content} onOpenPDF={openPDFViewer} />
         <GithubSection content={content} locale={locale} {...githubData} />
+        <WorkSection content={content} onOpenPDF={openPDFViewer} />
         <ExperienceSection content={content} />
         <ContactSection content={content} />
       </main>

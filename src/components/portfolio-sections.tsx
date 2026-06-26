@@ -6,7 +6,6 @@ import {
   Briefcase,
   CalendarDays,
   Code2,
-  Database,
   Download,
   ExternalLink,
   Eye,
@@ -27,6 +26,7 @@ import {
 import { BehanceIcon } from './ui/behance-icon';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 import { LazyImage } from './ui/lazy-image';
+import { FallingPattern } from '@/components/ui/falling-pattern';
 import { githubUser, languageColors, profilePhoto, projectStackProfiles, type PortfolioCopy } from '../data/portfolio';
 import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, SectionId } from '../types/github';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
@@ -59,8 +59,8 @@ interface ContactSectionProps {
   content: PortfolioCopy;
 }
 
-const bridgeIcons: LucideIcon[] = [BarChart3, Layers, Code2];
-const stackIcons: LucideIcon[] = [Workflow, Terminal, Database];
+const bridgeIcons: LucideIcon[] = [Workflow, Terminal, Layers];
+const stackIcons: LucideIcon[] = [Workflow, Terminal, BarChart3, Layers];
 
 function applyTemplate(template: string, values: Record<string, string>) {
   return Object.entries(values).reduce((result, [key, value]) => {
@@ -92,13 +92,24 @@ function getStatusColor(status: GithubStatus) {
 export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
   return (
     <section id="home" className="relative overflow-hidden pt-16 text-white">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" aria-hidden="true">
         <img src={profilePhoto} alt="" className="h-full w-full object-cover object-center opacity-20 saturate-0" />
         <div className="absolute inset-0 bg-[#080b0d]/90" />
         <div className="code-grid absolute inset-0 opacity-70" />
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <FallingPattern
+            className="h-full w-full opacity-35 [mask-image:radial-gradient(ellipse_at_70%_35%,black,transparent_76%)]"
+            color="rgba(110, 231, 183, 0.38)"
+            backgroundColor="transparent"
+            duration={155}
+            blurIntensity="0.75em"
+            density={1.15}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#080b0d] via-[#080b0d]/70 to-[#080b0d]/20" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[84svh] max-w-7xl flex-col justify-center px-4 py-12">
+      <div className="relative z-10 mx-auto flex min-h-[84svh] max-w-7xl flex-col justify-center px-4 py-12">
         <div className="max-w-4xl">
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-zinc-300">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-300/10 px-3 py-1 text-emerald-200">
@@ -239,7 +250,7 @@ export function StackSection({ content }: SimpleSectionProps) {
           </a>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {content.stack.clusters.map((cluster, index) => {
             const Icon = stackIcons[index];
             return (
@@ -273,7 +284,7 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 font-mono text-sm text-emerald-700 dark:text-emerald-300">03 / design work</p>
+            <p className="mb-3 font-mono text-sm text-emerald-700 dark:text-emerald-300">04 / product cases</p>
             <h2 className="text-3xl font-semibold text-zinc-950 dark:text-white">{content.work.title}</h2>
             <p className="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-300">{content.work.subtitle}</p>
           </div>
@@ -352,7 +363,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="mb-3 font-mono text-sm text-emerald-300">04 / github</p>
+            <p className="mb-3 font-mono text-sm text-emerald-300">03 / dev projects</p>
             <h2 className="text-3xl font-semibold">{content.github.title}</h2>
             <p className="mt-3 max-w-2xl text-zinc-300">{content.github.subtitle}</p>
           </div>
