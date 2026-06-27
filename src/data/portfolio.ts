@@ -148,7 +148,7 @@ export const copy = {
       eyebrow: 'Product Designer com background fullstack',
       title: 'Lucas Uchôa',
       subtitle:
-        'Eu crio soluções digitais conectando produto, desenvolvimento fullstack e UX/UI. Meu diferencial é entender negócio e experiência sem perder a profundidade técnica de APIs, interfaces, dados e implementação.',
+        'Crio soluções digitais conectando produto, desenvolvimento fullstack e UX/UI. Meu diferencial é transformar problemas de negócio em experiências claras, viáveis tecnicamente e sustentadas por pesquisa, dados e implementação.',
       status: 'Produto, fullstack, UX/UI e pesquisa',
       location: 'Brasil',
       primaryAction: 'Ver projetos fullstack',
@@ -172,9 +172,9 @@ export const copy = {
       ],
     },
     bridge: {
-      title: 'Produto primeiro, tecnologia forte e UX/UI para dar forma à entrega.',
+      title: 'Produto primeiro, tecnologia forte e UX/UI para transformar intenção em entrega.',
       text:
-        'Sou Lucas Uchôa, Product Designer com background fullstack e experiência na criação de produtos digitais de ponta a ponta. Minha atuação começa no problema de produto, ganha profundidade na tecnologia e se materializa em experiências claras, usáveis e viáveis para desenvolvimento.',
+        'Sou Lucas Uchôa, Product Designer com background fullstack e experiência na criação de produtos digitais de ponta a ponta. Minha atuação começa no problema de produto, ganha profundidade técnica e se materializa em interfaces claras, usáveis e possíveis de construir.',
       cards: [
         {
           title: 'Produto e decisão',
@@ -192,7 +192,7 @@ export const copy = {
     },
     stack: {
       title: 'Produto, tecnologia e design',
-      subtitle: 'A ordem aqui é intencional: pensar produto, sustentar com tecnologia e transformar em interface clara. UX/UI continua forte, mas a área de TI ganha mais protagonismo.',
+      subtitle: 'A ordem aqui é intencional: pensar produto, sustentar com tecnologia e transformar em interface clara. UX/UI segue forte, mas a leitura técnica ganha protagonismo.',
       clusters: [
         {
           title: 'Produto & Estratégia',
@@ -215,7 +215,7 @@ export const copy = {
     work: {
       title: 'Cases de produto, UX e UI',
       subtitle:
-        'Esta seção fica como prova de processo e design: problema, jornada, hipótese e interface. A frente técnica ganhou prioridade no GitHub, mas estes cases mostram como as decisões chegam na experiência.',
+        'Prova de processo e design: problema, jornada, hipótese e interface. A frente técnica aparece com mais força no GitHub; aqui, os cases mostram como as decisões chegam à experiência.',
       behanceAction: 'Behance completo',
       viewCase: 'Conhecer case',
       openExternal: 'Ver online',
@@ -269,7 +269,7 @@ export const copy = {
     github: {
       title: 'Projetos fullstack e tecnologia aplicada',
       subtitle:
-        'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. Aqui o foco é TI: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas aplicadas a produto.',
+        'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. O foco é TI aplicada a produto: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas.',
       loading: 'Sincronizando com GitHub',
       live: 'Dados ao vivo',
       fallback: 'Dados locais',
@@ -339,7 +339,7 @@ export const copy = {
     },
     contact: {
       title: 'Vamos conversar',
-      subtitle: 'Busco oportunidades em Produto, Tecnologia/Fullstack ou UX/UI nas quais visão técnica, pesquisa e design possam melhorar decisões e entregas.',
+      subtitle: 'Busco oportunidades em Produto, Tecnologia/Fullstack ou UX/UI em que visão técnica, pesquisa e design ajudem a tomar decisões melhores e entregar com mais qualidade.',
       formTitle: 'Mensagem rápida',
       name: 'Nome',
       email: 'Email',
@@ -353,6 +353,19 @@ export const copy = {
       },
       whatsappTemplate: 'Olá! Meu nome é {{name}}.\n\nEmail: {{email}}\n\nMensagem:\n{{message}}',
       emailSubject: 'Contato do Portfolio - {{name}}',
+    },
+    pdfViewer: {
+      mobileTitle: 'Visualização mobile',
+      errorTitle: 'Não foi possível carregar o PDF',
+      mobileDescription: 'Para uma leitura melhor, abra o arquivo em nova aba ou baixe o PDF.',
+      errorDescription: 'O visualizador não conseguiu carregar este arquivo. Use uma das opções abaixo.',
+      openAction: 'Abrir em nova aba',
+      downloadAction: 'Baixar PDF',
+      closeAction: 'Fechar',
+      loading: 'Carregando PDF...',
+      fallbackAction: 'Abrir opções de PDF',
+      openTitle: 'Abrir PDF em nova aba',
+      downloadTitle: 'Baixar PDF',
     },
     footer: 'Lucas Uchôa - Produto, tecnologia fullstack e UX/UI aplicado a soluções digitais.',
   },
@@ -368,7 +381,7 @@ export const copy = {
       eyebrow: 'Product Designer with fullstack background',
       title: 'Lucas Uchôa',
       subtitle:
-        'I create digital solutions by connecting product, fullstack development and UX/UI. My edge is understanding business and experience without losing technical depth in APIs, interfaces, data and implementation.',
+        'I create digital solutions by connecting product, fullstack development and UX/UI. My edge is turning business problems into clear experiences that are technically viable and grounded in research, data and implementation.',
       status: 'Product, fullstack, UX/UI and research',
       location: 'Brazil',
       primaryAction: 'See fullstack projects',
@@ -392,9 +405,9 @@ export const copy = {
       ],
     },
     bridge: {
-      title: 'Product first, strong technology and UX/UI to shape delivery.',
+      title: 'Product first, strong technology and UX/UI to turn intent into delivery.',
       text:
-        'I am Lucas Uchôa, a Product Designer with a fullstack background and experience creating digital products end to end. My work starts with the product problem, gains depth through technology and becomes clear, usable and buildable experiences.',
+        'I am Lucas Uchôa, a Product Designer with a fullstack background and experience creating digital products end to end. My work starts with the product problem, gains technical depth and becomes clear, usable and buildable interfaces.',
       cards: [
         {
           title: 'Product and decision',
@@ -412,7 +425,7 @@ export const copy = {
     },
     stack: {
       title: 'Product, technology and design',
-      subtitle: 'The order is intentional: think product, support it with technology and turn it into a clear interface. UX/UI remains strong, but IT gets more prominence.',
+      subtitle: 'The order is intentional: think product, support it with technology and turn it into a clear interface. UX/UI remains strong, while technical fluency gets more prominence.',
       clusters: [
         {
           title: 'Product & Strategy',
@@ -435,7 +448,7 @@ export const copy = {
     work: {
       title: 'Product, UX and UI cases',
       subtitle:
-        'This section works as proof of process and design: problem, journey, hypothesis and interface. The technical side is now prioritized in GitHub, while these cases show how decisions reach the experience.',
+        'Proof of process and design: problem, journey, hypothesis and interface. The technical side is stronger in GitHub; here, the cases show how decisions become experience.',
       behanceAction: 'Full Behance',
       viewCase: 'Explore case',
       openExternal: 'View online',
@@ -486,7 +499,7 @@ export const copy = {
     github: {
       title: 'Fullstack projects and applied technology',
       subtitle:
-        'Pinned projects loaded from public GitHub data and explained through their real architecture. The focus here is IT: front-end, back-end, APIs, data, automation, local AI and technical decisions applied to product.',
+        'Pinned projects loaded from public GitHub data and explained through their real architecture. The focus is IT applied to product: front-end, back-end, APIs, data, automation, local AI and technical decisions.',
       loading: 'Syncing with GitHub',
       live: 'Live data',
       fallback: 'Local data',
@@ -553,8 +566,8 @@ export const copy = {
       ],
     },
     contact: {
-      title: 'Let us talk',
-      subtitle: 'I am looking for Product, Technology/Fullstack or UX/UI roles where technical vision, research and design can improve decisions and delivery.',
+      title: "Let's talk",
+      subtitle: 'I am looking for Product, Technology/Fullstack or UX/UI roles where technical vision, research and design can improve decisions and delivery quality.',
       formTitle: 'Quick message',
       name: 'Name',
       email: 'Email',
@@ -568,6 +581,19 @@ export const copy = {
       },
       whatsappTemplate: 'Hi! My name is {{name}}.\n\nEmail: {{email}}\n\nMessage:\n{{message}}',
       emailSubject: 'Portfolio contact - {{name}}',
+    },
+    pdfViewer: {
+      mobileTitle: 'Mobile preview',
+      errorTitle: 'Could not load the PDF',
+      mobileDescription: 'For a better reading experience, open the file in a new tab or download the PDF.',
+      errorDescription: 'The viewer could not load this file. Use one of the options below.',
+      openAction: 'Open in new tab',
+      downloadAction: 'Download PDF',
+      closeAction: 'Close',
+      loading: 'Loading PDF...',
+      fallbackAction: 'Open PDF options',
+      openTitle: 'Open PDF in new tab',
+      downloadTitle: 'Download PDF',
     },
     footer: 'Lucas Uchôa - Product, fullstack technology and UX/UI applied to digital solutions.',
   },

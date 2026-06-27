@@ -30,11 +30,11 @@ No arquivo `index.html`, substitua `YOUR_DOMAIN_HERE` pela URL real:
 ```html
 <!-- Antes -->
 <meta property="og:url" content="https://YOUR_DOMAIN_HERE/" />
-<meta property="og:image" content="https://YOUR_DOMAIN_HERE/images/image.png" />
+<meta property="og:image" content="https://YOUR_DOMAIN_HERE/images/portfolio-preview.png" />
 
 <!-- Depois (exemplo com Vercel) -->
 <meta property="og:url" content="https://portfolio-lucas.vercel.app/" />
-<meta property="og:image" content="https://portfolio-lucas.vercel.app/images/image.png" />
+<meta property="og:image" content="https://portfolio-lucas.vercel.app/images/portfolio-preview.png" />
 ```
 
 ### **2. Teste as Meta Tags**
@@ -66,7 +66,8 @@ Certifique-se de que estes arquivos estejam no servidor:
 ├── index.html (com meta tags atualizadas)
 ├── favicon.svg
 ├── images/
-│   ├── image.png ← IMAGEM DE PREVIEW
+│   ├── portfolio-preview.png ← IMAGEM DE PREVIEW
+│   ├── image.png
 │   └── live-well-thumbnail.png
 ├── pdfs/
 ├── locales/

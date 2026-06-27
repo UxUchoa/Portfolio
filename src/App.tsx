@@ -32,6 +32,14 @@ function App() {
   const [isDark, setIsDark] = useState(true);
   const [pdfViewer, setPdfViewer] = useState<PDFState>({ isOpen: false, pdfUrl: '', title: '' });
   const githubData = useGithubRepos();
+  const themeLabel = isDark
+    ? locale === 'pt'
+      ? 'Ativar modo claro'
+      : 'Activate light mode'
+    : locale === 'pt'
+      ? 'Ativar modo escuro'
+      : 'Activate dark mode';
+  const menuLabel = locale === 'pt' ? 'Menu de navegação' : 'Navigation menu';
 
   const cvFile =
     locale === 'pt'
@@ -92,7 +100,7 @@ function App() {
           <button
             type="button"
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-3 text-left"
+            className="flex items-center gap-3 rounded-md text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
             aria-label="Dev Uchôa"
           >
             <span className="grid h-9 min-w-9 place-items-center rounded-md border border-zinc-300 bg-white px-2 font-mono text-xs font-bold text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-emerald-300">
@@ -108,7 +116,7 @@ function App() {
                 type="button"
                 onClick={() => scrollToSection(item)}
                 aria-current={activeSection === item ? 'page' : undefined}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                   activeSection === item
                     ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-950'
                     : 'text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white'
@@ -122,27 +130,30 @@ function App() {
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <button
-              type="button"
-              onClick={toggleDarkMode}
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
-              aria-label={isDark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-              title={isDark ? 'Light mode' : 'Dark mode'}
-            >
+            type="button"
+            onClick={toggleDarkMode}
+              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+            aria-label={themeLabel}
+            aria-pressed={isDark}
+            title={themeLabel}
+          >
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button
-              type="button"
-              onClick={() => setIsMenuOpen((current) => !current)}
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 md:hidden dark:border-white/10 dark:bg-white/5 dark:text-zinc-200"
-              aria-label="Menu"
-            >
+            type="button"
+            onClick={() => setIsMenuOpen((current) => !current)}
+              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200 md:hidden"
+            aria-label={menuLabel}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+          >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
         {isMenuOpen && (
-          <div className="border-t border-zinc-200 bg-zinc-50 px-4 py-3 dark:border-white/10 dark:bg-[#080b0d] md:hidden">
+          <div id="mobile-navigation" className="border-t border-zinc-200 bg-zinc-50 px-4 py-3 shadow-lg shadow-zinc-900/5 dark:border-white/10 dark:bg-[#080b0d] dark:shadow-black/30 md:hidden">
             <div className="grid gap-1">
               {navItems.map((item) => (
                 <button
@@ -150,7 +161,11 @@ function App() {
                   type="button"
                   onClick={() => scrollToSection(item)}
                   aria-current={activeSection === item ? 'page' : undefined}
-                  className="rounded-md px-3 py-3 text-left text-sm font-medium text-zinc-700 hover:bg-zinc-200 dark:text-zinc-200 dark:hover:bg-white/10"
+                  className={`rounded-md px-3 py-3 text-left text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
+                    activeSection === item
+                      ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-950'
+                      : 'text-zinc-700 hover:bg-zinc-200 dark:text-zinc-200 dark:hover:bg-white/10'
+                  }`}
                 >
                   {content.nav[item]}
                 </button>
@@ -177,6 +192,7 @@ function App() {
         onClose={closePDFViewer}
         pdfUrl={pdfViewer.pdfUrl}
         title={pdfViewer.title}
+        labels={content.pdfViewer}
       />
     </div>
   );

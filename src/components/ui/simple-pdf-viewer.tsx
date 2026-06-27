@@ -1,24 +1,38 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { X, Download, ExternalLink, FileText, Smartphone } from 'lucide-react';
+
+import { useEffect, useState, type MouseEvent } from 'react';
+import { Download, ExternalLink, FileText, Smartphone, X } from 'lucide-react';
+
+export interface SimplePDFViewerLabels {
+  mobileTitle: string;
+  errorTitle: string;
+  mobileDescription: string;
+  errorDescription: string;
+  openAction: string;
+  downloadAction: string;
+  closeAction: string;
+  loading: string;
+  fallbackAction: string;
+  openTitle: string;
+  downloadTitle: string;
+}
 
 interface SimplePDFViewerProps {
   isOpen: boolean;
   onClose: () => void;
   pdfUrl: string;
   title: string;
+  labels: SimplePDFViewerLabels;
 }
 
-export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFViewerProps) {
+export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: SimplePDFViewerProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [showFallback, setShowFallback] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Detectar se é um dispositivo móvel
     const checkMobile = () => {
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-      setIsMobile(isMobileDevice);
+      setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     };
 
     checkMobile();
@@ -27,31 +41,38 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
   }, []);
 
   useEffect(() => {
-    // Reset fallback quando o modal abrir
-    if (isOpen) {
-      setShowFallback(false);
-      setIsLoading(true);
-      
-      // Timeout de segurança - se não carregar em 10 segundos, esconde o loading
-      const timeout = setTimeout(() => {
-        setIsLoading(false);
-      }, 10000);
-      
-      return () => clearTimeout(timeout);
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEscape);
+    setShowFallback(false);
+    setIsLoading(true);
+
+    const timeout = window.setTimeout(() => {
+      setIsLoading(false);
+    }, 8000);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleEscape);
+      window.clearTimeout(timeout);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+  const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) onClose();
   };
 
   const handleOpenPDF = () => {
     window.open(pdfUrl, '_blank', 'noopener,noreferrer');
-    onClose(); // Fechar o modal após abrir o PDF
+    onClose();
   };
 
   const handleDownloadPDF = () => {
@@ -63,40 +84,35 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
     document.body.removeChild(link);
   };
 
-  // Componente para dispositivos móveis ou fallback
-  const MobileFallbackView = () => (
-    <div className="flex-grow flex flex-col items-center justify-center p-8 bg-gray-50 dark:bg-gray-900">
-      <div className="text-center max-w-md">
-        <div className="mb-6">
-          <div className="mx-auto w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
-            {isMobile ? <Smartphone className="w-8 h-8 text-blue-600 dark:text-blue-400" /> : <FileText className="w-8 h-8 text-blue-600 dark:text-blue-400" />}
-          </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            {isMobile ? 'Visualização em Dispositivo Móvel' : 'Problema ao Carregar PDF'}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            {isMobile 
-              ? 'Para uma melhor experiência, use os botões abaixo para visualizar ou baixar o PDF.'
-              : 'Não foi possível carregar o PDF no visualizador. Use os botões abaixo como alternativa.'
-            }
-          </p>
-        </div>
+  const fallbackTitle = isMobile ? labels.mobileTitle : labels.errorTitle;
+  const fallbackDescription = isMobile ? labels.mobileDescription : labels.errorDescription;
 
-        <div className="space-y-3">
+  const FallbackView = () => (
+    <div className="flex flex-1 items-center justify-center bg-zinc-50 p-6 dark:bg-[#080b0d]">
+      <div className="max-w-md text-center">
+        <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:border-emerald-300/25 dark:text-emerald-200">
+          {isMobile ? <Smartphone size={30} /> : <FileText size={30} />}
+        </div>
+        <h3 className="text-lg font-semibold text-zinc-950 dark:text-white">{fallbackTitle}</h3>
+        <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{fallbackDescription}</p>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
           <button
+            type="button"
             onClick={handleOpenPDF}
-            className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200"
           >
-            <ExternalLink size={20} />
-            Abrir PDF em Nova Aba
+            <ExternalLink size={18} />
+            {labels.openAction}
           </button>
-          
+
           <button
+            type="button"
             onClick={handleDownloadPDF}
-            className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors font-medium"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/15 dark:bg-white/5 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
           >
-            <Download size={20} />
-            Baixar PDF
+            <Download size={18} />
+            {labels.downloadAction}
           </button>
         </div>
       </div>
@@ -104,94 +120,93 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title }: SimplePDFVie
   );
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm sm:p-4"
+    <div
+      className="fixed inset-0 z-50 flex h-[100dvh] items-center justify-center bg-zinc-950/70 p-0 backdrop-blur-sm sm:p-4"
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
     >
-      <div 
-        className="relative w-full h-full flex flex-col sm:max-w-6xl sm:max-h-[90vh] bg-white dark:bg-gray-800 sm:rounded-xl shadow-2xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
+      <div
+        className="flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl dark:bg-[#0d1010] sm:h-[90vh] sm:max-w-6xl sm:rounded-lg sm:border sm:border-white/10"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Header com controles */}
-        <div className="flex-shrink-0 flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-          <div className="flex-1 min-w-0">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-              {title}
-            </h2>
+        <div className="flex min-h-16 shrink-0 items-center justify-between gap-3 border-b border-zinc-200 bg-white/95 px-4 py-3 dark:border-white/10 dark:bg-[#0d1010]/95 sm:px-5">
+          <div className="min-w-0">
+            <p className="font-mono text-xs uppercase tracking-wide text-emerald-700 dark:text-emerald-300">PDF</p>
+            <h2 className="truncate text-base font-semibold text-zinc-950 dark:text-white sm:text-lg">{title}</h2>
           </div>
-          
-          {/* Controles */}
-          <div className="flex items-center space-x-2">
+
+          <div className="flex shrink-0 items-center gap-1.5">
             <a
               href={pdfUrl}
               download
-              className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors"
-              title="Download PDF"
+              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              title={labels.downloadTitle}
+              aria-label={labels.downloadTitle}
             >
               <Download size={18} />
             </a>
-            
+
             <a
               href={pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors"
-              title="Abrir em nova aba"
+              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              title={labels.openTitle}
+              aria-label={labels.openTitle}
             >
               <ExternalLink size={18} />
             </a>
-            
+
             <button
+              type="button"
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
-              title="Fechar"
+              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition-colors hover:border-rose-500 hover:text-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400 dark:border-white/10 dark:text-zinc-200 dark:hover:border-rose-300 dark:hover:text-rose-200"
+              title={labels.closeAction}
+              aria-label={labels.closeAction}
             >
               <X size={20} />
             </button>
           </div>
         </div>
 
-        {/* Área do PDF */}
         {isMobile || showFallback ? (
-          <MobileFallbackView />
+          <FallbackView />
         ) : (
-          <div className="relative flex-grow bg-gray-100 dark:bg-gray-900">
-          <iframe
+          <div className="relative flex-1 bg-zinc-100 dark:bg-zinc-950">
+            <iframe
               src={pdfUrl}
-            className="w-full h-full border-0"
-            title={title}
-              onLoad={() => {
-                console.log('PDF iframe loaded successfully');
-                setIsLoading(false);
-              }}
+              className="h-full w-full border-0"
+              title={title}
+              onLoad={() => setIsLoading(false)}
               onError={() => {
-                console.error('Error loading PDF in iframe');
                 setIsLoading(false);
                 setShowFallback(true);
               }}
-          />
-            
-            {/* Loading overlay - só mostra enquanto está carregando */}
+            />
+
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+              <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 dark:bg-zinc-950">
                 <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-                  <p className="text-gray-600 dark:text-gray-400">Carregando PDF...</p>
+                  <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-emerald-600 border-t-transparent dark:border-emerald-300 dark:border-t-transparent" />
+                  <p className="text-sm text-zinc-600 dark:text-zinc-300">{labels.loading}</p>
                   <button
+                    type="button"
                     onClick={() => {
                       setIsLoading(false);
                       setShowFallback(true);
                     }}
-                    className="mt-4 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm underline"
+                    className="mt-4 text-sm font-semibold text-emerald-700 underline underline-offset-4 hover:text-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:text-emerald-300 dark:hover:text-emerald-200"
                   >
-                    Problemas para carregar? Clique aqui
+                    {labels.fallbackAction}
                   </button>
                 </div>
               </div>
             )}
-        </div>
+          </div>
         )}
       </div>
     </div>
   );
-} 
+}

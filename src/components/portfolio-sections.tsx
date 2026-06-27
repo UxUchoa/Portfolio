@@ -61,6 +61,13 @@ interface ContactSectionProps {
 
 const bridgeIcons: LucideIcon[] = [Workflow, Terminal, Layers];
 const stackIcons: LucideIcon[] = [Workflow, Terminal, BarChart3, Layers];
+const focusRing = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400';
+const cardSurface =
+  'rounded-lg border border-zinc-200 bg-white shadow-sm shadow-zinc-900/5 transition-colors dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none';
+const ghostAction =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-4 py-2.5 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200';
+const solidAction =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200';
 
 function applyTemplate(template: string, values: Record<string, string>) {
   return Object.entries(values).reduce((result, [key, value]) => {
@@ -110,7 +117,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[84svh] max-w-7xl flex-col justify-center px-4 py-12">
+      <div className="relative z-10 mx-auto flex min-h-[84svh] max-w-7xl flex-col justify-center px-4 py-12 sm:py-16">
         <div className="max-w-4xl">
           <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-300">
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-600/30 bg-emerald-500/10 px-3 py-1 text-emerald-800 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-200">
@@ -124,14 +131,14 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
           </div>
 
           <p className="mb-4 font-mono text-sm text-emerald-700 dark:text-amber-200">{content.hero.eyebrow}</p>
-          <h1 className="max-w-3xl text-5xl font-semibold leading-none text-zinc-950 dark:text-white">{content.hero.title}</h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-700 dark:text-zinc-200">{content.hero.subtitle}</p>
+          <h1 className="max-w-3xl text-4xl font-semibold leading-none text-zinc-950 dark:text-white sm:text-5xl lg:text-6xl">{content.hero.title}</h1>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-700 dark:text-zinc-200 sm:text-lg sm:leading-8">{content.hero.subtitle}</p>
 
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-7 grid gap-3 sm:flex sm:flex-wrap">
             <button
               type="button"
               onClick={() => onNavigate('github')}
-              className="inline-flex items-center gap-2 rounded-md bg-emerald-300 px-5 py-3 text-sm font-bold text-zinc-950 transition-colors hover:bg-emerald-200"
+              className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-emerald-300 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-emerald-900/15 transition-colors hover:bg-emerald-200 ${focusRing}`}
             >
               <Github size={18} />
               {content.hero.primaryAction}
@@ -139,7 +146,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
             <button
               type="button"
               onClick={() => onNavigate('work')}
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95"
+              className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95 ${focusRing}`}
             >
               <Eye size={18} />
               {content.hero.secondaryAction}
@@ -147,7 +154,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
             <a
               href={cvFile.path}
               download={cvFile.name}
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95"
+              className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/90 px-5 py-3 text-sm font-bold text-zinc-950 shadow-lg shadow-zinc-900/10 backdrop-blur-md transition-colors hover:border-emerald-500/50 hover:bg-white dark:border-white/35 dark:bg-zinc-950/80 dark:text-white dark:shadow-black/35 dark:hover:border-emerald-300/60 dark:hover:bg-zinc-900/95 ${focusRing}`}
             >
               <Download size={18} />
               {content.hero.cvAction}
@@ -155,7 +162,7 @@ export function HeroSection({ content, cvFile, onNavigate }: HeroSectionProps) {
           </div>
         </div>
 
-        <div className="mt-7 rounded-lg border border-zinc-200 bg-white/75 p-4 font-mono text-sm text-zinc-700 shadow-xl shadow-zinc-200/50 backdrop-blur-md dark:border-white/15 dark:bg-black/35 dark:text-zinc-200 dark:shadow-black/30 lg:hidden">
+        <div className="mt-7 rounded-lg border border-zinc-200 bg-white/80 p-4 font-mono text-sm text-zinc-700 shadow-xl shadow-zinc-200/50 backdrop-blur-md dark:border-white/15 dark:bg-black/45 dark:text-zinc-200 dark:shadow-black/30 lg:hidden">
           <div className="mb-3 flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
             <Terminal size={16} className="text-emerald-700 dark:text-emerald-200" />
             {content.hero.codeLabel}
@@ -213,10 +220,7 @@ export function ProfileBridgeSection({ content }: SimpleSectionProps) {
           {content.bridge.cards.map((card, index) => {
             const Icon = bridgeIcons[index];
             return (
-              <article
-                key={card.title}
-                className="rounded-lg border border-zinc-200 bg-zinc-50 p-5 transition-colors hover:border-emerald-400 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-emerald-300/70"
-              >
+              <article key={card.title} className={`${cardSurface} bg-zinc-50 p-5 hover:border-emerald-400 dark:hover:border-emerald-300/70`}>
                 <Icon className="mb-5 text-emerald-700 dark:text-emerald-300" size={24} />
                 <h3 className="text-base font-semibold text-zinc-950 dark:text-white">{card.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{card.text}</p>
@@ -243,7 +247,7 @@ export function StackSection({ content }: SimpleSectionProps) {
             href="https://www.linkedin.com/in/lucasuchoadg"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+            className={`${ghostAction} w-full sm:w-auto ${focusRing}`}
           >
             <Linkedin size={18} />
             LinkedIn
@@ -255,7 +259,7 @@ export function StackSection({ content }: SimpleSectionProps) {
           {content.stack.clusters.map((cluster, index) => {
             const Icon = stackIcons[index];
             return (
-              <article key={cluster.title} className="rounded-lg border border-zinc-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.03]">
+              <article key={cluster.title} className={`${cardSurface} p-5 hover:border-emerald-400 dark:hover:border-emerald-300/60`}>
                 <div className="mb-5 flex items-center justify-between">
                   <h3 className="font-semibold text-zinc-950 dark:text-white">{cluster.title}</h3>
                   <Icon size={22} className="text-amber-600 dark:text-amber-300" />
@@ -264,7 +268,7 @@ export function StackSection({ content }: SimpleSectionProps) {
                   {cluster.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 dark:border-white/10 dark:text-zinc-200"
+                      className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-sm text-zinc-700 dark:border-white/10 dark:bg-black/20 dark:text-zinc-200"
                     >
                       {item}
                     </span>
@@ -293,7 +297,7 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
             href="https://www.behance.net/Lucas_-vieira"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+            className={`${ghostAction} w-full sm:w-auto ${focusRing}`}
           >
             <BehanceIcon size={18} />
             {content.work.behanceAction}
@@ -305,7 +309,7 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
           {content.work.cases.map((project) => (
             <article
               key={project.title}
-              className="group overflow-hidden rounded-lg border border-zinc-200 bg-zinc-50 transition-colors hover:border-zinc-400 dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-white/25"
+              className={`${cardSurface} group overflow-hidden bg-zinc-50 hover:border-emerald-400 dark:hover:border-emerald-300/60`}
             >
               <div className="aspect-video overflow-hidden bg-zinc-200 dark:bg-white/5">
                 <LazyImage src={project.image} alt={project.title} className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]" />
@@ -327,11 +331,11 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
                     </span>
                   ))}
                 </div>
-                <div className="mt-5 flex flex-wrap gap-3 border-t border-zinc-200 pt-4 dark:border-white/10">
+                <div className="mt-5 grid gap-3 border-t border-zinc-200 pt-4 dark:border-white/10 sm:flex sm:flex-wrap">
                   <button
                     type="button"
                     onClick={() => onOpenPDF(project.pdfUrl, project.title)}
-                    className="inline-flex items-center gap-2 rounded-md bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200"
+                    className={`${solidAction} ${focusRing}`}
                   >
                     <FileCode2 size={17} />
                     {content.work.viewCase}
@@ -340,7 +344,7 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-4 py-2.5 text-sm font-semibold text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+                    className={`${ghostAction} ${focusRing}`}
                   >
                     <ExternalLink size={17} />
                     {content.work.openExternal}
@@ -377,7 +381,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
               href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200"
+              className={`${solidAction} w-full sm:w-auto ${focusRing}`}
             >
               <Github size={18} />
               {content.github.profileAction}
@@ -387,7 +391,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
 
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <aside className="space-y-5">
-            <article className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none">
+            <article className={`${cardSurface} p-5`}>
               <div className="flex items-center gap-4">
                 {profile?.avatar_url ? (
                   <img src={profile.avatar_url} alt="" className="h-16 w-16 rounded-md border border-zinc-200 dark:border-white/10" />
@@ -415,7 +419,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
               </div>
             </article>
 
-            <article className="rounded-lg border border-zinc-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none">
+            <article className={`${cardSurface} p-5`}>
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="font-semibold">{content.github.languageMix}</h3>
                 <Code2 size={20} className="text-emerald-700 dark:text-emerald-300" />
@@ -424,9 +428,9 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                 {stackSummary.map((row) => (
                   <div key={row.technology}>
                     <div className="mb-2 flex items-center justify-between gap-3 text-sm">
-                      <span className="flex items-center gap-2 text-zinc-700 dark:text-zinc-200">
+                      <span className="flex min-w-0 items-center gap-2 text-zinc-700 dark:text-zinc-200">
                         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: languageColors[row.technology] || languageColors.Other }} />
-                        {row.technology}
+                        <span className="truncate">{row.technology}</span>
                       </span>
                       <span className="font-mono text-zinc-500 dark:text-zinc-400">{row.count}</span>
                     </div>
@@ -454,12 +458,12 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
               {repos.map((repo) => (
                 <article
                   key={repo.html_url}
-                  className="rounded-lg border border-zinc-200 bg-white p-4 shadow-sm transition-colors hover:border-emerald-500 hover:bg-emerald-50/40 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none dark:hover:border-emerald-300/60 dark:hover:bg-white/[0.07]"
+                  className={`${cardSurface} p-4 hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:border-emerald-300/60 dark:hover:bg-white/[0.07]`}
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div>
+                    <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-3">
-                        <h4 className="font-mono text-lg font-semibold text-zinc-950 dark:text-white">{repo.name.replace(/_/g, ' ')}</h4>
+                        <h4 className="break-words font-mono text-lg font-semibold text-zinc-950 dark:text-white">{repo.name.replace(/_/g, ' ')}</h4>
                         <span className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-transparent dark:text-zinc-300">
                           <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColors[repo.language || 'Other'] || languageColors.Other }} />
                           GitHub: {repo.language || 'Other'}
@@ -467,13 +471,13 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                       </div>
                       <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600 dark:text-zinc-300">{projectStackProfiles[repo.name]?.summary || repo.description?.trim() || content.github.emptyDescription}</p>
                     </div>
-                    <div className="flex shrink-0 flex-wrap gap-2">
+                    <div className="grid shrink-0 gap-2 sm:flex sm:flex-wrap">
                       {repo.homepage && (
                         <a
                           href={repo.homepage}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:text-zinc-100 dark:hover:border-amber-300 dark:hover:text-amber-200"
+                          className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-amber-300 dark:hover:text-amber-200 ${focusRing}`}
                         >
                           {content.github.openDemo}
                           <ArrowUpRight size={16} />
@@ -483,7 +487,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                         href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+                        className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
                       >
                         {content.github.openRepo}
                         <ArrowUpRight size={16} />
@@ -501,7 +505,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                       </div>
                       <div className="grid gap-2">
                         {projectStackProfiles[repo.name].layers.map((layer, index) => (
-                          <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+                          <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
                             <span className="grid h-5 w-5 shrink-0 place-items-center rounded border border-zinc-200 font-mono text-[10px] text-emerald-700 dark:border-white/10 dark:text-emerald-200">
                               {index + 1}
                             </span>
@@ -544,7 +548,7 @@ export function ExperienceSection({ content }: SimpleSectionProps) {
           <h2 className="text-3xl font-semibold text-zinc-950 dark:text-white">{content.experience.title}</h2>
           <p className="mt-4 max-w-xl text-zinc-600 dark:text-zinc-300">{content.experience.subtitle}</p>
 
-          <div className="mt-8 rounded-lg border border-zinc-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.03]">
+          <div className={`${cardSurface} mt-8 p-5`}>
             <div className="mb-5 flex items-center gap-3">
               <BookOpen className="text-amber-600 dark:text-amber-300" size={22} />
               <h3 className="font-semibold text-zinc-950 dark:text-white">{content.experience.educationTitle}</h3>
@@ -564,7 +568,7 @@ export function ExperienceSection({ content }: SimpleSectionProps) {
           <div className="timeline-line absolute bottom-0 left-4 top-0 hidden w-px bg-zinc-200 dark:bg-white/10 md:block" />
           <div className="space-y-4">
             {content.experience.jobs.map((job) => (
-              <article key={`${job.company}-${job.period}`} className="relative rounded-lg border border-zinc-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.03] md:ml-10">
+              <article key={`${job.company}-${job.period}`} className={`${cardSurface} relative p-5 md:ml-10`}>
                 <span className="absolute -left-[2.95rem] top-6 hidden h-4 w-4 rounded-full border-4 border-zinc-50 bg-emerald-500 dark:border-[#080b0d] dark:bg-emerald-300 md:block" />
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>
@@ -600,7 +604,7 @@ export function ContactSection({ content }: ContactSectionProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const subject = encodeURIComponent(applyTemplate(content.contact.emailSubject, { name: formData.name }));
-    const body = encodeURIComponent(`Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`);
+    const body = encodeURIComponent(`${content.contact.name}: ${formData.name}\n${content.contact.email}: ${formData.email}\n\n${content.contact.message}:\n${formData.message}`);
     window.location.href = `mailto:lucasismael03@gmail.com?subject=${subject}&body=${body}`;
   };
 
@@ -626,17 +630,17 @@ export function ContactSection({ content }: ContactSectionProps) {
           <div className="mt-8 grid gap-3">
             <a
               href="mailto:lucasismael03@gmail.com"
-              className="flex items-center justify-between rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className={`flex min-h-14 items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
             >
-              <span className="flex items-center gap-3">
+              <span className="flex min-w-0 items-center gap-3">
                 <Mail size={20} />
-                lucasismael03@gmail.com
+                <span className="break-all">lucasismael03@gmail.com</span>
               </span>
               <ArrowUpRight size={17} />
             </a>
             <a
               href="tel:+5583996698962"
-              className="flex items-center justify-between rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className={`flex min-h-14 items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
             >
               <span className="flex items-center gap-3">
                 <Phone size={20} />
@@ -648,7 +652,7 @@ export function ContactSection({ content }: ContactSectionProps) {
               href="https://wa.me/5583996698962"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className={`flex min-h-14 items-center justify-between gap-3 rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/10 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
             >
               <span className="flex items-center gap-3">
                 <WhatsAppIcon size={20} />
@@ -659,7 +663,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="rounded-lg border border-zinc-200 bg-zinc-50 p-5 dark:border-white/10 dark:bg-white/[0.03]">
+        <form onSubmit={handleSubmit} className={`${cardSurface} bg-zinc-50 p-5`}>
           <div className="mb-5 flex items-center justify-between">
             <h3 className="font-semibold text-zinc-950 dark:text-white">{content.contact.formTitle}</h3>
             <Send className="text-emerald-700 dark:text-emerald-300" size={20} />
@@ -672,7 +676,8 @@ export function ContactSection({ content }: ContactSectionProps) {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white"
+                autoComplete="name"
+                className={`rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white ${focusRing}`}
                 placeholder={content.contact.placeholders.name}
               />
             </label>
@@ -684,7 +689,8 @@ export function ContactSection({ content }: ContactSectionProps) {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white"
+                autoComplete="email"
+                className={`rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white ${focusRing}`}
                 placeholder={content.contact.placeholders.email}
               />
             </label>
@@ -696,7 +702,7 @@ export function ContactSection({ content }: ContactSectionProps) {
                 onChange={handleInputChange}
                 required
                 rows={5}
-                className="resize-none rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white"
+                className={`resize-none rounded-md border border-zinc-300 bg-white px-4 py-3 text-zinc-950 outline-none transition-colors focus:border-emerald-500 dark:border-white/10 dark:bg-black/30 dark:text-white ${focusRing}`}
                 placeholder={content.contact.placeholders.message}
               />
             </label>
@@ -704,7 +710,7 @@ export function ContactSection({ content }: ContactSectionProps) {
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200"
+              className={`${solidAction} ${focusRing}`}
             >
               <Mail size={18} />
               {content.contact.sendEmail}
@@ -713,7 +719,7 @@ export function ContactSection({ content }: ContactSectionProps) {
               type="button"
               onClick={sendViaWhatsApp}
               disabled={!formData.name || !formData.message}
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className={`${ghostAction} disabled:cursor-not-allowed disabled:opacity-50 ${focusRing}`}
             >
               <WhatsAppIcon size={18} />
               {content.contact.sendWhatsapp}
@@ -731,13 +737,13 @@ export function PortfolioFooter({ content }: SimpleSectionProps) {
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-sm text-zinc-500 dark:text-zinc-400 md:flex-row md:items-center md:justify-between">
         <p>{content.footer}</p>
         <div className="flex items-center gap-3">
-          <a href="https://github.com/UxUchoa" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-emerald-700 dark:hover:text-emerald-300">
+          <a href="https://github.com/UxUchoa" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`rounded text-zinc-500 transition-colors hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-300 ${focusRing}`}>
             <Github size={18} />
           </a>
-          <a href="https://www.linkedin.com/in/lucasuchoadg" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-emerald-700 dark:hover:text-emerald-300">
+          <a href="https://www.linkedin.com/in/lucasuchoadg" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`rounded text-zinc-500 transition-colors hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-300 ${focusRing}`}>
             <Linkedin size={18} />
           </a>
-          <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" aria-label="Behance" className="hover:text-emerald-700 dark:hover:text-emerald-300">
+          <a href="https://www.behance.net/Lucas_-vieira" target="_blank" rel="noopener noreferrer" aria-label="Behance" className={`rounded text-zinc-500 transition-colors hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-300 ${focusRing}`}>
             <BehanceIcon size={18} />
           </a>
         </div>
