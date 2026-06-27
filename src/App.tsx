@@ -179,7 +179,7 @@ function App() {
         <HeroSection content={content} cvFile={cvFile} onNavigate={scrollToSection} />
         <ProfileBridgeSection content={content} />
         <StackSection content={content} />
-        <GithubSection content={content} locale={locale} {...githubData} />
+        <GithubSection key={locale} content={content} locale={locale} {...githubData} />
         <WorkSection content={content} onOpenPDF={openPDFViewer} />
         <ExperienceSection content={content} />
         <ContactSection content={content} />
