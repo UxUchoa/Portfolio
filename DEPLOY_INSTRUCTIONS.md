@@ -1,7 +1,7 @@
 # 🚀 Instruções de Deploy - Portfolio Lucas Uchôa
 
-## 📋 Problema Atual
-O domínio `www.uxuchoaportfolio.online` está com erro DNS e não está acessível.
+## 📋 Domínio Atual
+O domínio principal do portfólio é `https://devuchoa.dev`.
 
 ## ✅ Soluções de Hospedagem (Gratuitas)
 
@@ -32,9 +32,9 @@ No arquivo `index.html`, substitua `YOUR_DOMAIN_HERE` pela URL real:
 <meta property="og:url" content="https://YOUR_DOMAIN_HERE/" />
 <meta property="og:image" content="https://YOUR_DOMAIN_HERE/images/portfolio-preview.png" />
 
-<!-- Depois (exemplo com Vercel) -->
-<meta property="og:url" content="https://portfolio-lucas.vercel.app/" />
-<meta property="og:image" content="https://portfolio-lucas.vercel.app/images/portfolio-preview.png" />
+<!-- Depois -->
+<meta property="og:url" content="https://devuchoa.dev/" />
+<meta property="og:image" content="https://devuchoa.dev/images/portfolio-preview.png" />
 ```
 
 ### **2. Teste as Meta Tags**

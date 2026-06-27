@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fallbackProfile, fallbackRepos, githubUser, pinnedRepoNames, projectStackProfiles } from '../data/portfolio';
+import { fallbackProfile, fallbackRepos, githubUser, pinnedRepoNames, projectTechnologyStacks } from '../data/portfolio';
 import type { GithubData, GithubProfile, GithubRepo, GithubStackSummary, GithubStatus } from '../types/github';
 
 const githubHeaders = { Accept: 'application/vnd.github+json' };
@@ -13,8 +13,7 @@ interface GithubCache {
 
 function calculateStackSummary(repos: GithubRepo[]): GithubStackSummary[] {
   const totals = repos.reduce<Record<string, number>>((acc, repo) => {
-    const stackProfile = projectStackProfiles[repo.name];
-    const technologies = stackProfile?.technologies || [repo.language || 'Other'];
+    const technologies = projectTechnologyStacks[repo.name] || [repo.language || 'Other'];
 
     technologies.forEach((technology) => {
       acc[technology] = (acc[technology] || 0) + 1;

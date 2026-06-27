@@ -27,8 +27,8 @@ import { BehanceIcon } from './ui/behance-icon';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 import { LazyImage } from './ui/lazy-image';
 import { DitheringShader } from '@/components/ui/dithering-shader';
-import { githubUser, languageColors, profilePhoto, projectStackProfiles, type PortfolioCopy } from '../data/portfolio';
-import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, SectionId } from '../types/github';
+import { githubUser, languageColors, profilePhoto, type PortfolioCopy } from '../data/portfolio';
+import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, ProjectStackProfile, SectionId } from '../types/github';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 
 interface HeroSectionProps {
@@ -362,13 +362,14 @@ export function WorkSection({ content, onOpenPDF }: WorkSectionProps) {
 export function GithubSection({ content, locale, repos, profile, stackSummary, status }: GithubSectionProps) {
   const statusLabel = getStatusLabel(content, status);
   const profileUrl = profile?.html_url || `https://github.com/${githubUser}`;
+  const projectProfiles = content.github.projectProfiles as Record<string, ProjectStackProfile | undefined>;
 
   return (
     <section id="github" className="border-y border-zinc-200 bg-zinc-100 py-20 text-zinc-950 dark:border-white/10 dark:bg-zinc-950 dark:text-white">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="mb-3 font-mono text-sm text-emerald-700 dark:text-emerald-300">03 / dev projects</p>
+            <p className="mb-3 font-mono text-sm text-emerald-700 dark:text-emerald-300">{content.github.sectionLabel}</p>
             <h2 className="text-3xl font-semibold">{content.github.title}</h2>
             <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-300">{content.github.subtitle}</p>
           </div>
@@ -455,82 +456,86 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
               <GitFork size={20} className="text-amber-600 dark:text-amber-300" />
             </div>
             <div className="grid gap-3">
-              {repos.map((repo) => (
-                <article
-                  key={repo.html_url}
-                  className={`${cardSurface} p-4 hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:border-emerald-300/60 dark:hover:bg-white/[0.07]`}
-                >
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <h4 className="break-words font-mono text-lg font-semibold text-zinc-950 dark:text-white">{repo.name.replace(/_/g, ' ')}</h4>
-                        <span className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-transparent dark:text-zinc-300">
-                          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColors[repo.language || 'Other'] || languageColors.Other }} />
-                          GitHub: {repo.language || 'Other'}
-                        </span>
+              {repos.map((repo) => {
+                const projectProfile = projectProfiles[repo.name];
+
+                return (
+                  <article
+                    key={repo.html_url}
+                    className={`${cardSurface} p-4 hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:border-emerald-300/60 dark:hover:bg-white/[0.07]`}
+                  >
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h4 className="break-words font-mono text-lg font-semibold text-zinc-950 dark:text-white">{repo.name.replace(/_/g, ' ')}</h4>
+                          <span className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-transparent dark:text-zinc-300">
+                            <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColors[repo.language || 'Other'] || languageColors.Other }} />
+                            GitHub: {repo.language || 'Other'}
+                          </span>
+                        </div>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600 dark:text-zinc-300">{projectProfile?.summary || repo.description?.trim() || content.github.emptyDescription}</p>
                       </div>
-                      <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600 dark:text-zinc-300">{projectStackProfiles[repo.name]?.summary || repo.description?.trim() || content.github.emptyDescription}</p>
-                    </div>
-                    <div className="grid shrink-0 gap-2 sm:flex sm:flex-wrap">
-                      {repo.homepage && (
+                      <div className="grid shrink-0 gap-2 sm:flex sm:flex-wrap">
+                        {repo.homepage && (
+                          <a
+                            href={repo.homepage}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-amber-300 dark:hover:text-amber-200 ${focusRing}`}
+                          >
+                            {content.github.openDemo}
+                            <ArrowUpRight size={16} />
+                          </a>
+                        )}
                         <a
-                          href={repo.homepage}
+                          href={repo.html_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-amber-300 dark:hover:text-amber-200 ${focusRing}`}
+                          className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
                         >
-                          {content.github.openDemo}
+                          {content.github.openRepo}
                           <ArrowUpRight size={16} />
                         </a>
-                      )}
-                      <a
-                        href={repo.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white/80 px-3 py-2 text-sm font-semibold text-zinc-800 transition-colors hover:border-emerald-500 hover:text-emerald-700 dark:border-white/15 dark:bg-white/[0.03] dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200 ${focusRing}`}
-                      >
-                        {content.github.openRepo}
-                        <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </div>
-                  {projectStackProfiles[repo.name] && (
-                    <div className="mt-4 grid gap-3 border-t border-zinc-200 pt-4 dark:border-white/10">
-                      <div className="flex flex-wrap gap-2">
-                        {projectStackProfiles[repo.name].technologies.map((technology) => (
-                          <span key={technology} className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-black/20 dark:text-zinc-300">
-                            {technology}
-                          </span>
-                        ))}
                       </div>
-                      <div className="grid gap-2">
-                        {projectStackProfiles[repo.name].layers.map((layer, index) => (
-                          <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
-                            <span className="grid h-5 w-5 shrink-0 place-items-center rounded border border-zinc-200 font-mono text-[10px] text-emerald-700 dark:border-white/10 dark:text-emerald-200">
-                              {index + 1}
+                    </div>
+                    {projectProfile && (
+                      <div className="mt-4 grid gap-3 border-t border-zinc-200 pt-4 dark:border-white/10">
+                        <div className="flex flex-wrap gap-2">
+                          {projectProfile.technologies.map((technology) => (
+                            <span key={technology} className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-black/20 dark:text-zinc-300">
+                              {technology}
                             </span>
-                            <span>{layer}</span>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                        <div className="grid gap-2">
+                          {projectProfile.layers.map((layer, index) => (
+                            <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
+                              <span className="grid h-5 w-5 shrink-0 place-items-center rounded border border-zinc-200 font-mono text-[10px] text-emerald-700 dark:border-white/10 dark:text-emerald-200">
+                                {index + 1}
+                              </span>
+                              <span>{layer}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
+                    )}
+                    <div className="mt-4 flex flex-wrap gap-4 border-t border-zinc-200 pt-3 text-xs text-zinc-500 dark:border-white/10 dark:text-zinc-400">
+                      <span className="inline-flex items-center gap-1.5">
+                        <CalendarDays size={14} />
+                        {content.github.updated}: {formatRepoDate(repo.updated_at, locale)}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Star size={14} />
+                        {repo.stargazers_count}
+                      </span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <GitFork size={14} />
+                        {repo.forks_count}
+                      </span>
                     </div>
-                  )}
-                  <div className="mt-4 flex flex-wrap gap-4 border-t border-zinc-200 pt-3 text-xs text-zinc-500 dark:border-white/10 dark:text-zinc-400">
-                    <span className="inline-flex items-center gap-1.5">
-                      <CalendarDays size={14} />
-                      {content.github.updated}: {formatRepoDate(repo.updated_at, locale)}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Star size={14} />
-                      {repo.stargazers_count}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <GitFork size={14} />
-                      {repo.forks_count}
-                    </span>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>

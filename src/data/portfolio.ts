@@ -23,37 +23,13 @@ export const pinnedRepoNames = [
   'Api_Gerenciamento_De_Produtos',
 ];
 
-export const projectStackProfiles: Record<string, ProjectStackProfile> = {
-  'UX-Analysis-pipeline': {
-    summary: 'Pipeline de pesquisa UX com interface analítica, API Python e IA local para leitura de entrevistas.',
-    technologies: ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
-    layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Ollama local - qwen3:4b'],
-  },
-  Skyrim_Copilot: {
-    summary: 'Copilot de gameplay com interface React/Vite, API FastAPI e integração local com IA.',
-    technologies: ['React', 'Vite', 'FastAPI', 'Dify', 'Docker', 'Ollama'],
-    layers: ['React/Vite interface', 'FastAPI backend/API', 'Dify infra/docker', 'Ollama no Windows host'],
-  },
-  Projeto_GLojas: {
-    summary: 'Backend escalável com NestJS, TypeScript, PostgreSQL e documentação automática de API.',
-    technologies: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'Docker', 'class-validator', '@nestjs/swagger'],
-    layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker', 'class-validator + Swagger'],
-  },
-  UCtorrent: {
-    summary: 'Aplicativo desktop Python com interface PySide6, API local e persistência SQLite.',
-    technologies: ['Python 3.11+', 'libtorrent', 'PySide6', 'FastAPI', 'Uvicorn', 'SQLite'],
-    layers: ['Python 3.11+', 'libtorrent binding', 'PySide6 UI', 'FastAPI + Uvicorn', 'SQLite'],
-  },
-  Api_Gerenciamento_De_Produtos: {
-    summary: 'API CRUD para gerenciamento de produtos, útil para contratos de backend e prática TypeScript.',
-    technologies: ['TypeScript', 'API REST', 'CRUD', 'Node.js'],
-    layers: ['TypeScript backend', 'REST endpoints', 'Product CRUD'],
-  },
-  Portfolio: {
-    summary: 'Portfólio pessoal em React com Vite, TypeScript, Tailwind e consumo de dados públicos do GitHub.',
-    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind', 'GitHub API'],
-    layers: ['React + Vite', 'TypeScript', 'Tailwind UI', 'GitHub public API'],
-  },
+export const projectTechnologyStacks: Partial<Record<string, ProjectStackProfile['technologies']>> = {
+  'UX-Analysis-pipeline': ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
+  Skyrim_Copilot: ['React', 'Vite', 'FastAPI', 'Dify', 'Docker', 'Ollama'],
+  Projeto_GLojas: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'Docker', 'class-validator', '@nestjs/swagger'],
+  UCtorrent: ['Python 3.11+', 'libtorrent', 'PySide6', 'FastAPI', 'Uvicorn', 'SQLite'],
+  Api_Gerenciamento_De_Produtos: ['TypeScript', 'API REST', 'CRUD', 'Node.js'],
+  Portfolio: ['React', 'Vite', 'TypeScript', 'Tailwind', 'GitHub API'],
 };
 
 export const fallbackProfile: GithubProfile = {
@@ -267,6 +243,7 @@ export const copy = {
       ],
     },
     github: {
+      sectionLabel: '03 / projetos dev',
       title: 'Projetos fullstack e tecnologia aplicada',
       subtitle:
         'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. O foco é TI aplicada a produto: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas.',
@@ -285,6 +262,38 @@ export const copy = {
       followers: 'seguidores',
       following: 'seguindo',
       noBio: 'Bio pública indisponível no momento.',
+      projectProfiles: {
+        'UX-Analysis-pipeline': {
+          summary: 'Pipeline de pesquisa UX com interface analítica, API Python e IA local para leitura de entrevistas.',
+          technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
+          layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Ollama local - qwen3:4b'],
+        },
+        Skyrim_Copilot: {
+          summary: 'Copilot de gameplay com interface React/Vite, API FastAPI e integração local com IA.',
+          technologies: projectTechnologyStacks.Skyrim_Copilot || [],
+          layers: ['Interface React/Vite', 'Backend/API FastAPI', 'Infra Dify/docker', 'Ollama no Windows host'],
+        },
+        Projeto_GLojas: {
+          summary: 'Backend escalável com NestJS, TypeScript, PostgreSQL e documentação automática de API.',
+          technologies: projectTechnologyStacks.Projeto_GLojas || [],
+          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker', 'class-validator + Swagger'],
+        },
+        UCtorrent: {
+          summary: 'Aplicativo desktop Python com interface PySide6, API local e persistência SQLite.',
+          technologies: projectTechnologyStacks.UCtorrent || [],
+          layers: ['Python 3.11+', 'Binding libtorrent', 'Interface PySide6', 'FastAPI + Uvicorn', 'SQLite'],
+        },
+        Api_Gerenciamento_De_Produtos: {
+          summary: 'API CRUD para gerenciamento de produtos, útil para contratos de backend e prática TypeScript.',
+          technologies: projectTechnologyStacks.Api_Gerenciamento_De_Produtos || [],
+          layers: ['Backend TypeScript', 'Endpoints REST', 'CRUD de produtos'],
+        },
+        Portfolio: {
+          summary: 'Portfólio pessoal em React com Vite, TypeScript, Tailwind e consumo de dados públicos do GitHub.',
+          technologies: projectTechnologyStacks.Portfolio || [],
+          layers: ['React + Vite', 'TypeScript', 'UI com Tailwind', 'API pública do GitHub'],
+        },
+      },
     },
     experience: {
       title: 'Trajetória profissional',
@@ -497,6 +506,7 @@ export const copy = {
       ],
     },
     github: {
+      sectionLabel: '03 / dev projects',
       title: 'Fullstack projects and applied technology',
       subtitle:
         'Pinned projects loaded from public GitHub data and explained through their real architecture. The focus is IT applied to product: front-end, back-end, APIs, data, automation, local AI and technical decisions.',
@@ -515,6 +525,38 @@ export const copy = {
       followers: 'followers',
       following: 'following',
       noBio: 'Public bio unavailable right now.',
+      projectProfiles: {
+        'UX-Analysis-pipeline': {
+          summary: 'UX research pipeline with an analytics interface, Python API and local AI for reading interview data.',
+          technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
+          layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Local Ollama - qwen3:4b'],
+        },
+        Skyrim_Copilot: {
+          summary: 'Gameplay copilot with a React/Vite interface, FastAPI backend and local AI integration.',
+          technologies: projectTechnologyStacks.Skyrim_Copilot || [],
+          layers: ['React/Vite interface', 'FastAPI backend/API', 'Dify infra/docker', 'Ollama on Windows host'],
+        },
+        Projeto_GLojas: {
+          summary: 'Scalable backend with NestJS, TypeScript, PostgreSQL and automatic API documentation.',
+          technologies: projectTechnologyStacks.Projeto_GLojas || [],
+          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker', 'class-validator + Swagger'],
+        },
+        UCtorrent: {
+          summary: 'Python desktop app with a PySide6 interface, local API and SQLite persistence.',
+          technologies: projectTechnologyStacks.UCtorrent || [],
+          layers: ['Python 3.11+', 'libtorrent binding', 'PySide6 UI', 'FastAPI + Uvicorn', 'SQLite'],
+        },
+        Api_Gerenciamento_De_Produtos: {
+          summary: 'CRUD API for product management, useful for backend contracts and TypeScript practice.',
+          technologies: projectTechnologyStacks.Api_Gerenciamento_De_Produtos || [],
+          layers: ['TypeScript backend', 'REST endpoints', 'Product CRUD'],
+        },
+        Portfolio: {
+          summary: 'Personal portfolio built with React, Vite, TypeScript, Tailwind and public GitHub data.',
+          technologies: projectTechnologyStacks.Portfolio || [],
+          layers: ['React + Vite', 'TypeScript', 'Tailwind UI', 'GitHub public API'],
+        },
+      },
     },
     experience: {
       title: 'Professional path',

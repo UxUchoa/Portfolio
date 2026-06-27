@@ -37,8 +37,8 @@ export interface GithubStackSummary {
 
 export interface ProjectStackProfile {
   summary: string;
-  technologies: string[];
-  layers: string[];
+  technologies: readonly string[];
+  layers: readonly string[];
 }
 
 export interface GithubData {
