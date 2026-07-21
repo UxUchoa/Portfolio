@@ -103,7 +103,7 @@ export function DitheringShader({
   shape = 'wave',
   type = '8x8',
   colorBack = 'transparent',
-  colorFront = '#6ee7b7',
+  colorFront = '#2447ff',
   pxSize = 3,
   speed = 0.6,
   className,

@@ -7,7 +7,7 @@ export const navItems: SectionId[] = ['home', 'github', 'work', 'experience', 'c
 export const languageColors: Record<string, string> = {
   TypeScript: '#38bdf8',
   JavaScript: '#f4d35e',
-  Python: '#4ade80',
+  Python: '#ff6846',
   HTML: '#fb7185',
   CSS: '#a78bfa',
   Tcl: '#f59e0b',
@@ -15,15 +15,17 @@ export const languageColors: Record<string, string> = {
 };
 
 export const pinnedRepoNames = [
+  'LimiarTarot',
   'UCtorrent',
   'Skyrim_Copilot',
   'UX-Analysis-pipeline',
+  'Projeto_Viagem',
   'Projeto_GLojas',
-  'Portfolio',
-  'Api_Gerenciamento_De_Produtos',
 ];
 
 export const projectTechnologyStacks: Partial<Record<string, ProjectStackProfile['technologies']>> = {
+  LimiarTarot: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'Zod', 'Ollama', 'Python', 'Vitest', 'Playwright'],
+  Projeto_Viagem: ['React 19', 'Vite 7', 'JavaScript', 'CSS', 'Weather UI', 'Mobile-first'],
   'UX-Analysis-pipeline': ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
   Skyrim_Copilot: ['React', 'Vite', 'FastAPI', 'Dify', 'Docker', 'Ollama'],
   Projeto_GLojas: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'Docker', 'class-validator', '@nestjs/swagger'],
@@ -37,12 +39,23 @@ export const fallbackProfile: GithubProfile = {
   avatar_url: 'https://avatars.githubusercontent.com/u/43651116?v=4',
   html_url: 'https://github.com/UxUchoa',
   bio: 'Sou um estudante com muita sede de evolução e anseio por aprendizado, apaixonado por programação. 💻',
-  public_repos: 9,
+  public_repos: 10,
   followers: 8,
   following: 13,
 };
 
 export const fallbackRepos: GithubRepo[] = [
+  {
+    name: 'LimiarTarot',
+    description: 'Portal interativo para estudo e interpretação de tiragens do Tarô de Waite.',
+    html_url: 'https://github.com/UxUchoa/LimiarTarot',
+    homepage: null,
+    language: 'TypeScript',
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: '2026-07-21T15:48:18Z',
+    size: 12241,
+  },
   {
     name: 'UCtorrent',
     description: null,
@@ -75,6 +88,17 @@ export const fallbackRepos: GithubRepo[] = [
     forks_count: 0,
     updated_at: '2026-05-14T23:20:48Z',
     size: 415,
+  },
+  {
+    name: 'Projeto_Viagem',
+    description: 'Aplicativo mobile-first para organizar roteiros, clima e deslocamentos de viagem.',
+    html_url: 'https://github.com/UxUchoa/Projeto_Viagem',
+    homepage: 'https://projeto-viagem-ten.vercel.app',
+    language: 'JavaScript',
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: '2025-11-25T16:50:52Z',
+    size: 15204,
   },
   {
     name: 'Projeto_GLojas',
@@ -123,6 +147,7 @@ export const copy = {
     hero: {
       eyebrow: 'Product Designer com background fullstack',
       title: 'Lucas Uchôa',
+      headline: 'Entre a pergunta certa e o produto funcionando.',
       subtitle:
         'Crio soluções digitais conectando produto, desenvolvimento fullstack e UX/UI. Meu diferencial é transformar problemas de negócio em experiências claras, viáveis tecnicamente e sustentadas por pesquisa, dados e implementação.',
       status: 'Produto, fullstack, UX/UI e pesquisa',
@@ -146,6 +171,7 @@ export const copy = {
         { value: '2020', label: 'base full stack' },
         { value: 'PT/EN', label: 'comunicação' },
       ],
+      process: ['Observar', 'Estruturar', 'Construir'],
     },
     bridge: {
       title: 'Produto primeiro, tecnologia forte e UX/UI para transformar intenção em entrega.',
@@ -254,6 +280,7 @@ export const copy = {
       updated: 'Atualizado',
       languageMix: 'Stack fullstack dos pinados',
       featuredRepos: 'Projetos dev pinados',
+      newProject: 'Novo projeto',
       openRepo: 'Abrir repo',
       openDemo: 'Demo',
       emptyDescription: 'Sem descrição pública no GitHub.',
@@ -263,6 +290,16 @@ export const copy = {
       following: 'seguindo',
       noBio: 'Bio pública indisponível no momento.',
       projectProfiles: {
+        LimiarTarot: {
+          summary: 'Portal completo para estudar 78 cartas e interpretar tiragens físicas, com conteúdo canônico, fallback determinístico e IA local opcional.',
+          technologies: projectTechnologyStacks.LimiarTarot || [],
+          layers: ['Next.js 16 + React 19 + TypeScript', 'Domínio validado com Zod e persistência local', 'Ollama local com gemma3:12b + fallback básico', 'Pipeline Python e testes Vitest + Playwright'],
+        },
+        Projeto_Viagem: {
+          summary: 'Aplicativo mobile-first de roteiro de viagem com agenda diária, previsão do tempo e atalhos de mobilidade.',
+          technologies: projectTechnologyStacks.Projeto_Viagem || [],
+          layers: ['React 19 + Vite 7', 'Componentes de roteiro e clima', 'Links para Maps, Waze e Uber', 'Layout responsivo com CSS autoral'],
+        },
         'UX-Analysis-pipeline': {
           summary: 'Pipeline de pesquisa UX com interface analítica, API Python e IA local para leitura de entrevistas.',
           technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
@@ -301,10 +338,10 @@ export const copy = {
       jobs: [
         {
           period: 'Jan 2026 - Presente',
-          role: 'Pesquisador UX',
-          company: 'Accenture',
+          role: 'Software Engineer',
+          company: 'Avanade',
           description:
-            'Pesquisa de mercado e usuários, refinamento de interfaces com dados qualitativos e integração de descobertas com design e desenvolvimento.',
+            'Engenharia de software com foco em Python, desenvolvimento de automações, APIs e soluções orientadas a dados, conectando requisitos de produto a implementações robustas e sustentáveis.',
         },
         {
           period: 'Mar 2024 - Dez 2025',
@@ -389,6 +426,7 @@ export const copy = {
     hero: {
       eyebrow: 'Product Designer with fullstack background',
       title: 'Lucas Uchôa',
+      headline: 'Between the right question and a working product.',
       subtitle:
         'I create digital solutions by connecting product, fullstack development and UX/UI. My edge is turning business problems into clear experiences that are technically viable and grounded in research, data and implementation.',
       status: 'Product, fullstack, UX/UI and research',
@@ -412,6 +450,7 @@ export const copy = {
         { value: '2020', label: 'full stack base' },
         { value: 'PT/EN', label: 'communication' },
       ],
+      process: ['Observe', 'Structure', 'Build'],
     },
     bridge: {
       title: 'Product first, strong technology and UX/UI to turn intent into delivery.',
@@ -517,6 +556,7 @@ export const copy = {
       updated: 'Updated',
       languageMix: 'Pinned fullstack stack',
       featuredRepos: 'Pinned dev projects',
+      newProject: 'New project',
       openRepo: 'Open repo',
       openDemo: 'Demo',
       emptyDescription: 'No public description on GitHub.',
@@ -526,6 +566,16 @@ export const copy = {
       following: 'following',
       noBio: 'Public bio unavailable right now.',
       projectProfiles: {
+        LimiarTarot: {
+          summary: 'A complete portal for studying 78 cards and interpreting physical spreads, with canonical content, deterministic fallback and optional local AI.',
+          technologies: projectTechnologyStacks.LimiarTarot || [],
+          layers: ['Next.js 16 + React 19 + TypeScript', 'Zod-validated domain and local persistence', 'Local Ollama with gemma3:12b + basic fallback', 'Python pipeline and Vitest + Playwright tests'],
+        },
+        Projeto_Viagem: {
+          summary: 'A mobile-first travel itinerary app with daily planning, weather forecasts and mobility shortcuts.',
+          technologies: projectTechnologyStacks.Projeto_Viagem || [],
+          layers: ['React 19 + Vite 7', 'Itinerary and weather components', 'Maps, Waze and Uber shortcuts', 'Responsive layout with custom CSS'],
+        },
         'UX-Analysis-pipeline': {
           summary: 'UX research pipeline with an analytics interface, Python API and local AI for reading interview data.',
           technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
@@ -564,10 +614,10 @@ export const copy = {
       jobs: [
         {
           period: 'Jan 2026 - Present',
-          role: 'UX Researcher',
-          company: 'Accenture',
+          role: 'Software Engineer',
+          company: 'Avanade',
           description:
-            'Market and user research, interface refinement with qualitative data and integration of findings with design and development.',
+            'Software engineering focused on Python, building automations, APIs and data-driven solutions while translating product requirements into robust, maintainable implementations.',
         },
         {
           period: 'Mar 2024 - Dec 2025',

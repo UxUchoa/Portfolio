@@ -90,7 +90,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
   const FallbackView = () => (
     <div className="flex flex-1 items-center justify-center bg-zinc-50 p-6 dark:bg-[#080b0d]">
       <div className="max-w-md text-center">
-        <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-700 dark:border-emerald-300/25 dark:text-emerald-200">
+        <div className="mx-auto mb-5 grid h-16 w-16 place-items-center border-2 border-blue-500/50 bg-blue-500/10 text-blue-700 dark:border-blue-300/50 dark:text-blue-300">
           {isMobile ? <Smartphone size={30} /> : <FileText size={30} />}
         </div>
         <h3 className="text-lg font-semibold text-zinc-950 dark:text-white">{fallbackTitle}</h3>
@@ -100,7 +100,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
           <button
             type="button"
             onClick={handleOpenPDF}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-zinc-950 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:bg-white dark:text-zinc-950 dark:hover:bg-emerald-200"
+            className="signal-primary inline-flex min-h-11 items-center justify-center gap-2 px-4 py-3 text-sm font-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
           >
             <ExternalLink size={18} />
             {labels.openAction}
@@ -109,7 +109,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
           <button
             type="button"
             onClick={handleDownloadPDF}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-zinc-300 bg-white px-4 py-3 text-sm font-semibold text-zinc-900 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/15 dark:bg-white/5 dark:text-zinc-100 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+            className="signal-ghost inline-flex min-h-11 items-center justify-center gap-2 border px-4 py-3 text-sm font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
           >
             <Download size={18} />
             {labels.downloadAction}
@@ -133,7 +133,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
       >
         <div className="flex min-h-16 shrink-0 items-center justify-between gap-3 border-b border-zinc-200 bg-white/95 px-4 py-3 dark:border-white/10 dark:bg-[#0d1010]/95 sm:px-5">
           <div className="min-w-0">
-            <p className="font-mono text-xs uppercase tracking-wide text-emerald-700 dark:text-emerald-300">PDF</p>
+            <p className="font-mono text-xs uppercase tracking-wide text-blue-700 dark:text-blue-300">PDF</p>
             <h2 className="truncate text-base font-semibold text-zinc-950 dark:text-white sm:text-lg">{title}</h2>
           </div>
 
@@ -141,7 +141,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
             <a
               href={pdfUrl}
               download
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className="nav-icon-button grid h-10 w-10 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               title={labels.downloadTitle}
               aria-label={labels.downloadTitle}
             >
@@ -152,7 +152,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
               href={pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-200 text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className="nav-icon-button grid h-10 w-10 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               title={labels.openTitle}
               aria-label={labels.openTitle}
             >
@@ -189,7 +189,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-zinc-100 dark:bg-zinc-950">
                 <div className="text-center">
-                  <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-emerald-600 border-t-transparent dark:border-emerald-300 dark:border-t-transparent" />
+                  <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-blue-600 border-t-transparent dark:border-blue-300 dark:border-t-transparent" />
                   <p className="text-sm text-zinc-600 dark:text-zinc-300">{labels.loading}</p>
                   <button
                     type="button"
@@ -197,7 +197,7 @@ export function SimplePDFViewer({ isOpen, onClose, pdfUrl, title, labels }: Simp
                       setIsLoading(false);
                       setShowFallback(true);
                     }}
-                    className="mt-4 text-sm font-semibold text-emerald-700 underline underline-offset-4 hover:text-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:text-emerald-300 dark:hover:text-emerald-200"
+                    className="mt-4 text-sm font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:text-blue-300 dark:hover:text-blue-200"
                   >
                     {labels.fallbackAction}
                   </button>

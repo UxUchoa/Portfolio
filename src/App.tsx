@@ -94,19 +94,22 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-950 antialiased dark:bg-[#080b0d] dark:text-zinc-100">
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-zinc-200/70 bg-zinc-50/85 backdrop-blur-xl dark:border-white/10 dark:bg-[#080b0d]/85">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+    <div className="portfolio-shell min-h-screen antialiased">
+      <nav className="site-nav fixed left-0 right-0 top-0 z-50">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
           <button
             type="button"
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-3 rounded-md text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+            className="brand-lockup flex items-center gap-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
             aria-label="Dev Uchôa"
           >
-            <span className="grid h-9 min-w-9 place-items-center rounded-md border border-zinc-300 bg-white px-2 font-mono text-xs font-bold text-emerald-700 dark:border-white/15 dark:bg-white/5 dark:text-emerald-300">
-              DEV
+            <span className="brand-mark grid h-10 w-10 place-items-center font-mono text-xs font-black">
+              LU
             </span>
-            <span className="hidden text-sm font-semibold text-zinc-800 dark:text-zinc-100 sm:block">Dev Uchôa</span>
+            <span className="hidden sm:block">
+              <span className="block text-[11px] font-black uppercase tracking-[0.18em]">Lucas Uchôa</span>
+              <span className="block text-[10px] uppercase tracking-[0.12em] opacity-60">product · code · research</span>
+            </span>
           </button>
 
           <div className="hidden items-center gap-1 md:flex">
@@ -116,10 +119,8 @@ function App() {
                 type="button"
                 onClick={() => scrollToSection(item)}
                 aria-current={activeSection === item ? 'page' : undefined}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
-                  activeSection === item
-                    ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-950'
-                    : 'text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white'
+                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ${
+                  activeSection === item ? 'is-active' : ''
                 }`}
               >
                 {content.nav[item]}
@@ -132,7 +133,7 @@ function App() {
             <button
             type="button"
             onClick={toggleDarkMode}
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200"
+              className="nav-icon-button grid h-10 w-10 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             aria-label={themeLabel}
             aria-pressed={isDark}
             title={themeLabel}
@@ -142,7 +143,7 @@ function App() {
             <button
             type="button"
             onClick={() => setIsMenuOpen((current) => !current)}
-              className="grid h-10 w-10 place-items-center rounded-md border border-zinc-300 bg-white text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:hover:border-emerald-300 dark:hover:text-emerald-200 md:hidden"
+              className="nav-icon-button grid h-10 w-10 place-items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 md:hidden"
             aria-label={menuLabel}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
@@ -161,7 +162,7 @@ function App() {
                   type="button"
                   onClick={() => scrollToSection(item)}
                   aria-current={activeSection === item ? 'page' : undefined}
-                  className={`rounded-md px-3 py-3 text-left text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
+                  className={`rounded-md px-3 py-3 text-left text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ${
                     activeSection === item
                       ? 'bg-zinc-900 text-white dark:bg-white dark:text-zinc-950'
                       : 'text-zinc-700 hover:bg-zinc-200 dark:text-zinc-200 dark:hover:bg-white/10'
@@ -173,6 +174,7 @@ function App() {
             </div>
           </div>
         )}
+        <div className="nav-signal" aria-hidden="true" />
       </nav>
 
       <main>

@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">Dev Uchoa terminal icon</title>
-  <rect width="64" height="64" rx="14" fill="#080b0d"/>
-  <rect x="9" y="14" width="46" height="36" rx="6" fill="#101416" stroke="#6ee7b7" stroke-width="3"/>
-  <path d="M18 27l8 7-8 7" fill="none" stroke="#6ee7b7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M31 41h14" fill="none" stroke="#f4d35e" stroke-width="4" stroke-linecap="round"/>
+  <title id="title">Monograma LU de Lucas Uchôa</title>
+  <rect width="64" height="64" fill="#181a20"/>
+  <path d="M9 7h43v43H9z" fill="#ffe24a" stroke="#f2efe6" stroke-width="3" transform="rotate(-3 30.5 28.5)"/>
+  <path d="M15 14h43v43H15z" fill="#2447ff" opacity=".9"/>
+  <path d="M8 6h43v43H8z" fill="#ffe24a" stroke="#181a20" stroke-width="3" transform="rotate(-3 29.5 27.5)"/>
+  <text x="29" y="34" fill="#181a20" font-family="monospace" font-size="17" font-weight="900" text-anchor="middle">LU</text>
 </svg>
