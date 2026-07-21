@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import App from './App';
 import './index.css';
 import './i18n'; // Importa a configuração do i18next
@@ -9,5 +10,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Suspense fallback={null}>
       <App />
     </Suspense>
+    <Analytics />
   </React.StrictMode>
 );
