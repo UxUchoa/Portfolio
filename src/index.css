@@ -385,12 +385,13 @@ body {
   background: var(--paper);
 }
 
-.portfolio-shell h2 {
+.portfolio-shell main > section h2 {
   font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: clamp(2.2rem, 3.4vw, 3.5rem);
   font-weight: 500;
-  line-height: .94;
-  letter-spacing: -.045em;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  text-wrap: balance;
 }
 
 .portfolio-shell .text-blue-700,
