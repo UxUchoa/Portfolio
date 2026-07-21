@@ -270,7 +270,8 @@ body {
 .hero-tag-fullstack {
   right: 0;
   top: 7.2rem;
-  background: var(--paper-bright);
+  background: #fffdf5;
+  color: #15171c;
   transform: rotate(5deg);
 }
 
