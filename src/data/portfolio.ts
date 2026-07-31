@@ -336,6 +336,7 @@ export const copy = {
       title: 'Trajetória profissional',
       subtitle: 'Minha trajetória combina produto, desenvolvimento fullstack, UX/UI, pesquisa e colaboração com stakeholders técnicos e de negócio.',
       jobs: [
+        /* Experiência temporariamente oculta do portfólio.
         {
           period: 'Jan 2026 - Presente',
           role: 'Software Engineer',
@@ -343,6 +344,7 @@ export const copy = {
           description:
             'Engenharia de software com foco em Python, desenvolvimento de automações, APIs e soluções orientadas a dados, conectando requisitos de produto a implementações robustas e sustentáveis.',
         },
+        */
         {
           period: 'Mar 2024 - Dez 2025',
           role: 'Pesquisador UX',
@@ -612,6 +614,7 @@ export const copy = {
       title: 'Professional path',
       subtitle: 'My path combines product, fullstack development, UX/UI, research and collaboration with technical and business stakeholders.',
       jobs: [
+        /* Experience temporarily hidden from the portfolio.
         {
           period: 'Jan 2026 - Present',
           role: 'Software Engineer',
@@ -619,6 +622,7 @@ export const copy = {
           description:
             'Software engineering focused on Python, building automations, APIs and data-driven solutions while translating product requirements into robust, maintainable implementations.',
         },
+        */
         {
           period: 'Mar 2024 - Dec 2025',
           role: 'UX Researcher',
