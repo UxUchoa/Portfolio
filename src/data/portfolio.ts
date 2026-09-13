@@ -337,11 +337,11 @@ export const copy = {
         },
         */
         {
-          period: 'Mar 2024 - Dez 2025',
-          role: 'Pesquisador UX',
-          company: 'Qintess',
+          period: 'Mar 2024 - Set 2026',
+          role: 'Engenheiro de Software | Analista de Dados (Terceirizada)',
+          company: 'Banco do Brasil',
           description:
-            'Pesquisas, identificação de melhorias, validação de funcionalidades e colaboração multifuncional para transformar feedback em produto.',
+            'Transição de UX/Product para Engenharia de Software, com foco em análise e visualização de dados. Análise de aplicações, APIs e endpoints para gerar indicadores de desempenho e operação, desenvolvimento e evolução de painéis de monitoração em Grafana e AppDynamics, acompanhamento de métricas de tráfego, latência, erros e disponibilidade, e colaboração com times de tecnologia e produto na criação de soluções orientadas a dados.',
         },
         {
           period: 'Abr 2023 - Fev 2024',
@@ -635,10 +635,11 @@ export const copy = {
         },
         */
         {
-          period: 'Mar 2024 - Dec 2025',
-          role: 'UX Researcher',
-          company: 'Qintess',
-          description: 'Research, UX improvement discovery, feature validation and cross-functional collaboration.',
+          period: 'Mar 2024 - Sep 2026',
+          role: 'Software Engineer | Data Analyst (Outsourced)',
+          company: 'Banco do Brasil',
+          description:
+            'Transition from UX/Product to Software Engineering, focused on data analysis and visualization. Analysis of applications, APIs and endpoints to produce performance and operations indicators, building and evolving monitoring dashboards in Grafana and AppDynamics, tracking traffic, latency, error and availability metrics, and collaborating with technology and product teams on data-driven solutions.',
         },
         {
           period: 'Apr 2023 - Feb 2024',

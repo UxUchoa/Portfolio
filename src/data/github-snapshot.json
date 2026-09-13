@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T02:10:00.261Z",
+  "generatedAt": "2026-09-13T02:12:12.360Z",
   "profile": {
     "login": "UxUchoa",
     "avatar_url": "https://avatars.githubusercontent.com/u/43651116?v=4",
@@ -10,6 +10,22 @@
     "following": 13
   },
   "repos": [
+    {
+      "id": 997425232,
+      "name": "Portfolio",
+      "description": "Template de portfolio ",
+      "html_url": "https://github.com/UxUchoa/Portfolio",
+      "homepage": "https://portfolio-uchoatis-projects.vercel.app",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "updated_at": "2026-09-13T02:11:22Z",
+      "pushed_at": "2026-09-13T02:11:18Z",
+      "size": 134018,
+      "fork": false,
+      "archived": false,
+      "topics": []
+    },
     {
       "id": 1367646186,
       "name": "CC_Activity",
@@ -70,22 +86,6 @@
       "updated_at": "2026-07-31T15:47:47Z",
       "pushed_at": "2026-07-31T15:47:42Z",
       "size": 684,
-      "fork": false,
-      "archived": false,
-      "topics": []
-    },
-    {
-      "id": 997425232,
-      "name": "Portfolio",
-      "description": "Template de portfolio ",
-      "html_url": "https://github.com/UxUchoa/Portfolio",
-      "homepage": "https://portfolio-uchoatis-projects.vercel.app",
-      "language": "TypeScript",
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "updated_at": "2026-07-31T14:57:00Z",
-      "pushed_at": "2026-07-31T14:56:56Z",
-      "size": 134018,
       "fork": false,
       "archived": false,
       "topics": []
