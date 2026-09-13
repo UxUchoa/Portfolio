@@ -17,6 +17,10 @@ export const languageColors: Record<string, string> = {
 };
 
 export const hiddenRepoNames = [githubUser];
+/** Ordem manual no topo da lista; o resto segue por updated_at. */
+export const featuredRepoNames = ['Lili_Voice_Chat', 'CC_Activity'];
+/** Este proprio site nao se anuncia como novidade a cada deploy. */
+export const noNewBadgeRepoNames = ['Portfolio'];
 export const maxVisibleRepos = 12;
 export const githubCacheTtlMs = 6 * 60 * 60 * 1000;
 export const newProjectWindowMs = 30 * 24 * 60 * 60 * 1000;
@@ -262,7 +266,7 @@ export const copy = {
       noBio: 'Bio pública indisponível no momento.',
       projectProfiles: {
         Lili_Voice_Chat: {
-          summary: 'Cliente de comunicação local-first com mensagens cifradas ponta a ponta, voz, vídeo e compartilhamento de tela, em web e desktop.',
+          summary: 'Cliente local-first de mensagens cifradas, voz, vídeo e compartilhamento de tela (Supabase + LiveKit + OpenMLS), em web e desktop.',
           technologies: projectTechnologyStacks.Lili_Voice_Chat || [],
           layers: ['React 19 + TypeScript + Vite, empacotado também em Electron', 'Criptografia ponta a ponta com OpenMLS e anexos cifrados', 'Voz, vídeo e tela em tempo real via LiveKit/TURN', 'Supabase + PostgreSQL para dados, presença e permissões por cargo', 'Estado com Zustand e TanStack Query, testes em Playwright'],
         },
@@ -272,7 +276,7 @@ export const copy = {
           layers: ['Next.js 16 + React 19 fullstack, UI e rotas de API no mesmo projeto', 'Prisma 6 sobre PostgreSQL 17 (Docker local ou Supabase)', 'Autenticação própria com argon2 e validação com Zod', 'Leitura de código de barras com @zxing e arrastar-soltar com dnd-kit', 'PWA instalável, CI com Vitest + Playwright + axe-core'],
         },
         CC_Activity: {
-          summary: 'Refatoração acadêmica de um catálogo de filmes escrito inteiro dentro de uma Servlet, redistribuído em camadas testáveis.',
+          summary: 'Projeto de estudo da faculdade, em Java: refatorar um catálogo de filmes escrito inteiro dentro de uma Servlet, redistribuindo tudo em camadas testáveis.',
           technologies: projectTechnologyStacks.CC_Activity || [],
           layers: ['Servlet apenas como controller HTTP', 'FilmeService com regra de negócio e validação única', 'FilmeDAO isolando todo o SQL e ConexaoFactory única', 'Views em JSP + JSTL fora do código Java', 'Build Maven e 14 testes JUnit sobre o service'],
         },
@@ -341,7 +345,7 @@ export const copy = {
           role: 'Engenheiro de Software | Analista de Dados (Terceirizada)',
           company: 'Banco do Brasil',
           description:
-            'Transição de UX/Product para Engenharia de Software, com foco em análise e visualização de dados. Análise de aplicações, APIs e endpoints para gerar indicadores de desempenho e operação, desenvolvimento e evolução de painéis de monitoração em Grafana e AppDynamics, acompanhamento de métricas de tráfego, latência, erros e disponibilidade, e colaboração com times de tecnologia e produto na criação de soluções orientadas a dados.',
+            'Transição de UX/Product para engenharia de software e análise de dados: APIs e endpoints viram indicadores, painéis em Grafana e AppDynamics e acompanhamento de tráfego, latência e disponibilidade.',
         },
         {
           period: 'Abr 2023 - Fev 2024',
@@ -560,7 +564,7 @@ export const copy = {
       noBio: 'Public bio unavailable right now.',
       projectProfiles: {
         Lili_Voice_Chat: {
-          summary: 'A local-first communication client with end-to-end encrypted messaging, voice, video and screen sharing, on web and desktop.',
+          summary: 'A local-first client for encrypted messaging, voice, video and screen sharing (Supabase + LiveKit + OpenMLS), on web and desktop.',
           technologies: projectTechnologyStacks.Lili_Voice_Chat || [],
           layers: ['React 19 + TypeScript + Vite, also packaged with Electron', 'End-to-end encryption with OpenMLS and encrypted attachments', 'Real-time voice, video and screen sharing via LiveKit/TURN', 'Supabase + PostgreSQL for data, presence and role permissions', 'Zustand and TanStack Query state, Playwright tests'],
         },
@@ -570,7 +574,7 @@ export const copy = {
           layers: ['Fullstack Next.js 16 + React 19, UI and API routes in one project', 'Prisma 6 over PostgreSQL 17 (local Docker or Supabase)', 'Custom auth with argon2 and Zod validation', 'Barcode scanning with @zxing and drag-and-drop with dnd-kit', 'Installable PWA, CI with Vitest + Playwright + axe-core'],
         },
         CC_Activity: {
-          summary: 'An academic refactor of a movie catalog written entirely inside one Servlet, redistributed into testable layers.',
+          summary: 'A university study project, in Java: refactoring a movie catalog written entirely inside one Servlet into testable layers.',
           technologies: projectTechnologyStacks.CC_Activity || [],
           layers: ['Servlet reduced to an HTTP controller', 'FilmeService holding business rules and single validation', 'FilmeDAO isolating all SQL, one ConexaoFactory', 'Views in JSP + JSTL, outside the Java code', 'Maven build and 14 JUnit tests over the service'],
         },
@@ -639,7 +643,7 @@ export const copy = {
           role: 'Software Engineer | Data Analyst (Outsourced)',
           company: 'Banco do Brasil',
           description:
-            'Transition from UX/Product to Software Engineering, focused on data analysis and visualization. Analysis of applications, APIs and endpoints to produce performance and operations indicators, building and evolving monitoring dashboards in Grafana and AppDynamics, tracking traffic, latency, error and availability metrics, and collaborating with technology and product teams on data-driven solutions.',
+            'Transition from UX/Product to software engineering and data analysis: turning APIs and endpoints into indicators, monitoring dashboards in Grafana and AppDynamics, and tracking traffic, latency and availability.',
         },
         {
           period: 'Apr 2023 - Feb 2024',

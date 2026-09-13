@@ -26,7 +26,7 @@ import {
 import { BehanceIcon } from './ui/behance-icon';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 import { LazyImage } from './ui/lazy-image';
-import { getRepoTechnologies, githubUser, languageColors, maxNewProjectBadges, newProjectWindowMs, type PortfolioCopy } from '../data/portfolio';
+import { getRepoTechnologies, githubUser, languageColors, maxNewProjectBadges, newProjectWindowMs, noNewBadgeRepoNames, type PortfolioCopy } from '../data/portfolio';
 import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, ProjectStackProfile, SectionId } from '../types/github';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 
@@ -325,9 +325,14 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
   const profileUrl = profile?.html_url || `https://github.com/${githubUser}`;
   const projectProfiles = content.github.projectProfiles as Record<string, ProjectStackProfile | undefined>;
   // Selo "novo" fica so nos repos recem-atualizados, no maximo dois por vez.
+  // Este proprio site fica de fora: todo deploy mexeria no updated_at dele.
   const newProjectNames = new Set(
     repos
-      .filter((repo) => Date.now() - new Date(repo.updated_at).getTime() <= newProjectWindowMs)
+      .filter(
+        (repo) =>
+          !noNewBadgeRepoNames.includes(repo.name) &&
+          Date.now() - new Date(repo.updated_at).getTime() <= newProjectWindowMs
+      )
       .slice(0, maxNewProjectBadges)
       .map((repo) => repo.name)
   );

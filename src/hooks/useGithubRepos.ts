@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   fallbackProfile,
   fallbackRepos,
+  featuredRepoNames,
   getRepoTechnologies,
   githubCacheTtlMs,
   githubUser,
@@ -46,9 +47,16 @@ function sortReposByUpdatedAt(repos: GithubRepo[]): GithubRepo[] {
 /**
  * Descoberta automatica: qualquer repo publico novo entra sozinho na lista.
  * Sai apenas o que for fork, arquivado ou estiver em hiddenRepoNames.
+ * featuredRepoNames abre a lista na ordem escrita; o resto vem por updated_at.
  */
 function selectVisibleRepos(repos: GithubRepo[]): GithubRepo[] {
-  return sortReposByUpdatedAt(repos.filter(isVisibleRepo)).slice(0, maxVisibleRepos);
+  const visible = sortReposByUpdatedAt(repos.filter(isVisibleRepo));
+  const featured = featuredRepoNames
+    .map((repoName) => visible.find((repo) => repo.name === repoName))
+    .filter((repo): repo is GithubRepo => Boolean(repo));
+  const rest = visible.filter((repo) => !featured.includes(repo));
+
+  return [...featured, ...rest].slice(0, maxVisibleRepos);
 }
 
 async function fetchJson<T>(url: string, signal: AbortSignal): Promise<T> {
