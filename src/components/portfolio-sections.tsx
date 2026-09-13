@@ -26,7 +26,7 @@ import {
 import { BehanceIcon } from './ui/behance-icon';
 import { WhatsAppIcon } from './ui/whatsapp-icon';
 import { LazyImage } from './ui/lazy-image';
-import { githubUser, languageColors, type PortfolioCopy } from '../data/portfolio';
+import { getRepoTechnologies, githubUser, languageColors, maxNewProjectBadges, newProjectWindowMs, type PortfolioCopy } from '../data/portfolio';
 import type { GithubProfile, GithubRepo, GithubStackSummary, GithubStatus, Locale, ProjectStackProfile, SectionId } from '../types/github';
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 
@@ -324,6 +324,13 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
   const statusLabel = getStatusLabel(content, status);
   const profileUrl = profile?.html_url || `https://github.com/${githubUser}`;
   const projectProfiles = content.github.projectProfiles as Record<string, ProjectStackProfile | undefined>;
+  // Selo "novo" fica so nos repos recem-atualizados, no maximo dois por vez.
+  const newProjectNames = new Set(
+    repos
+      .filter((repo) => Date.now() - new Date(repo.updated_at).getTime() <= newProjectWindowMs)
+      .slice(0, maxNewProjectBadges)
+      .map((repo) => repo.name)
+  );
 
   return (
     <section id="github" className="border-y border-zinc-200 bg-zinc-100 py-20 text-zinc-950 dark:border-white/10 dark:bg-zinc-950 dark:text-white">
@@ -419,6 +426,8 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
             <div className="grid gap-3">
               {repos.map((repo) => {
                 const projectProfile = projectProfiles[repo.name];
+                const technologies = projectProfile?.technologies?.length ? projectProfile.technologies : getRepoTechnologies(repo);
+                const isRecent = newProjectNames.has(repo.name);
 
                 return (
                   <article
@@ -429,7 +438,7 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-3">
                           <h4 className="break-words font-mono text-lg font-semibold text-zinc-950 dark:text-white">{repo.name.replace(/_/g, ' ')}</h4>
-                          {repo.name === 'LimiarTarot' && <span className="new-project-badge">{content.github.newProject}</span>}
+                          {isRecent && <span className="new-project-badge">{content.github.newProject}</span>}
                           <span className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-transparent dark:text-zinc-300">
                             <span className="h-2 w-2 rounded-full" style={{ backgroundColor: languageColors[repo.language || 'Other'] || languageColors.Other }} />
                             GitHub: {repo.language || 'Other'}
@@ -460,25 +469,27 @@ export function GithubSection({ content, locale, repos, profile, stackSummary, s
                         </a>
                       </div>
                     </div>
-                    {projectProfile && (
+                    {technologies.length > 0 && (
                       <div className="mt-4 grid gap-3 border-t border-zinc-200 pt-4 dark:border-white/10">
                         <div className="flex flex-wrap gap-2">
-                          {projectProfile.technologies.map((technology) => (
+                          {technologies.map((technology) => (
                             <span key={technology} className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs text-zinc-600 dark:border-white/10 dark:bg-black/20 dark:text-zinc-300">
                               {technology}
                             </span>
                           ))}
                         </div>
-                        <div className="grid gap-2">
-                          {projectProfile.layers.map((layer, index) => (
-                            <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
-                              <span className="grid h-5 w-5 shrink-0 place-items-center rounded border border-zinc-200 font-mono text-[10px] text-blue-700 dark:border-white/10 dark:text-blue-300">
-                                {index + 1}
-                              </span>
-                              <span>{layer}</span>
-                            </div>
-                          ))}
-                        </div>
+                        {projectProfile && (
+                          <div className="grid gap-2">
+                            {projectProfile.layers.map((layer, index) => (
+                              <div key={`${repo.name}-${layer}`} className="flex items-center gap-2 text-xs leading-5 text-zinc-500 dark:text-zinc-400">
+                                <span className="grid h-5 w-5 shrink-0 place-items-center rounded border border-zinc-200 font-mono text-[10px] text-blue-700 dark:border-white/10 dark:text-blue-300">
+                                  {index + 1}
+                                </span>
+                                <span>{layer}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
                     <div className="mt-4 flex flex-wrap gap-4 border-t border-zinc-200 pt-3 text-xs text-zinc-500 dark:border-white/10 dark:text-zinc-400">

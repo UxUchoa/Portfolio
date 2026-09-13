@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 .env
 .vercel
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# Claude Code local config
+.claude/

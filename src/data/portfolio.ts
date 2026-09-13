@@ -1,3 +1,4 @@
+import githubSnapshot from './github-snapshot.json';
 import type { GithubProfile, GithubRepo, Locale, ProjectStackProfile, SectionId } from '../types/github';
 
 export const githubUser = 'UxUchoa';
@@ -11,19 +12,21 @@ export const languageColors: Record<string, string> = {
   HTML: '#fb7185',
   CSS: '#a78bfa',
   Tcl: '#f59e0b',
+  Java: '#f97316',
   Other: '#94a3b8',
 };
 
-export const pinnedRepoNames = [
-  'LimiarTarot',
-  'UCtorrent',
-  'Skyrim_Copilot',
-  'UX-Analysis-pipeline',
-  'Projeto_Viagem',
-  'Projeto_GLojas',
-];
+export const hiddenRepoNames = [githubUser];
+export const maxVisibleRepos = 12;
+export const githubCacheTtlMs = 6 * 60 * 60 * 1000;
+export const newProjectWindowMs = 30 * 24 * 60 * 60 * 1000;
+export const maxNewProjectBadges = 2;
 
 export const projectTechnologyStacks: Partial<Record<string, ProjectStackProfile['technologies']>> = {
+  Lili_Voice_Chat: ['React 19', 'TypeScript', 'Vite', 'Electron', 'Supabase', 'LiveKit', 'OpenMLS', 'Zustand', 'TanStack Query', 'Playwright'],
+  EasyFit: ['Next.js 16', 'React 19', 'TypeScript', 'Prisma 6', 'PostgreSQL 17', 'Tailwind', 'Zod', 'argon2', 'PWA', 'Playwright'],
+  CC_Activity: ['Java', 'Servlet', 'JSP + JSTL', 'JDBC', 'Maven', 'JUnit'],
+  'Video-Heatmap-Python': ['Python', 'OpenCV', 'NumPy', 'Matplotlib', 'PyQt5', 'psutil'],
   LimiarTarot: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind 4', 'Zod', 'Ollama', 'Python', 'Vitest', 'Playwright'],
   Projeto_Viagem: ['React 19', 'Vite 7', 'JavaScript', 'CSS', 'Weather UI', 'Mobile-first'],
   'UX-Analysis-pipeline': ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
@@ -34,106 +37,74 @@ export const projectTechnologyStacks: Partial<Record<string, ProjectStackProfile
   Portfolio: ['React', 'Vite', 'TypeScript', 'Tailwind', 'GitHub API'],
 };
 
-export const fallbackProfile: GithubProfile = {
-  login: 'UxUchoa',
-  avatar_url: 'https://avatars.githubusercontent.com/u/43651116?v=4',
-  html_url: 'https://github.com/UxUchoa',
-  bio: 'Sou um estudante com muita sede de evolução e anseio por aprendizado, apaixonado por programação. 💻',
-  public_repos: 10,
-  followers: 8,
-  following: 13,
+const topicLabels: Record<string, string> = {
+  ai: 'IA',
+  api: 'API',
+  css: 'CSS',
+  fastapi: 'FastAPI',
+  html: 'HTML',
+  javascript: 'JavaScript',
+  nestjs: 'NestJS',
+  nextjs: 'Next.js',
+  nodejs: 'Node.js',
+  postgres: 'PostgreSQL',
+  postgresql: 'PostgreSQL',
+  python: 'Python',
+  react: 'React',
+  supabase: 'Supabase',
+  tailwind: 'Tailwind',
+  tailwindcss: 'Tailwind',
+  typescript: 'TypeScript',
+  ux: 'UX',
+  vite: 'Vite',
 };
 
-export const fallbackRepos: GithubRepo[] = [
-  {
-    name: 'LimiarTarot',
-    description: 'Portal interativo para estudo e interpretação de tiragens do Tarô de Waite.',
-    html_url: 'https://github.com/UxUchoa/LimiarTarot',
-    homepage: null,
-    language: 'TypeScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2026-07-21T15:48:18Z',
-    size: 12241,
-  },
-  {
-    name: 'UCtorrent',
-    description: null,
-    html_url: 'https://github.com/UxUchoa/UCtorrent',
-    homepage: null,
-    language: 'Python',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2026-06-21T17:08:42Z',
-    size: 180,
-  },
-  {
-    name: 'Skyrim_Copilot',
-    description: null,
-    html_url: 'https://github.com/UxUchoa/Skyrim_Copilot',
-    homepage: null,
-    language: 'HTML',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2026-05-21T00:59:11Z',
-    size: 46381,
-  },
-  {
-    name: 'UX-Analysis-pipeline',
-    description: null,
-    html_url: 'https://github.com/UxUchoa/UX-Analysis-pipeline',
-    homepage: null,
-    language: 'Python',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2026-05-14T23:20:48Z',
-    size: 415,
-  },
-  {
-    name: 'Projeto_Viagem',
-    description: 'Aplicativo mobile-first para organizar roteiros, clima e deslocamentos de viagem.',
-    html_url: 'https://github.com/UxUchoa/Projeto_Viagem',
-    homepage: 'https://projeto-viagem-ten.vercel.app',
-    language: 'JavaScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-11-25T16:50:52Z',
-    size: 15204,
-  },
-  {
-    name: 'Projeto_GLojas',
-    description: null,
-    html_url: 'https://github.com/UxUchoa/Projeto_GLojas',
-    homepage: null,
-    language: 'Python',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-10-01T19:37:12Z',
-    size: 125403,
-  },
-  {
-    name: 'Portfolio',
-    description: 'Template de portfolio',
-    html_url: 'https://github.com/UxUchoa/Portfolio',
-    homepage: 'https://portfolio-uchoatis-projects.vercel.app',
-    language: 'TypeScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-08-26T14:53:37Z',
-    size: 133665,
-  },
-  {
-    name: 'Api_Gerenciamento_De_Produtos',
-    description: 'Crud simples para gerenciamento de produtos',
-    html_url: 'https://github.com/UxUchoa/Api_Gerenciamento_De_Produtos',
-    homepage: null,
-    language: 'TypeScript',
-    stargazers_count: 0,
-    forks_count: 0,
-    updated_at: '2025-07-29T13:25:08Z',
-    size: 141,
-  },
-];
+function formatTopic(topic: string): string {
+  const known = topicLabels[topic.toLowerCase()];
+
+  if (known) {
+    return known;
+  }
+
+  return topic
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+/**
+ * Stack exibida no card. Repos com ficha curada usam o texto escrito a mao;
+ * repos novos caem automaticamente em linguagem + topics do GitHub.
+ */
+export function getRepoTechnologies(repo: GithubRepo): string[] {
+  const curated = projectTechnologyStacks[repo.name];
+
+  if (curated && curated.length > 0) {
+    return [...curated];
+  }
+
+  const derived = [repo.language, ...(repo.topics || []).map(formatTopic)].filter(
+    (technology): technology is string => Boolean(technology)
+  );
+
+  return Array.from(new Set(derived.length > 0 ? derived : ['Other'])).slice(0, 8);
+}
+
+export function isVisibleRepo(repo: GithubRepo): boolean {
+  return !repo.fork && !repo.archived && !repo.private && !hiddenRepoNames.includes(repo.name);
+}
+
+const snapshot = githubSnapshot as unknown as {
+  generatedAt: string;
+  profile: GithubProfile;
+  repos: GithubRepo[];
+};
+
+/** Snapshot versionado no repo: gerado por `npm run sync:github`. */
+export const snapshotGeneratedAt = snapshot.generatedAt;
+export const fallbackProfile: GithubProfile = snapshot.profile;
+export const fallbackRepos: GithubRepo[] = snapshot.repos;
 
 export const copy = {
   pt: {
@@ -272,14 +243,14 @@ export const copy = {
       sectionLabel: '03 / projetos dev',
       title: 'Projetos fullstack e tecnologia aplicada',
       subtitle:
-        'Projetos pinados carregados com dados públicos do GitHub e explicados pela arquitetura real. O foco é TI aplicada a produto: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas.',
+        'Projetos sincronizados automaticamente com os dados públicos do GitHub e explicados pela arquitetura real. O foco é TI aplicada a produto: front-end, back-end, APIs, dados, automação, IA local e decisões técnicas.',
       loading: 'Sincronizando com GitHub',
       live: 'Dados ao vivo',
       fallback: 'Dados locais',
       error: 'GitHub limitou a API',
       updated: 'Atualizado',
-      languageMix: 'Stack fullstack dos pinados',
-      featuredRepos: 'Projetos dev pinados',
+      languageMix: 'Stack fullstack dos projetos',
+      featuredRepos: 'Projetos dev recentes',
       newProject: 'Novo projeto',
       openRepo: 'Abrir repo',
       openDemo: 'Demo',
@@ -290,6 +261,26 @@ export const copy = {
       following: 'seguindo',
       noBio: 'Bio pública indisponível no momento.',
       projectProfiles: {
+        Lili_Voice_Chat: {
+          summary: 'Cliente de comunicação local-first com mensagens cifradas ponta a ponta, voz, vídeo e compartilhamento de tela, em web e desktop.',
+          technologies: projectTechnologyStacks.Lili_Voice_Chat || [],
+          layers: ['React 19 + TypeScript + Vite, empacotado também em Electron', 'Criptografia ponta a ponta com OpenMLS e anexos cifrados', 'Voz, vídeo e tela em tempo real via LiveKit/TURN', 'Supabase + PostgreSQL para dados, presença e permissões por cargo', 'Estado com Zustand e TanStack Query, testes em Playwright'],
+        },
+        EasyFit: {
+          summary: 'PWA mobile-first de saúde que reúne diário alimentar, metas nutricionais, medidas corporais e planejamento de treino.',
+          technologies: projectTechnologyStacks.EasyFit || [],
+          layers: ['Next.js 16 + React 19 fullstack, UI e rotas de API no mesmo projeto', 'Prisma 6 sobre PostgreSQL 17 (Docker local ou Supabase)', 'Autenticação própria com argon2 e validação com Zod', 'Leitura de código de barras com @zxing e arrastar-soltar com dnd-kit', 'PWA instalável, CI com Vitest + Playwright + axe-core'],
+        },
+        CC_Activity: {
+          summary: 'Refatoração acadêmica de um catálogo de filmes escrito inteiro dentro de uma Servlet, redistribuído em camadas testáveis.',
+          technologies: projectTechnologyStacks.CC_Activity || [],
+          layers: ['Servlet apenas como controller HTTP', 'FilmeService com regra de negócio e validação única', 'FilmeDAO isolando todo o SQL e ConexaoFactory única', 'Views em JSP + JSTL fora do código Java', 'Build Maven e 14 testes JUnit sobre o service'],
+        },
+        'Video-Heatmap-Python': {
+          summary: 'Aplicativo desktop que processa vídeo quadro a quadro e gera mapa de calor das áreas de maior atividade.',
+          technologies: projectTechnologyStacks['Video-Heatmap-Python'] || [],
+          layers: ['Interface desktop em PyQt5 com progresso de processamento', 'Leitura e análise de vídeo com OpenCV', 'Acumulação de posições em arrays NumPy com decay configurável', 'Renderização do heatmap com Matplotlib', 'Ajuste de prioridade do processo via psutil'],
+        },
         LimiarTarot: {
           summary: 'Portal completo para estudar 78 cartas e interpretar tiragens físicas, com conteúdo canônico, fallback determinístico e IA local opcional.',
           technologies: projectTechnologyStacks.LimiarTarot || [],
@@ -550,14 +541,14 @@ export const copy = {
       sectionLabel: '03 / dev projects',
       title: 'Fullstack projects and applied technology',
       subtitle:
-        'Pinned projects loaded from public GitHub data and explained through their real architecture. The focus is IT applied to product: front-end, back-end, APIs, data, automation, local AI and technical decisions.',
+        'Projects synced automatically from public GitHub data and explained through their real architecture. The focus is IT applied to product: front-end, back-end, APIs, data, automation, local AI and technical decisions.',
       loading: 'Syncing with GitHub',
       live: 'Live data',
       fallback: 'Local data',
       error: 'GitHub API limited',
       updated: 'Updated',
-      languageMix: 'Pinned fullstack stack',
-      featuredRepos: 'Pinned dev projects',
+      languageMix: 'Fullstack stack across projects',
+      featuredRepos: 'Recent dev projects',
       newProject: 'New project',
       openRepo: 'Open repo',
       openDemo: 'Demo',
@@ -568,6 +559,26 @@ export const copy = {
       following: 'following',
       noBio: 'Public bio unavailable right now.',
       projectProfiles: {
+        Lili_Voice_Chat: {
+          summary: 'A local-first communication client with end-to-end encrypted messaging, voice, video and screen sharing, on web and desktop.',
+          technologies: projectTechnologyStacks.Lili_Voice_Chat || [],
+          layers: ['React 19 + TypeScript + Vite, also packaged with Electron', 'End-to-end encryption with OpenMLS and encrypted attachments', 'Real-time voice, video and screen sharing via LiveKit/TURN', 'Supabase + PostgreSQL for data, presence and role permissions', 'Zustand and TanStack Query state, Playwright tests'],
+        },
+        EasyFit: {
+          summary: 'A mobile-first health PWA combining a food diary, nutrition goals, body measurements and workout planning.',
+          technologies: projectTechnologyStacks.EasyFit || [],
+          layers: ['Fullstack Next.js 16 + React 19, UI and API routes in one project', 'Prisma 6 over PostgreSQL 17 (local Docker or Supabase)', 'Custom auth with argon2 and Zod validation', 'Barcode scanning with @zxing and drag-and-drop with dnd-kit', 'Installable PWA, CI with Vitest + Playwright + axe-core'],
+        },
+        CC_Activity: {
+          summary: 'An academic refactor of a movie catalog written entirely inside one Servlet, redistributed into testable layers.',
+          technologies: projectTechnologyStacks.CC_Activity || [],
+          layers: ['Servlet reduced to an HTTP controller', 'FilmeService holding business rules and single validation', 'FilmeDAO isolating all SQL, one ConexaoFactory', 'Views in JSP + JSTL, outside the Java code', 'Maven build and 14 JUnit tests over the service'],
+        },
+        'Video-Heatmap-Python': {
+          summary: 'A desktop app that processes video frame by frame and renders a heatmap of the busiest areas.',
+          technologies: projectTechnologyStacks['Video-Heatmap-Python'] || [],
+          layers: ['PyQt5 desktop interface with processing progress', 'Video reading and analysis with OpenCV', 'Position accumulation in NumPy arrays with configurable decay', 'Heatmap rendering with Matplotlib', 'Process priority tuning via psutil'],
+        },
         LimiarTarot: {
           summary: 'A complete portal for studying 78 cards and interpreting physical spreads, with canonical content, deterministic fallback and optional local AI.',
           technologies: projectTechnologyStacks.LimiarTarot || [],
