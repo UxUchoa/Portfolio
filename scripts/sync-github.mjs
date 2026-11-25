@@ -11,9 +11,9 @@ import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-const githubUser = 'UchoaEng';
+const githubUser = 'UxUchoa';
 const hiddenRepoNames = new Set([githubUser]);
-const maxRepos = 12;
+const maxRepos = 16;
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputFile = path.join(rootDir, 'src', 'data', 'github-snapshot.json');

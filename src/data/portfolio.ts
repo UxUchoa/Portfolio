@@ -1,7 +1,7 @@
 import githubSnapshot from './github-snapshot.json';
 import type { GithubProfile, GithubRepo, Locale, ProjectStackProfile, SectionId } from '../types/github';
 
-export const githubUser = 'UchoaEng';
+export const githubUser = 'UxUchoa';
 export const profilePhoto = '/images/IMG_5704%20(1).jpg';
 export const navItems: SectionId[] = ['home', 'github', 'work', 'experience', 'contact'];
 
@@ -21,7 +21,7 @@ export const hiddenRepoNames = [githubUser];
 export const featuredRepoNames = ['Lili_Voice_Chat', 'CC_Activity'];
 /** Este proprio site nao se anuncia como novidade a cada deploy. */
 export const noNewBadgeRepoNames = ['Portfolio'];
-export const maxVisibleRepos = 12;
+export const maxVisibleRepos = 16;
 export const githubCacheTtlMs = 6 * 60 * 60 * 1000;
 export const newProjectWindowMs = 30 * 24 * 60 * 60 * 1000;
 export const maxNewProjectBadges = 2;
@@ -35,9 +35,9 @@ export const projectTechnologyStacks: Partial<Record<string, ProjectStackProfile
   Projeto_Viagem: ['React 19', 'Vite 7', 'JavaScript', 'CSS', 'Weather UI', 'Mobile-first'],
   'UX-Analysis-pipeline': ['React', 'Vite', 'Recharts', 'Lucide', 'FastAPI', 'Pandas', 'Pydantic', 'Ollama', 'qwen3:4b'],
   Skyrim_Copilot: ['React', 'Vite', 'FastAPI', 'Dify', 'Docker', 'Ollama'],
-  Projeto_GLojas: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'Docker', 'class-validator', '@nestjs/swagger'],
+  Projeto_GLojas: ['React Native', 'Expo', 'TypeScript', 'Redux Toolkit', 'FastAPI', 'SQLAlchemy', 'SQLite', 'JWT'],
   UCtorrent: ['Python 3.11+', 'libtorrent', 'PySide6', 'FastAPI', 'Uvicorn', 'SQLite'],
-  Api_Gerenciamento_De_Produtos: ['TypeScript', 'API REST', 'CRUD', 'Node.js'],
+  Api_Gerenciamento_De_Produtos: ['NestJS', 'TypeScript', 'TypeORM', 'PostgreSQL', 'Docker', 'class-validator', 'Swagger'],
   Portfolio: ['React', 'Vite', 'TypeScript', 'Tailwind', 'GitHub API'],
 };
 
@@ -281,7 +281,7 @@ export const copy = {
           layers: ['Servlet apenas como controller HTTP', 'FilmeService com regra de negócio e validação única', 'FilmeDAO isolando todo o SQL e ConexaoFactory única', 'Views em JSP + JSTL fora do código Java', 'Build Maven e 14 testes JUnit sobre o service'],
         },
         'Video-Heatmap-Python': {
-          summary: 'Aplicativo desktop que processa vídeo quadro a quadro e gera mapa de calor das áreas de maior atividade.',
+          summary: 'Aplicativo desktop que rastreia o cursor em gravações de tela e gera mapas de calor, útil para revisar testes de usabilidade.',
           technologies: projectTechnologyStacks['Video-Heatmap-Python'] || [],
           layers: ['Interface desktop em PyQt5 com progresso de processamento', 'Leitura e análise de vídeo com OpenCV', 'Acumulação de posições em arrays NumPy com decay configurável', 'Renderização do heatmap com Matplotlib', 'Ajuste de prioridade do processo via psutil'],
         },
@@ -296,19 +296,19 @@ export const copy = {
           layers: ['React 19 + Vite 7', 'Componentes de roteiro e clima', 'Links para Maps, Waze e Uber', 'Layout responsivo com CSS autoral'],
         },
         'UX-Analysis-pipeline': {
-          summary: 'Pipeline de pesquisa UX com interface analítica, API Python e IA local para leitura de entrevistas.',
+          summary: 'Analisa planilhas de testes de usabilidade e entrevistas de pesquisa UX, gerando painéis e insights com IA local, sem enviar dados para fora.',
           technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
           layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Ollama local - qwen3:4b'],
         },
         Skyrim_Copilot: {
-          summary: 'Copilot de gameplay com interface React/Vite, API FastAPI e integração local com IA.',
+          summary: 'Chat local sobre o universo de Skyrim com RAG: respostas só a partir de uma base de lore indexada no Dify, rodando no Ollama.',
           technologies: projectTechnologyStacks.Skyrim_Copilot || [],
           layers: ['Interface React/Vite', 'Backend/API FastAPI', 'Infra Dify/docker', 'Ollama no Windows host'],
         },
         Projeto_GLojas: {
-          summary: 'Backend escalável com NestJS, TypeScript, PostgreSQL e documentação automática de API.',
+          summary: 'App mobile de PDV e estoque para várias lojas, com dados isolados por vendedor, autenticação com verificação por e-mail e relatórios financeiros.',
           technologies: projectTechnologyStacks.Projeto_GLojas || [],
-          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker', 'class-validator + Swagger'],
+          layers: ['React Native + Expo + TypeScript', 'Estado com Redux Toolkit e navegação com React Navigation', 'API FastAPI + SQLAlchemy + SQLite', 'JWT, bcrypt e verificação por OTP via Brevo'],
         },
         UCtorrent: {
           summary: 'Aplicativo desktop Python com interface PySide6, API local e persistência SQLite.',
@@ -316,9 +316,9 @@ export const copy = {
           layers: ['Python 3.11+', 'Binding libtorrent', 'Interface PySide6', 'FastAPI + Uvicorn', 'SQLite'],
         },
         Api_Gerenciamento_De_Produtos: {
-          summary: 'API CRUD para gerenciamento de produtos, útil para contratos de backend e prática TypeScript.',
+          summary: 'API REST de CRUD de produtos com validação e documentação automática no Swagger.',
           technologies: projectTechnologyStacks.Api_Gerenciamento_De_Produtos || [],
-          layers: ['Backend TypeScript', 'Endpoints REST', 'CRUD de produtos'],
+          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker Compose', 'class-validator + Swagger'],
         },
         Portfolio: {
           summary: 'Portfólio pessoal em React com Vite, TypeScript, Tailwind e consumo de dados públicos do GitHub.',
@@ -579,7 +579,7 @@ export const copy = {
           layers: ['Servlet reduced to an HTTP controller', 'FilmeService holding business rules and single validation', 'FilmeDAO isolating all SQL, one ConexaoFactory', 'Views in JSP + JSTL, outside the Java code', 'Maven build and 14 JUnit tests over the service'],
         },
         'Video-Heatmap-Python': {
-          summary: 'A desktop app that processes video frame by frame and renders a heatmap of the busiest areas.',
+          summary: 'A desktop app that tracks the mouse cursor in screen recordings and generates heatmaps, useful for reviewing usability tests.',
           technologies: projectTechnologyStacks['Video-Heatmap-Python'] || [],
           layers: ['PyQt5 desktop interface with processing progress', 'Video reading and analysis with OpenCV', 'Position accumulation in NumPy arrays with configurable decay', 'Heatmap rendering with Matplotlib', 'Process priority tuning via psutil'],
         },
@@ -594,19 +594,19 @@ export const copy = {
           layers: ['React 19 + Vite 7', 'Itinerary and weather components', 'Maps, Waze and Uber shortcuts', 'Responsive layout with custom CSS'],
         },
         'UX-Analysis-pipeline': {
-          summary: 'UX research pipeline with an analytics interface, Python API and local AI for reading interview data.',
+          summary: 'Analyzes usability test and UX interview spreadsheets into dashboards and local-AI insights, without sending data anywhere.',
           technologies: projectTechnologyStacks['UX-Analysis-pipeline'] || [],
           layers: ['React + Vite + Recharts + Lucide', 'HTTP/REST', 'FastAPI + Pandas + Pydantic', 'Local Ollama - qwen3:4b'],
         },
         Skyrim_Copilot: {
-          summary: 'Gameplay copilot with a React/Vite interface, FastAPI backend and local AI integration.',
+          summary: 'A local Skyrim lore chat with RAG: answers come only from a lore knowledge base indexed in Dify, running on Ollama.',
           technologies: projectTechnologyStacks.Skyrim_Copilot || [],
           layers: ['React/Vite interface', 'FastAPI backend/API', 'Dify infra/docker', 'Ollama on Windows host'],
         },
         Projeto_GLojas: {
-          summary: 'Scalable backend with NestJS, TypeScript, PostgreSQL and automatic API documentation.',
+          summary: 'A mobile point-of-sale and inventory app for multiple stores, with per-seller data isolation, e-mail-verified auth and financial reports.',
           technologies: projectTechnologyStacks.Projeto_GLojas || [],
-          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker', 'class-validator + Swagger'],
+          layers: ['React Native + Expo + TypeScript', 'Redux Toolkit state and React Navigation', 'FastAPI + SQLAlchemy + SQLite API', 'JWT, bcrypt and OTP verification via Brevo'],
         },
         UCtorrent: {
           summary: 'Python desktop app with a PySide6 interface, local API and SQLite persistence.',
@@ -614,9 +614,9 @@ export const copy = {
           layers: ['Python 3.11+', 'libtorrent binding', 'PySide6 UI', 'FastAPI + Uvicorn', 'SQLite'],
         },
         Api_Gerenciamento_De_Produtos: {
-          summary: 'CRUD API for product management, useful for backend contracts and TypeScript practice.',
+          summary: 'A product CRUD REST API with validation and automatic Swagger documentation.',
           technologies: projectTechnologyStacks.Api_Gerenciamento_De_Produtos || [],
-          layers: ['TypeScript backend', 'REST endpoints', 'Product CRUD'],
+          layers: ['NestJS + TypeScript', 'TypeORM + PostgreSQL', 'Docker Compose', 'class-validator + Swagger'],
         },
         Portfolio: {
           summary: 'Personal portfolio built with React, Vite, TypeScript, Tailwind and public GitHub data.',
